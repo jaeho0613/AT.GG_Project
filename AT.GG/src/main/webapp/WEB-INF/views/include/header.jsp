@@ -70,7 +70,7 @@
 					</ul>
 
 					<!-- Nav Search Bar -->
-					<form class="d-flex m-0" action="#" method="GET">
+					<form class="d-flex m-0" action="/at.gg/summoner" method="GET">
 						<input class="form-control me-2 px-2 py-0" type="search" name="userName" placeholder="소환사, 소환사명..."
 							autocomplete="off">
 						<button type="submit" class="btn btn-primary me-2">.GG</button>
