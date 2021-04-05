@@ -1,0 +1,55 @@
+@charset "UTF-8";
+@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
+
+/* Global Setting */
+* {
+  font-family: 'Jeju Gothic', sans-serif;
+  box-sizing: border-box;
+}
+
+body {
+  padding-top: 4.5rem;
+  background-color: #5383E8;
+  height: 100vh;
+}
+
+main {
+  min-height: 85vh;
+}
+
+a {
+  text-decoration: none;
+}
+
+/* Footer */
+footer .footer_link {
+  padding: 0;
+}
+
+footer .footer_link li {
+  padding: 0 10px;
+}
+
+footer .footer_copyright p {
+  font-size: 15px;
+}
+
+footer li.icon {
+  font-size: 20px;
+  color: white;
+  background-color: #5383E8;
+  border: none;
+}
+
+/* Media */
+@media (max-width : 530px) {
+  footer .footer_copyright p {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 992px) {
+  nav .logInBtn {
+    margin-top: 1rem;
+  }
+}
