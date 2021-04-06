@@ -14,7 +14,7 @@ body {
 }
 
 main {
-  min-height: 85vh;
+  min-height: 83vh;
 }
 
 a {
@@ -32,6 +32,7 @@ footer .footer_link li {
 
 footer .footer_copyright p {
   font-size: 15px;
+  color: white;
 }
 
 footer li.icon {
@@ -39,6 +40,10 @@ footer li.icon {
   color: white;
   background-color: #5383E8;
   border: none;
+}
+
+footer a {
+	color: white;
 }
 
 /* Media */

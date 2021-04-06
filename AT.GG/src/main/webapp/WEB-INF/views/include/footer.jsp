@@ -1,23 +1,23 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!-- Footer -->
-	<footer class="text-center pb-3">
+	<footer class="text-center py-3">
 		<div class="container">
 			<!-- Link -->
 			<ul class="footer_link">
 				<li class="d-inline-block">
-					<a href="#" class="text-white">About AT.GG</a>
+					<a href="#" >About AT.GG</a>
 				</li>
 				<li class="d-inline-block">
-					<a href="#" class="text-white">도움말</a>
+					<a href="#" >도움말</a>
 				</li>
 				<li class="d-inline-block">
-					<a href="#" class="text-white">문의/피드백</a>
+					<a href="#" >문의/피드백</a>
 				</li>
 			</ul>
 			<!-- Copy -->
 			<div class="footer_copyright">
-				<p class="text-white">
+				<p >
 					© 2012-2021
 					OP.GG.
 					OP.GG isn’t endorsed by Riot Games and doesn’t reflect the views or opinions of Riot Games or anyone

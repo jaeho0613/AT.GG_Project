@@ -1,10 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <c:set var="path" value="${ pageContext.request.contextPath }"></c:set>
+<c:set var="currentUrl" value="${ pageContext.request.requestURL }"></c:set>
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -24,11 +27,19 @@
 
 	<!-- Global CSS -->
 	<link rel="stylesheet" href="${ path }/resources/css/global.css">
-	<!-- <link rel="stylesheet" href="global.css"> -->
 
-	<!-- main page css -->
-	<link rel="stylesheet" href="${ path }/resources/css/main.css">
-	<!-- <link rel="stylesheet" href="main.css"> -->
+	<!-- 경로 계산후 CSS import -->
+	<c:choose>
+
+		<c:when test="${ fn:contains(currentUrl, 'main') }">
+			<link rel="stylesheet" href="${ path }/resources/css/main.css">
+		</c:when>
+
+		<c:when test="${ fn:contains(currentUrl, 'summoner') }">
+			<link rel="stylesheet" href="${ path }/resources/css/summoner.css">
+		</c:when>
+
+	</c:choose>
 </head>
 
 <body>
@@ -52,21 +63,11 @@
 
 					<!-- Link -->
 					<ul class="navbar-nav me-auto mb-2 mb-lg-0">
-						<li class="nav-item">
-							<a class="nav-link" aria-current="page" href="#">홈</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" aria-current="page" href="#">전적 검색</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" aria-current="page" href="#">챔피언 정보</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" aria-current="page" href="#">아이템 정보</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link active" aria-current="page" href="#">다운로드</a>
-						</li>
+						<li class="nav-item"><a class="nav-link" aria-current="page" href="#">홈</a></li>
+						<li class="nav-item"><a class="nav-link" aria-current="page" href="#">전적 검색</a></li>
+						<li class="nav-item"><a class="nav-link" aria-current="page" href="#">챔피언 정보</a></li>
+						<li class="nav-item"><a class="nav-link" aria-current="page" href="#">아이템 정보</a></li>
+						<li class="nav-item"><a class="nav-link active" aria-current="page" href="#">다운로드</a></li>
 					</ul>
 
 					<!-- Nav Search Bar -->

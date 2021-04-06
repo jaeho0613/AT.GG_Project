@@ -1,1 +1,62 @@
 @charset "UTF-8";
+
+body {
+  background-color: #EAEAEA;
+}
+
+footer a,
+footer .footer_copyright p {
+  color: black;
+}
+
+footer li.icon {
+  background-color: transparent;
+  color: black;
+}
+
+.accordion-body {
+  background-color: white;
+}
+
+/* 화면 가로가 767 이상일 때*/
+@media (min-width: 768.98px) {
+  
+  .champion_icon>img {
+    width: 70px;
+    height: 70px;
+  }
+
+  .rune_spell_icon>img {
+    width: 40px;
+    height: 40px;
+  }
+
+  .accordion-body {
+    padding: 10px 10px;
+  }
+
+  .accordion-body span {
+    font-size: 16px;
+  }
+}
+
+/* 화면 가로가 767 이하일 때*/
+@media (max-width: 767.98px) {
+  .champion_icon>img {
+    width: 50px;
+    height: 50px;
+  }
+
+  .rune_spell_icon>img {
+    width: 20px;
+    height: 20px;
+  }
+
+  .accordion-body {
+    padding: 5px 5px;
+  }
+
+  .accordion-body span {
+    font-size: 12px;
+  }
+}
