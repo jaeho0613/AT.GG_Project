@@ -20,4 +20,5 @@ create table summoner(
     summonerLevel varchar(60) not null
 );
 
-insert into summoner values('a','b','c','d','e','f','g');
+select * from summoner;
+insert into summoner values('a','b','c','정재호4','e','f','g');
