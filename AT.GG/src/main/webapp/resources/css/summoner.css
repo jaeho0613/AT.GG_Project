@@ -18,14 +18,15 @@ footer li.icon {
   background-color: white;
 }
 
-/* 화면 가로가 767 이상일 때*/
+/* 화면 가로가 767 이상일 때 (PC)*/
 @media (min-width: 768.98px) {
-  
+
   .champion_icon>img {
     width: 70px;
     height: 70px;
   }
 
+  .item_icon>img,
   .rune_spell_icon>img {
     width: 40px;
     height: 40px;
@@ -38,25 +39,104 @@ footer li.icon {
   .accordion-body span {
     font-size: 16px;
   }
+
+  .hidden-content .champion_icon>img {
+    width: 50px;
+    height: 50px;
+  }
+
+  .hidden-content .item_icon>img {
+    width: 35px;
+    height: 35px;
+  }
+
+  .hidden-content .rune_spell_icon>img {
+    width: 32px;
+    height: 32px;
+  }
+
+  .hidden-content .accordion-body span {
+    font-size: 20px;
+  }
+
+  .hidden-content .accordion-body .team_kda span,
+  .hidden-content .accordion-body .team_object span {
+    font-size: 20px;
+  }
+
+  .tier {
+    width: 32px;
+    height: 32px;
+    font-size: 18px;
+  }
+
+  .team_object img {
+    width: 32px;
+    height: 32px;
+  }
+
+  .progress {
+    height: 20px;
+  }
 }
 
-/* 화면 가로가 767 이하일 때*/
+/* 화면 가로가 767 이하일 때 (모바일) */
 @media (max-width: 767.98px) {
   .champion_icon>img {
     width: 50px;
     height: 50px;
   }
 
+  .item_icon>img,
   .rune_spell_icon>img {
-    width: 20px;
-    height: 20px;
+    width: 25px;
+    height: 25px;
+  }
+
+  .summoner.accordion-body {
+    height: 40px;
   }
 
   .accordion-body {
-    padding: 5px 5px;
+    padding: 0;
   }
 
   .accordion-body span {
-    font-size: 12px;
+    font-size: 11px;
+  }
+
+  .hidden-content .champion_icon>img {
+    width: 32px;
+    height: 32px;
+  }
+
+  .hidden-content .item_icon>img {
+    width: 22px;
+    height: 22px;
+  }
+
+  .hidden-content .rune_spell_icon>img {
+    width: 16px;
+    height: 16px;
+  }
+
+  .hidden-content .accordion-body span {
+    font-size: 10px;
+  }
+
+  .hidden-content .accordion-body .team_kda span,
+  .hidden-content .accordion-body .team_object span {
+    font-size: 15px;
+  }
+
+  .tier {
+    width: 15px;
+    height: 15px;
+    font-size: 10px;
+  }
+
+  .team_object img {
+    width: 16px;
+    height: 16px;
   }
 }

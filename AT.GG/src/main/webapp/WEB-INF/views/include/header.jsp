@@ -67,7 +67,7 @@
 						<li class="nav-item"><a class="nav-link" aria-current="page" href="#">전적 검색</a></li>
 						<li class="nav-item"><a class="nav-link" aria-current="page" href="#">챔피언 정보</a></li>
 						<li class="nav-item"><a class="nav-link" aria-current="page" href="#">아이템 정보</a></li>
-						<li class="nav-item"><a class="nav-link active" aria-current="page" href="#">다운로드</a></li>
+						<li class="nav-item"><a class="nav-link" aria-current="page" href="#">다운로드</a></li>
 					</ul>
 
 					<!-- Nav Search Bar -->

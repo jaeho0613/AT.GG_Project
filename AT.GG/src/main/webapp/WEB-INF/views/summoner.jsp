@@ -1,8 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <jsp:include page="/WEB-INF/views/include/header.jsp"></jsp:include>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="path" value="${ pageContext.request.contextPath }"></c:set>
 
-<main class="container ">
+<!-- Summoner -->
+  <main class="container ">
     <div class="content d-flex justify-content-between row">
       <!-- 왼쪽 컨테이너 -->
       <div class="summoner_info_container col-xl-2">
@@ -43,7 +46,6 @@
           </div>
         </div>
       </div>
-
       <!-- 오른쪽 컨테이너 -->
       <div class="summoner_match_container col-xl-10 d-flex flex-column">
         <!-- 한개 게임 데이터 컨테이너 -->
@@ -58,7 +60,7 @@
             </h2>
             <!-- 중앙 컨텐츠 -->
             <div class="accordion-body">
-              <div class="d-flex justify-content-evenly">
+              <div class="d-flex justify-content-evenly my-1">
                 <!-- 캐릭터 초상화 -->
                 <div class="champion_icon my-auto me-xl-4">
                   <img class="rounded-circle"
@@ -77,7 +79,7 @@
                   </div>
                 </div>
                 <!-- KDA -->
-                <div class="d-flex flex-column justify-content-center text-center me-xl-4">
+                <div class="d-flex flex-column justify-content-center text-center lh-1 me-xl-4">
                   <span>12 / 2 / 10</span>
                   <span>11.00 : 1</span>
                   <div class="rounded-pill bg-danger text-center text-white">
@@ -85,22 +87,22 @@
                   </div>
                 </div>
                 <!-- KDA -->
-                <div class="d-flex flex-column justify-content-center text-center me-xl-4">
+                <div class="d-flex flex-column justify-content-center text-center lh-sm me-xl-4">
                   <span>레벨 16</span>
                   <span>201 (7) CS</span>
                   <span>킬관여 48%</span>
                 </div>
                 <!-- 아이템 -->
-                <div class="rune_speli d-flex me-xl-4">
-                  <div class="rune_spell_icon d-flex flex-column justify-content-center">
+                <div class="item_icon d-flex me-xl-4">
+                  <div class="item_icon d-flex flex-column justify-content-center">
                     <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/item/4630.png">
                     <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/item/3157.png">
                   </div>
-                  <div class="rune_spell_icon d-flex flex-column justify-content-center">
+                  <div class="item_icon d-flex flex-column justify-content-center">
                     <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/item/3115.png">
                     <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/item/1026.png">
                   </div>
-                  <div class="rune_spell_icon d-flex flex-column justify-content-center">
+                  <div class="item_icon d-flex flex-column justify-content-center">
                     <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/item/1026.png">
                     <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/item/6653.png">
                   </div>
@@ -108,816 +110,638 @@
               </div>
             </div>
             <!-- 숨김 컨텐츠 -->
-            <div id="match_1" class="accordion-collapse collapse">
-              <div class="accordion-body">
-                <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse
-                plugin adds the appropriate classes that we use to style each element. These classes control the overall
-                appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with
-                custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go
-                within the <code>.accordion-body</code>, though the transition does limit overflow.
+            <div id="match_1" class="hidden-content accordion-collapse collapse">
+              <!-- 승리팀 라벨 -->
+              <div class="team_label accordion-body d-flex justify-content-around" style="background: #b4b4b4;">
+                <div class="team_kda">
+                  <span>승리 (레드팀)</span>
+                  <span>46 / 26 / 71</span>
+                </div>
+                <div class="team_object d-flex">
+                  <div class="baron">
+                    <img src="${ path }/resources/img/icon-baron-b.png">
+                    <span>2</span>
+                  </div>
+                  <div class="dragon">
+                    <img src="${ path }/resources/img/icon-dragon-b.png">
+                    <span>2</span>
+                  </div>
+                  <div class="tower">
+                    <img src="${ path }/resources/img/icon-tower-b.png">
+                    <span>2</span>
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
-        </div>
-        <!-- 한개 게임 데이터 컨테이너 -->
-        <div class="accordion" id="match_list">
-          <div class="accordion-item">
-            <!-- 타이틀 -->
-            <h2 class="accordion-header">
-              <button class="accordion-button collapsed text-dark" type="button" data-bs-toggle="collapse"
-                data-bs-target="#match_2" style="background-color: #E2B6B3;">
-                자유 랭크 · 4일전 / 28분 / 승리
-              </button>
-            </h2>
-            <!-- 중앙 컨텐츠 -->
-            <div class="accordion-body">
-              <div class="d-flex justify-content-evenly">
-                <!-- 캐릭터 초상화 -->
-                <div class="champion_icon my-auto me-xl-4">
-                  <img class="rounded-circle"
-                    src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/champion/Azir.png">
-                </div>
-                <!-- 룬 스펠 -->
-                <div class="rune_speli d-flex me-xl-4">
-                  <div class="rune_spell_icon d-flex flex-column justify-content-center">
-                    <img src=" https://ddragon.leagueoflegends.com/cdn/11.7.1/img/spell/SummonerFlash.png">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/spell/SummonerDot.png">
+              <!-- 소환사 한명 -->
+              <div class="summoner accordion-body d-flex justify-content-around align-content-center">
+                <!-- 왼쪽 정보 -->
+                <div class="d-flex">
+                  <!-- 캐릭터 초상화 -->
+                  <div class="champion_icon my-auto me-1">
+                    <img class="rounded-circle"
+                      src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/champion/Azir.png">
                   </div>
-                  <div class="rune_spell_icon d-flex flex-column justify-content-center me-2">
-                    <img
-                      src="https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Domination/HailOfBlades/HailOfBlades.png">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/7201_Precision.png">
+                  <!-- 룬 스펠 -->
+                  <div class="rune_speli d-flex">
+                    <div class="rune_spell_icon d-flex flex-column justify-content-center">
+                      <img src=" https://ddragon.leagueoflegends.com/cdn/11.7.1/img/spell/SummonerFlash.png">
+                      <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/spell/SummonerDot.png">
+                    </div>
+                    <div class="rune_spell_icon d-flex flex-column justify-content-center me-2">
+                      <img
+                        src="https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Domination/HailOfBlades/HailOfBlades.png">
+                      <img src="https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/7201_Precision.png">
+                    </div>
                   </div>
-                </div>
-                <!-- KDA -->
-                <div class="d-flex flex-column justify-content-center text-center me-xl-4">
-                  <span>12 / 2 / 10</span>
-                  <span>11.00 : 1</span>
-                  <div class="rounded-pill bg-danger text-center text-white">
-                    <span>더블킬</span>
+                  <!-- 매칭 소환사 정보 -->
+                  <div class="summoner_info d-flex flex-column">
+                    <div class="summoner_tier d-flex">
+                      <div class="tier me-1 my-auto rounded-circle text-center" style="background-color: silver;">
+                        <span>S1</span>
+                      </div>
+                      <div class="summoner_name">
+                        <span>정재호임</span>
+                      </div>
+                    </div>
+                    <!-- KDA -->
+                    <div class="d-flex justify-content- text-center">
+                      <span>12/2/10</span>&nbsp;
+                      <span style="color: red;">11.00:1</span>
+                    </div>
                   </div>
                 </div>
-                <!-- KDA -->
-                <div class="d-flex flex-column justify-content-center text-center me-xl-4">
-                  <span>레벨 16</span>
-                  <span>201 (7) CS</span>
-                  <span>킬관여 48%</span>
-                </div>
-                <!-- 아이템 -->
-                <div class="rune_speli d-flex me-xl-4">
-                  <div class="rune_spell_icon d-flex flex-column justify-content-center">
+                <!-- 오른쪽 정보 -->
+                <div class="d-flex flex-column  text-center">
+                  <!-- 아이템 -->
+                  <div class="item_icon d-flex">
                     <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/item/4630.png">
                     <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/item/3157.png">
-                  </div>
-                  <div class="rune_spell_icon d-flex flex-column justify-content-center">
                     <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/item/3115.png">
                     <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/item/1026.png">
-                  </div>
-                  <div class="rune_spell_icon d-flex flex-column justify-content-center">
                     <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/item/1026.png">
                     <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/item/6653.png">
                   </div>
+                  <!-- 딜량, cs-->
+                  <div class="d-flex row row-cols-2">
+                    <span class="p-0 col-5">198/1.4만</span>
+                    <div class="progress p-0">
+                      <div class="progress-bar bg-danger" role="progressbar" style="width: 95%;" aria-valuemin="0"
+                        aria-valuemax="100">22053</div>
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
-            <!-- 숨김 컨텐츠 -->
-            <div id="match_2" class="accordion-collapse collapse">
-              <div class="accordion-body">
-                <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse
-                plugin adds the appropriate classes that we use to style each element. These classes control the overall
-                appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with
-                custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go
-                within the <code>.accordion-body</code>, though the transition does limit overflow.
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- 한개 게임 데이터 컨테이너 -->
-        <div class="accordion" id="match_list">
-          <div class="accordion-item">
-            <!-- 타이틀 -->
-            <h2 class="accordion-header">
-              <button class="accordion-button collapsed text-dark" type="button" data-bs-toggle="collapse"
-                data-bs-target="#match_3" style="background-color: #A3CFEC;">
-                자유 랭크 · 4일전 / 28분 / 승리
-              </button>
-            </h2>
-            <!-- 중앙 컨텐츠 -->
-            <div class="accordion-body">
-              <div class="d-flex justify-content-evenly">
-                <!-- 캐릭터 초상화 -->
-                <div class="champion_icon my-auto me-xl-4">
-                  <img class="rounded-circle"
-                    src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/champion/Azir.png">
-                </div>
-                <!-- 룬 스펠 -->
-                <div class="rune_speli d-flex me-xl-4">
-                  <div class="rune_spell_icon d-flex flex-column justify-content-center">
-                    <img src=" https://ddragon.leagueoflegends.com/cdn/11.7.1/img/spell/SummonerFlash.png">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/spell/SummonerDot.png">
+              <!-- 소환사 한명 -->
+              <div class="summoner accordion-body d-flex justify-content-around align-content-center">
+                <!-- 왼쪽 정보 -->
+                <div class="d-flex">
+                  <!-- 캐릭터 초상화 -->
+                  <div class="champion_icon my-auto me-1">
+                    <img class="rounded-circle"
+                      src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/champion/Azir.png">
                   </div>
-                  <div class="rune_spell_icon d-flex flex-column justify-content-center me-2">
-                    <img
-                      src="https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Domination/HailOfBlades/HailOfBlades.png">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/7201_Precision.png">
+                  <!-- 룬 스펠 -->
+                  <div class="rune_speli d-flex">
+                    <div class="rune_spell_icon d-flex flex-column justify-content-center">
+                      <img src=" https://ddragon.leagueoflegends.com/cdn/11.7.1/img/spell/SummonerFlash.png">
+                      <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/spell/SummonerDot.png">
+                    </div>
+                    <div class="rune_spell_icon d-flex flex-column justify-content-center me-2">
+                      <img
+                        src="https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Domination/HailOfBlades/HailOfBlades.png">
+                      <img src="https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/7201_Precision.png">
+                    </div>
+                  </div>
+                  <!-- 매칭 소환사 정보 -->
+                  <div class="summoner_info d-flex flex-column">
+                    <div class="summoner_tier d-flex">
+                      <div class="tier me-1 my-auto rounded-circle text-center" style="background-color: silver;">
+                        <span>S1</span>
+                      </div>
+                      <div class="summoner_name">
+                        <span>정재호임</span>
+                      </div>
+                    </div>
+                    <!-- KDA -->
+                    <div class="d-flex justify-content- text-center">
+                      <span>12/2/10</span>&nbsp;
+                      <span style="color: red;">11.00:1</span>
+                    </div>
                   </div>
                 </div>
-                <!-- KDA -->
-                <div class="d-flex flex-column justify-content-center text-center me-xl-4">
-                  <span>12 / 2 / 10</span>
-                  <span>11.00 : 1</span>
-                  <div class="rounded-pill bg-danger text-center text-white">
-                    <span>더블킬</span>
-                  </div>
-                </div>
-                <!-- KDA -->
-                <div class="d-flex flex-column justify-content-center text-center me-xl-4">
-                  <span>레벨 16</span>
-                  <span>201 (7) CS</span>
-                  <span>킬관여 48%</span>
-                </div>
-                <!-- 아이템 -->
-                <div class="rune_speli d-flex me-xl-4">
-                  <div class="rune_spell_icon d-flex flex-column justify-content-center">
+                <!-- 오른쪽 정보 -->
+                <div class="d-flex flex-column  text-center">
+                  <!-- 아이템 -->
+                  <div class="item_icon d-flex">
                     <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/item/4630.png">
                     <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/item/3157.png">
-                  </div>
-                  <div class="rune_spell_icon d-flex flex-column justify-content-center">
                     <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/item/3115.png">
                     <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/item/1026.png">
-                  </div>
-                  <div class="rune_spell_icon d-flex flex-column justify-content-center">
                     <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/item/1026.png">
                     <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/item/6653.png">
                   </div>
+                  <!-- 딜량, cs-->
+                  <div class="d-flex row row-cols-2">
+                    <span class="p-0 col-5">198/1.4만</span>
+                    <div class="progress p-0">
+                      <div class="progress-bar bg-danger" role="progressbar" style="width: 95%;" aria-valuemin="0"
+                        aria-valuemax="100">22053</div>
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
-            <!-- 숨김 컨텐츠 -->
-            <div id="match_3" class="accordion-collapse collapse">
-              <div class="accordion-body">
-                <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse
-                plugin adds the appropriate classes that we use to style each element. These classes control the overall
-                appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with
-                custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go
-                within the <code>.accordion-body</code>, though the transition does limit overflow.
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- 한개 게임 데이터 컨테이너 -->
-        <div class="accordion" id="match_list">
-          <div class="accordion-item">
-            <!-- 타이틀 -->
-            <h2 class="accordion-header">
-              <button class="accordion-button collapsed text-dark" type="button" data-bs-toggle="collapse"
-                data-bs-target="#match_4" style="background-color: #E2B6B3;">
-                자유 랭크 · 4일전 / 28분 / 승리
-              </button>
-            </h2>
-            <!-- 중앙 컨텐츠 -->
-            <div class="accordion-body">
-              <div class="d-flex justify-content-evenly">
-                <!-- 캐릭터 초상화 -->
-                <div class="champion_icon my-auto me-xl-4">
-                  <img class="rounded-circle"
-                    src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/champion/Azir.png">
-                </div>
-                <!-- 룬 스펠 -->
-                <div class="rune_speli d-flex me-xl-4">
-                  <div class="rune_spell_icon d-flex flex-column justify-content-center">
-                    <img src=" https://ddragon.leagueoflegends.com/cdn/11.7.1/img/spell/SummonerFlash.png">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/spell/SummonerDot.png">
+              <!-- 소환사 한명 -->
+              <div class="summoner accordion-body d-flex justify-content-around align-content-center">
+                <!-- 왼쪽 정보 -->
+                <div class="d-flex">
+                  <!-- 캐릭터 초상화 -->
+                  <div class="champion_icon my-auto me-1">
+                    <img class="rounded-circle"
+                      src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/champion/Azir.png">
                   </div>
-                  <div class="rune_spell_icon d-flex flex-column justify-content-center me-2">
-                    <img
-                      src="https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Domination/HailOfBlades/HailOfBlades.png">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/7201_Precision.png">
+                  <!-- 룬 스펠 -->
+                  <div class="rune_speli d-flex">
+                    <div class="rune_spell_icon d-flex flex-column justify-content-center">
+                      <img src=" https://ddragon.leagueoflegends.com/cdn/11.7.1/img/spell/SummonerFlash.png">
+                      <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/spell/SummonerDot.png">
+                    </div>
+                    <div class="rune_spell_icon d-flex flex-column justify-content-center me-2">
+                      <img
+                        src="https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Domination/HailOfBlades/HailOfBlades.png">
+                      <img src="https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/7201_Precision.png">
+                    </div>
+                  </div>
+                  <!-- 매칭 소환사 정보 -->
+                  <div class="summoner_info d-flex flex-column">
+                    <div class="summoner_tier d-flex">
+                      <div class="tier me-1 my-auto rounded-circle text-center" style="background-color: silver;">
+                        <span>S1</span>
+                      </div>
+                      <div class="summoner_name">
+                        <span>정재호임</span>
+                      </div>
+                    </div>
+                    <!-- KDA -->
+                    <div class="d-flex justify-content- text-center">
+                      <span>12/2/10</span>&nbsp;
+                      <span style="color: red;">11.00:1</span>
+                    </div>
                   </div>
                 </div>
-                <!-- KDA -->
-                <div class="d-flex flex-column justify-content-center text-center me-xl-4">
-                  <span>12 / 2 / 10</span>
-                  <span>11.00 : 1</span>
-                  <div class="rounded-pill bg-danger text-center text-white">
-                    <span>더블킬</span>
-                  </div>
-                </div>
-                <!-- KDA -->
-                <div class="d-flex flex-column justify-content-center text-center me-xl-4">
-                  <span>레벨 16</span>
-                  <span>201 (7) CS</span>
-                  <span>킬관여 48%</span>
-                </div>
-                <!-- 아이템 -->
-                <div class="rune_speli d-flex me-xl-4">
-                  <div class="rune_spell_icon d-flex flex-column justify-content-center">
+                <!-- 오른쪽 정보 -->
+                <div class="d-flex flex-column  text-center">
+                  <!-- 아이템 -->
+                  <div class="item_icon d-flex">
                     <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/item/4630.png">
                     <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/item/3157.png">
-                  </div>
-                  <div class="rune_spell_icon d-flex flex-column justify-content-center">
                     <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/item/3115.png">
                     <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/item/1026.png">
-                  </div>
-                  <div class="rune_spell_icon d-flex flex-column justify-content-center">
                     <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/item/1026.png">
                     <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/item/6653.png">
                   </div>
+                  <!-- 딜량, cs-->
+                  <div class="d-flex row row-cols-2">
+                    <span class="p-0 col-5">198/1.4만</span>
+                    <div class="progress p-0">
+                      <div class="progress-bar bg-danger" role="progressbar" style="width: 95%;" aria-valuemin="0"
+                        aria-valuemax="100">22053</div>
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
-            <!-- 숨김 컨텐츠 -->
-            <div id="match_4" class="accordion-collapse collapse">
-              <div class="accordion-body">
-                <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse
-                plugin adds the appropriate classes that we use to style each element. These classes control the overall
-                appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with
-                custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go
-                within the <code>.accordion-body</code>, though the transition does limit overflow.
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- 한개 게임 데이터 컨테이너 -->
-        <div class="accordion" id="match_list">
-          <div class="accordion-item">
-            <!-- 타이틀 -->
-            <h2 class="accordion-header">
-              <button class="accordion-button collapsed text-dark" type="button" data-bs-toggle="collapse"
-                data-bs-target="#match_4" style="background-color: #E2B6B3;">
-                자유 랭크 · 4일전 / 28분 / 승리
-              </button>
-            </h2>
-            <!-- 중앙 컨텐츠 -->
-            <div class="accordion-body">
-              <div class="d-flex justify-content-evenly">
-                <!-- 캐릭터 초상화 -->
-                <div class="champion_icon my-auto me-xl-4">
-                  <img class="rounded-circle"
-                    src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/champion/Azir.png">
-                </div>
-                <!-- 룬 스펠 -->
-                <div class="rune_speli d-flex me-xl-4">
-                  <div class="rune_spell_icon d-flex flex-column justify-content-center">
-                    <img src=" https://ddragon.leagueoflegends.com/cdn/11.7.1/img/spell/SummonerFlash.png">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/spell/SummonerDot.png">
+              <!-- 소환사 한명 -->
+              <div class="summoner accordion-body d-flex justify-content-around align-content-center">
+                <!-- 왼쪽 정보 -->
+                <div class="d-flex">
+                  <!-- 캐릭터 초상화 -->
+                  <div class="champion_icon my-auto me-1">
+                    <img class="rounded-circle"
+                      src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/champion/Azir.png">
                   </div>
-                  <div class="rune_spell_icon d-flex flex-column justify-content-center me-2">
-                    <img
-                      src="https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Domination/HailOfBlades/HailOfBlades.png">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/7201_Precision.png">
+                  <!-- 룬 스펠 -->
+                  <div class="rune_speli d-flex">
+                    <div class="rune_spell_icon d-flex flex-column justify-content-center">
+                      <img src=" https://ddragon.leagueoflegends.com/cdn/11.7.1/img/spell/SummonerFlash.png">
+                      <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/spell/SummonerDot.png">
+                    </div>
+                    <div class="rune_spell_icon d-flex flex-column justify-content-center me-2">
+                      <img
+                        src="https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Domination/HailOfBlades/HailOfBlades.png">
+                      <img src="https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/7201_Precision.png">
+                    </div>
+                  </div>
+                  <!-- 매칭 소환사 정보 -->
+                  <div class="summoner_info d-flex flex-column">
+                    <div class="summoner_tier d-flex">
+                      <div class="tier me-1 my-auto rounded-circle text-center" style="background-color: silver;">
+                        <span>S1</span>
+                      </div>
+                      <div class="summoner_name">
+                        <span>정재호임</span>
+                      </div>
+                    </div>
+                    <!-- KDA -->
+                    <div class="d-flex justify-content- text-center">
+                      <span>12/2/10</span>&nbsp;
+                      <span style="color: red;">11.00:1</span>
+                    </div>
                   </div>
                 </div>
-                <!-- KDA -->
-                <div class="d-flex flex-column justify-content-center text-center me-xl-4">
-                  <span>12 / 2 / 10</span>
-                  <span>11.00 : 1</span>
-                  <div class="rounded-pill bg-danger text-center text-white">
-                    <span>더블킬</span>
-                  </div>
-                </div>
-                <!-- KDA -->
-                <div class="d-flex flex-column justify-content-center text-center me-xl-4">
-                  <span>레벨 16</span>
-                  <span>201 (7) CS</span>
-                  <span>킬관여 48%</span>
-                </div>
-                <!-- 아이템 -->
-                <div class="rune_speli d-flex me-xl-4">
-                  <div class="rune_spell_icon d-flex flex-column justify-content-center">
+                <!-- 오른쪽 정보 -->
+                <div class="d-flex flex-column  text-center">
+                  <!-- 아이템 -->
+                  <div class="item_icon d-flex">
                     <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/item/4630.png">
                     <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/item/3157.png">
-                  </div>
-                  <div class="rune_spell_icon d-flex flex-column justify-content-center">
                     <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/item/3115.png">
                     <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/item/1026.png">
-                  </div>
-                  <div class="rune_spell_icon d-flex flex-column justify-content-center">
                     <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/item/1026.png">
                     <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/item/6653.png">
                   </div>
+                  <!-- 딜량, cs-->
+                  <div class="d-flex row row-cols-2">
+                    <span class="p-0 col-5">198/1.4만</span>
+                    <div class="progress p-0">
+                      <div class="progress-bar bg-danger" role="progressbar" style="width: 95%;" aria-valuemin="0"
+                        aria-valuemax="100">22053</div>
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
-            <!-- 숨김 컨텐츠 -->
-            <div id="match_4" class="accordion-collapse collapse">
-              <div class="accordion-body">
-                <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse
-                plugin adds the appropriate classes that we use to style each element. These classes control the overall
-                appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with
-                custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go
-                within the <code>.accordion-body</code>, though the transition does limit overflow.
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- 한개 게임 데이터 컨테이너 -->
-        <div class="accordion" id="match_list">
-          <div class="accordion-item">
-            <!-- 타이틀 -->
-            <h2 class="accordion-header">
-              <button class="accordion-button collapsed text-dark" type="button" data-bs-toggle="collapse"
-                data-bs-target="#match_4" style="background-color: #E2B6B3;">
-                자유 랭크 · 4일전 / 28분 / 승리
-              </button>
-            </h2>
-            <!-- 중앙 컨텐츠 -->
-            <div class="accordion-body">
-              <div class="d-flex justify-content-evenly">
-                <!-- 캐릭터 초상화 -->
-                <div class="champion_icon my-auto me-xl-4">
-                  <img class="rounded-circle"
-                    src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/champion/Azir.png">
-                </div>
-                <!-- 룬 스펠 -->
-                <div class="rune_speli d-flex me-xl-4">
-                  <div class="rune_spell_icon d-flex flex-column justify-content-center">
-                    <img src=" https://ddragon.leagueoflegends.com/cdn/11.7.1/img/spell/SummonerFlash.png">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/spell/SummonerDot.png">
+              <!-- 소환사 한명 -->
+              <div class="summoner accordion-body d-flex justify-content-around align-content-center">
+                <!-- 왼쪽 정보 -->
+                <div class="d-flex">
+                  <!-- 캐릭터 초상화 -->
+                  <div class="champion_icon my-auto me-1">
+                    <img class="rounded-circle"
+                      src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/champion/Azir.png">
                   </div>
-                  <div class="rune_spell_icon d-flex flex-column justify-content-center me-2">
-                    <img
-                      src="https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Domination/HailOfBlades/HailOfBlades.png">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/7201_Precision.png">
+                  <!-- 룬 스펠 -->
+                  <div class="rune_speli d-flex">
+                    <div class="rune_spell_icon d-flex flex-column justify-content-center">
+                      <img src=" https://ddragon.leagueoflegends.com/cdn/11.7.1/img/spell/SummonerFlash.png">
+                      <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/spell/SummonerDot.png">
+                    </div>
+                    <div class="rune_spell_icon d-flex flex-column justify-content-center me-2">
+                      <img
+                        src="https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Domination/HailOfBlades/HailOfBlades.png">
+                      <img src="https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/7201_Precision.png">
+                    </div>
+                  </div>
+                  <!-- 매칭 소환사 정보 -->
+                  <div class="summoner_info d-flex flex-column">
+                    <div class="summoner_tier d-flex">
+                      <div class="tier me-1 my-auto rounded-circle text-center" style="background-color: silver;">
+                        <span>S1</span>
+                      </div>
+                      <div class="summoner_name">
+                        <span>정재호임</span>
+                      </div>
+                    </div>
+                    <!-- KDA -->
+                    <div class="d-flex justify-content- text-center">
+                      <span>12/2/10</span>&nbsp;
+                      <span style="color: red;">11.00:1</span>
+                    </div>
                   </div>
                 </div>
-                <!-- KDA -->
-                <div class="d-flex flex-column justify-content-center text-center me-xl-4">
-                  <span>12 / 2 / 10</span>
-                  <span>11.00 : 1</span>
-                  <div class="rounded-pill bg-danger text-center text-white">
-                    <span>더블킬</span>
-                  </div>
-                </div>
-                <!-- KDA -->
-                <div class="d-flex flex-column justify-content-center text-center me-xl-4">
-                  <span>레벨 16</span>
-                  <span>201 (7) CS</span>
-                  <span>킬관여 48%</span>
-                </div>
-                <!-- 아이템 -->
-                <div class="rune_speli d-flex me-xl-4">
-                  <div class="rune_spell_icon d-flex flex-column justify-content-center">
+                <!-- 오른쪽 정보 -->
+                <div class="d-flex flex-column  text-center">
+                  <!-- 아이템 -->
+                  <div class="item_icon d-flex">
                     <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/item/4630.png">
                     <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/item/3157.png">
-                  </div>
-                  <div class="rune_spell_icon d-flex flex-column justify-content-center">
                     <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/item/3115.png">
                     <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/item/1026.png">
-                  </div>
-                  <div class="rune_spell_icon d-flex flex-column justify-content-center">
                     <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/item/1026.png">
                     <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/item/6653.png">
                   </div>
+                  <!-- 딜량, cs-->
+                  <div class="d-flex row row-cols-2">
+                    <span class="p-0 col-5">198/1.4만</span>
+                    <div class="progress p-0">
+                      <div class="progress-bar bg-danger" role="progressbar" style="width: 95%;" aria-valuemin="0"
+                        aria-valuemax="100">22053</div>
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
-            <!-- 숨김 컨텐츠 -->
-            <div id="match_4" class="accordion-collapse collapse">
-              <div class="accordion-body">
-                <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse
-                plugin adds the appropriate classes that we use to style each element. These classes control the overall
-                appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with
-                custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go
-                within the <code>.accordion-body</code>, though the transition does limit overflow.
+              <!-- 패배팀 라벨 -->
+              <div class="team_label accordion-body d-flex justify-content-around" style="background: #b4b4b4;">
+                <div class="team_kda">
+                  <span>패배 (레드팀)</span>
+                  <span>46 / 26 / 71</span>
+                </div>
+                <div class="team_object d-flex">
+                  <div class="baron">
+                    <img src="${ path }/resources/img/icon-baron-r.png">
+                    <span>2</span>
+                  </div>
+                  <div class="dragon">
+                    <img src="${ path }/resources/img/icon-dragon-r.png">
+                    <span>2</span>
+                  </div>
+                  <div class="tower">
+                    <img src="${ path }/resources/img/icon-tower-r.png">
+                    <span>2</span>
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
-        </div>
-        <!-- 한개 게임 데이터 컨테이너 -->
-        <div class="accordion" id="match_list">
-          <div class="accordion-item">
-            <!-- 타이틀 -->
-            <h2 class="accordion-header">
-              <button class="accordion-button collapsed text-dark" type="button" data-bs-toggle="collapse"
-                data-bs-target="#match_4" style="background-color: #E2B6B3;">
-                자유 랭크 · 4일전 / 28분 / 승리
-              </button>
-            </h2>
-            <!-- 중앙 컨텐츠 -->
-            <div class="accordion-body">
-              <div class="d-flex justify-content-evenly">
-                <!-- 캐릭터 초상화 -->
-                <div class="champion_icon my-auto me-xl-4">
-                  <img class="rounded-circle"
-                    src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/champion/Azir.png">
-                </div>
-                <!-- 룬 스펠 -->
-                <div class="rune_speli d-flex me-xl-4">
-                  <div class="rune_spell_icon d-flex flex-column justify-content-center">
-                    <img src=" https://ddragon.leagueoflegends.com/cdn/11.7.1/img/spell/SummonerFlash.png">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/spell/SummonerDot.png">
+              <!-- 소환사 한명 -->
+              <div class="summoner accordion-body d-flex justify-content-around align-content-center">
+                <!-- 왼쪽 정보 -->
+                <div class="d-flex">
+                  <!-- 캐릭터 초상화 -->
+                  <div class="champion_icon my-auto me-1">
+                    <img class="rounded-circle"
+                      src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/champion/Azir.png">
                   </div>
-                  <div class="rune_spell_icon d-flex flex-column justify-content-center me-2">
-                    <img
-                      src="https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Domination/HailOfBlades/HailOfBlades.png">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/7201_Precision.png">
+                  <!-- 룬 스펠 -->
+                  <div class="rune_speli d-flex">
+                    <div class="rune_spell_icon d-flex flex-column justify-content-center">
+                      <img src=" https://ddragon.leagueoflegends.com/cdn/11.7.1/img/spell/SummonerFlash.png">
+                      <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/spell/SummonerDot.png">
+                    </div>
+                    <div class="rune_spell_icon d-flex flex-column justify-content-center me-2">
+                      <img
+                        src="https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Domination/HailOfBlades/HailOfBlades.png">
+                      <img src="https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/7201_Precision.png">
+                    </div>
                   </div>
-                </div>
-                <!-- KDA -->
-                <div class="d-flex flex-column justify-content-center text-center me-xl-4">
-                  <span>12 / 2 / 10</span>
-                  <span>11.00 : 1</span>
-                  <div class="rounded-pill bg-danger text-center text-white">
-                    <span>더블킬</span>
+                  <!-- 매칭 소환사 정보 -->
+                  <div class="summoner_info d-flex flex-column">
+                    <div class="summoner_tier d-flex">
+                      <div class="tier me-1 my-auto rounded-circle text-center" style="background-color: silver;">
+                        <span>S1</span>
+                      </div>
+                      <div class="summoner_name">
+                        <span>정재호임</span>
+                      </div>
+                    </div>
+                    <!-- KDA -->
+                    <div class="d-flex justify-content- text-center">
+                      <span>12/2/10</span>&nbsp;
+                      <span style="color: red;">11.00:1</span>
+                    </div>
                   </div>
                 </div>
-                <!-- KDA -->
-                <div class="d-flex flex-column justify-content-center text-center me-xl-4">
-                  <span>레벨 16</span>
-                  <span>201 (7) CS</span>
-                  <span>킬관여 48%</span>
-                </div>
-                <!-- 아이템 -->
-                <div class="rune_speli d-flex me-xl-4">
-                  <div class="rune_spell_icon d-flex flex-column justify-content-center">
+                <!-- 오른쪽 정보 -->
+                <div class="d-flex flex-column  text-center">
+                  <!-- 아이템 -->
+                  <div class="item_icon d-flex">
                     <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/item/4630.png">
                     <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/item/3157.png">
-                  </div>
-                  <div class="rune_spell_icon d-flex flex-column justify-content-center">
                     <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/item/3115.png">
                     <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/item/1026.png">
-                  </div>
-                  <div class="rune_spell_icon d-flex flex-column justify-content-center">
                     <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/item/1026.png">
                     <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/item/6653.png">
                   </div>
+                  <!-- 딜량, cs-->
+                  <div class="d-flex row row-cols-2">
+                    <span class="p-0 col-5">198/1.4만</span>
+                    <div class="progress p-0">
+                      <div class="progress-bar bg-danger" role="progressbar" style="width: 95%;" aria-valuemin="0"
+                        aria-valuemax="100">22053</div>
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
-            <!-- 숨김 컨텐츠 -->
-            <div id="match_4" class="accordion-collapse collapse">
-              <div class="accordion-body">
-                <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse
-                plugin adds the appropriate classes that we use to style each element. These classes control the overall
-                appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with
-                custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go
-                within the <code>.accordion-body</code>, though the transition does limit overflow.
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- 한개 게임 데이터 컨테이너 -->
-        <div class="accordion" id="match_list">
-          <div class="accordion-item">
-            <!-- 타이틀 -->
-            <h2 class="accordion-header">
-              <button class="accordion-button collapsed text-dark" type="button" data-bs-toggle="collapse"
-                data-bs-target="#match_4" style="background-color: #E2B6B3;">
-                자유 랭크 · 4일전 / 28분 / 승리
-              </button>
-            </h2>
-            <!-- 중앙 컨텐츠 -->
-            <div class="accordion-body">
-              <div class="d-flex justify-content-evenly">
-                <!-- 캐릭터 초상화 -->
-                <div class="champion_icon my-auto me-xl-4">
-                  <img class="rounded-circle"
-                    src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/champion/Azir.png">
-                </div>
-                <!-- 룬 스펠 -->
-                <div class="rune_speli d-flex me-xl-4">
-                  <div class="rune_spell_icon d-flex flex-column justify-content-center">
-                    <img src=" https://ddragon.leagueoflegends.com/cdn/11.7.1/img/spell/SummonerFlash.png">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/spell/SummonerDot.png">
+              <!-- 소환사 한명 -->
+              <div class="summoner accordion-body d-flex justify-content-around align-content-center">
+                <!-- 왼쪽 정보 -->
+                <div class="d-flex">
+                  <!-- 캐릭터 초상화 -->
+                  <div class="champion_icon my-auto me-1">
+                    <img class="rounded-circle"
+                      src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/champion/Azir.png">
                   </div>
-                  <div class="rune_spell_icon d-flex flex-column justify-content-center me-2">
-                    <img
-                      src="https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Domination/HailOfBlades/HailOfBlades.png">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/7201_Precision.png">
+                  <!-- 룬 스펠 -->
+                  <div class="rune_speli d-flex">
+                    <div class="rune_spell_icon d-flex flex-column justify-content-center">
+                      <img src=" https://ddragon.leagueoflegends.com/cdn/11.7.1/img/spell/SummonerFlash.png">
+                      <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/spell/SummonerDot.png">
+                    </div>
+                    <div class="rune_spell_icon d-flex flex-column justify-content-center me-2">
+                      <img
+                        src="https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Domination/HailOfBlades/HailOfBlades.png">
+                      <img src="https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/7201_Precision.png">
+                    </div>
+                  </div>
+                  <!-- 매칭 소환사 정보 -->
+                  <div class="summoner_info d-flex flex-column">
+                    <div class="summoner_tier d-flex">
+                      <div class="tier me-1 my-auto rounded-circle text-center" style="background-color: silver;">
+                        <span>S1</span>
+                      </div>
+                      <div class="summoner_name">
+                        <span>정재호임</span>
+                      </div>
+                    </div>
+                    <!-- KDA -->
+                    <div class="d-flex justify-content- text-center">
+                      <span>12/2/10</span>&nbsp;
+                      <span style="color: red;">11.00:1</span>
+                    </div>
                   </div>
                 </div>
-                <!-- KDA -->
-                <div class="d-flex flex-column justify-content-center text-center me-xl-4">
-                  <span>12 / 2 / 10</span>
-                  <span>11.00 : 1</span>
-                  <div class="rounded-pill bg-danger text-center text-white">
-                    <span>더블킬</span>
-                  </div>
-                </div>
-                <!-- KDA -->
-                <div class="d-flex flex-column justify-content-center text-center me-xl-4">
-                  <span>레벨 16</span>
-                  <span>201 (7) CS</span>
-                  <span>킬관여 48%</span>
-                </div>
-                <!-- 아이템 -->
-                <div class="rune_speli d-flex me-xl-4">
-                  <div class="rune_spell_icon d-flex flex-column justify-content-center">
+                <!-- 오른쪽 정보 -->
+                <div class="d-flex flex-column  text-center">
+                  <!-- 아이템 -->
+                  <div class="item_icon d-flex">
                     <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/item/4630.png">
                     <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/item/3157.png">
-                  </div>
-                  <div class="rune_spell_icon d-flex flex-column justify-content-center">
                     <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/item/3115.png">
                     <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/item/1026.png">
-                  </div>
-                  <div class="rune_spell_icon d-flex flex-column justify-content-center">
                     <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/item/1026.png">
                     <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/item/6653.png">
                   </div>
+                  <!-- 딜량, cs-->
+                  <div class="d-flex row row-cols-2">
+                    <span class="p-0 col-5">198/1.4만</span>
+                    <div class="progress p-0">
+                      <div class="progress-bar bg-danger" role="progressbar" style="width: 95%;" aria-valuemin="0"
+                        aria-valuemax="100">22053</div>
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
-            <!-- 숨김 컨텐츠 -->
-            <div id="match_4" class="accordion-collapse collapse">
-              <div class="accordion-body">
-                <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse
-                plugin adds the appropriate classes that we use to style each element. These classes control the overall
-                appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with
-                custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go
-                within the <code>.accordion-body</code>, though the transition does limit overflow.
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- 한개 게임 데이터 컨테이너 -->
-        <div class="accordion" id="match_list">
-          <div class="accordion-item">
-            <!-- 타이틀 -->
-            <h2 class="accordion-header">
-              <button class="accordion-button collapsed text-dark" type="button" data-bs-toggle="collapse"
-                data-bs-target="#match_4" style="background-color: #E2B6B3;">
-                자유 랭크 · 4일전 / 28분 / 승리
-              </button>
-            </h2>
-            <!-- 중앙 컨텐츠 -->
-            <div class="accordion-body">
-              <div class="d-flex justify-content-evenly">
-                <!-- 캐릭터 초상화 -->
-                <div class="champion_icon my-auto me-xl-4">
-                  <img class="rounded-circle"
-                    src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/champion/Azir.png">
-                </div>
-                <!-- 룬 스펠 -->
-                <div class="rune_speli d-flex me-xl-4">
-                  <div class="rune_spell_icon d-flex flex-column justify-content-center">
-                    <img src=" https://ddragon.leagueoflegends.com/cdn/11.7.1/img/spell/SummonerFlash.png">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/spell/SummonerDot.png">
+              <!-- 소환사 한명 -->
+              <div class="summoner accordion-body d-flex justify-content-around align-content-center">
+                <!-- 왼쪽 정보 -->
+                <div class="d-flex">
+                  <!-- 캐릭터 초상화 -->
+                  <div class="champion_icon my-auto me-1">
+                    <img class="rounded-circle"
+                      src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/champion/Azir.png">
                   </div>
-                  <div class="rune_spell_icon d-flex flex-column justify-content-center me-2">
-                    <img
-                      src="https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Domination/HailOfBlades/HailOfBlades.png">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/7201_Precision.png">
+                  <!-- 룬 스펠 -->
+                  <div class="rune_speli d-flex">
+                    <div class="rune_spell_icon d-flex flex-column justify-content-center">
+                      <img src=" https://ddragon.leagueoflegends.com/cdn/11.7.1/img/spell/SummonerFlash.png">
+                      <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/spell/SummonerDot.png">
+                    </div>
+                    <div class="rune_spell_icon d-flex flex-column justify-content-center me-2">
+                      <img
+                        src="https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Domination/HailOfBlades/HailOfBlades.png">
+                      <img src="https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/7201_Precision.png">
+                    </div>
+                  </div>
+                  <!-- 매칭 소환사 정보 -->
+                  <div class="summoner_info d-flex flex-column">
+                    <div class="summoner_tier d-flex">
+                      <div class="tier me-1 my-auto rounded-circle text-center" style="background-color: silver;">
+                        <span>S1</span>
+                      </div>
+                      <div class="summoner_name">
+                        <span>정재호임</span>
+                      </div>
+                    </div>
+                    <!-- KDA -->
+                    <div class="d-flex justify-content- text-center">
+                      <span>12/2/10</span>&nbsp;
+                      <span style="color: red;">11.00:1</span>
+                    </div>
                   </div>
                 </div>
-                <!-- KDA -->
-                <div class="d-flex flex-column justify-content-center text-center me-xl-4">
-                  <span>12 / 2 / 10</span>
-                  <span>11.00 : 1</span>
-                  <div class="rounded-pill bg-danger text-center text-white">
-                    <span>더블킬</span>
-                  </div>
-                </div>
-                <!-- KDA -->
-                <div class="d-flex flex-column justify-content-center text-center me-xl-4">
-                  <span>레벨 16</span>
-                  <span>201 (7) CS</span>
-                  <span>킬관여 48%</span>
-                </div>
-                <!-- 아이템 -->
-                <div class="rune_speli d-flex me-xl-4">
-                  <div class="rune_spell_icon d-flex flex-column justify-content-center">
+                <!-- 오른쪽 정보 -->
+                <div class="d-flex flex-column  text-center">
+                  <!-- 아이템 -->
+                  <div class="item_icon d-flex">
                     <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/item/4630.png">
                     <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/item/3157.png">
-                  </div>
-                  <div class="rune_spell_icon d-flex flex-column justify-content-center">
                     <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/item/3115.png">
                     <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/item/1026.png">
-                  </div>
-                  <div class="rune_spell_icon d-flex flex-column justify-content-center">
                     <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/item/1026.png">
                     <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/item/6653.png">
                   </div>
+                  <!-- 딜량, cs-->
+                  <div class="d-flex row row-cols-2">
+                    <span class="p-0 col-5">198/1.4만</span>
+                    <div class="progress p-0">
+                      <div class="progress-bar bg-danger" role="progressbar" style="width: 95%;" aria-valuemin="0"
+                        aria-valuemax="100">22053</div>
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
-            <!-- 숨김 컨텐츠 -->
-            <div id="match_4" class="accordion-collapse collapse">
-              <div class="accordion-body">
-                <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse
-                plugin adds the appropriate classes that we use to style each element. These classes control the overall
-                appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with
-                custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go
-                within the <code>.accordion-body</code>, though the transition does limit overflow.
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- 한개 게임 데이터 컨테이너 -->
-        <div class="accordion" id="match_list">
-          <div class="accordion-item">
-            <!-- 타이틀 -->
-            <h2 class="accordion-header">
-              <button class="accordion-button collapsed text-dark" type="button" data-bs-toggle="collapse"
-                data-bs-target="#match_4" style="background-color: #E2B6B3;">
-                자유 랭크 · 4일전 / 28분 / 승리
-              </button>
-            </h2>
-            <!-- 중앙 컨텐츠 -->
-            <div class="accordion-body">
-              <div class="d-flex justify-content-evenly">
-                <!-- 캐릭터 초상화 -->
-                <div class="champion_icon my-auto me-xl-4">
-                  <img class="rounded-circle"
-                    src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/champion/Azir.png">
-                </div>
-                <!-- 룬 스펠 -->
-                <div class="rune_speli d-flex me-xl-4">
-                  <div class="rune_spell_icon d-flex flex-column justify-content-center">
-                    <img src=" https://ddragon.leagueoflegends.com/cdn/11.7.1/img/spell/SummonerFlash.png">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/spell/SummonerDot.png">
+              <!-- 소환사 한명 -->
+              <div class="summoner accordion-body d-flex justify-content-around align-content-center">
+                <!-- 왼쪽 정보 -->
+                <div class="d-flex">
+                  <!-- 캐릭터 초상화 -->
+                  <div class="champion_icon my-auto me-1">
+                    <img class="rounded-circle"
+                      src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/champion/Azir.png">
                   </div>
-                  <div class="rune_spell_icon d-flex flex-column justify-content-center me-2">
-                    <img
-                      src="https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Domination/HailOfBlades/HailOfBlades.png">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/7201_Precision.png">
+                  <!-- 룬 스펠 -->
+                  <div class="rune_speli d-flex">
+                    <div class="rune_spell_icon d-flex flex-column justify-content-center">
+                      <img src=" https://ddragon.leagueoflegends.com/cdn/11.7.1/img/spell/SummonerFlash.png">
+                      <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/spell/SummonerDot.png">
+                    </div>
+                    <div class="rune_spell_icon d-flex flex-column justify-content-center me-2">
+                      <img
+                        src="https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Domination/HailOfBlades/HailOfBlades.png">
+                      <img src="https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/7201_Precision.png">
+                    </div>
+                  </div>
+                  <!-- 매칭 소환사 정보 -->
+                  <div class="summoner_info d-flex flex-column">
+                    <div class="summoner_tier d-flex">
+                      <div class="tier me-1 my-auto rounded-circle text-center" style="background-color: silver;">
+                        <span>S1</span>
+                      </div>
+                      <div class="summoner_name">
+                        <span>정재호임</span>
+                      </div>
+                    </div>
+                    <!-- KDA -->
+                    <div class="d-flex justify-content- text-center">
+                      <span>12/2/10</span>&nbsp;
+                      <span style="color: red;">11.00:1</span>
+                    </div>
                   </div>
                 </div>
-                <!-- KDA -->
-                <div class="d-flex flex-column justify-content-center text-center me-xl-4">
-                  <span>12 / 2 / 10</span>
-                  <span>11.00 : 1</span>
-                  <div class="rounded-pill bg-danger text-center text-white">
-                    <span>더블킬</span>
-                  </div>
-                </div>
-                <!-- KDA -->
-                <div class="d-flex flex-column justify-content-center text-center me-xl-4">
-                  <span>레벨 16</span>
-                  <span>201 (7) CS</span>
-                  <span>킬관여 48%</span>
-                </div>
-                <!-- 아이템 -->
-                <div class="rune_speli d-flex me-xl-4">
-                  <div class="rune_spell_icon d-flex flex-column justify-content-center">
+                <!-- 오른쪽 정보 -->
+                <div class="d-flex flex-column  text-center">
+                  <!-- 아이템 -->
+                  <div class="item_icon d-flex">
                     <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/item/4630.png">
                     <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/item/3157.png">
-                  </div>
-                  <div class="rune_spell_icon d-flex flex-column justify-content-center">
                     <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/item/3115.png">
                     <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/item/1026.png">
-                  </div>
-                  <div class="rune_spell_icon d-flex flex-column justify-content-center">
                     <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/item/1026.png">
                     <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/item/6653.png">
                   </div>
+                  <!-- 딜량, cs-->
+                  <div class="d-flex row row-cols-2">
+                    <span class="p-0 col-5">198/1.4만</span>
+                    <div class="progress p-0">
+                      <div class="progress-bar bg-danger" role="progressbar" style="width: 95%;" aria-valuemin="0"
+                        aria-valuemax="100">22053</div>
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
-            <!-- 숨김 컨텐츠 -->
-            <div id="match_4" class="accordion-collapse collapse">
-              <div class="accordion-body">
-                <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse
-                plugin adds the appropriate classes that we use to style each element. These classes control the overall
-                appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with
-                custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go
-                within the <code>.accordion-body</code>, though the transition does limit overflow.
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- 한개 게임 데이터 컨테이너 -->
-        <div class="accordion" id="match_list">
-          <div class="accordion-item">
-            <!-- 타이틀 -->
-            <h2 class="accordion-header">
-              <button class="accordion-button collapsed text-dark" type="button" data-bs-toggle="collapse"
-                data-bs-target="#match_4" style="background-color: #E2B6B3;">
-                자유 랭크 · 4일전 / 28분 / 승리
-              </button>
-            </h2>
-            <!-- 중앙 컨텐츠 -->
-            <div class="accordion-body">
-              <div class="d-flex justify-content-evenly">
-                <!-- 캐릭터 초상화 -->
-                <div class="champion_icon my-auto me-xl-4">
-                  <img class="rounded-circle"
-                    src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/champion/Azir.png">
-                </div>
-                <!-- 룬 스펠 -->
-                <div class="rune_speli d-flex me-xl-4">
-                  <div class="rune_spell_icon d-flex flex-column justify-content-center">
-                    <img src=" https://ddragon.leagueoflegends.com/cdn/11.7.1/img/spell/SummonerFlash.png">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/spell/SummonerDot.png">
+              <!-- 소환사 한명 -->
+              <div class="summoner accordion-body d-flex justify-content-around align-content-center">
+                <!-- 왼쪽 정보 -->
+                <div class="d-flex">
+                  <!-- 캐릭터 초상화 -->
+                  <div class="champion_icon my-auto me-1">
+                    <img class="rounded-circle"
+                      src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/champion/Azir.png">
                   </div>
-                  <div class="rune_spell_icon d-flex flex-column justify-content-center me-2">
-                    <img
-                      src="https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Domination/HailOfBlades/HailOfBlades.png">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/7201_Precision.png">
+                  <!-- 룬 스펠 -->
+                  <div class="rune_speli d-flex">
+                    <div class="rune_spell_icon d-flex flex-column justify-content-center">
+                      <img src=" https://ddragon.leagueoflegends.com/cdn/11.7.1/img/spell/SummonerFlash.png">
+                      <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/spell/SummonerDot.png">
+                    </div>
+                    <div class="rune_spell_icon d-flex flex-column justify-content-center me-2">
+                      <img
+                        src="https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Domination/HailOfBlades/HailOfBlades.png">
+                      <img src="https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/7201_Precision.png">
+                    </div>
+                  </div>
+                  <!-- 매칭 소환사 정보 -->
+                  <div class="summoner_info d-flex flex-column">
+                    <div class="summoner_tier d-flex">
+                      <div class="tier me-1 my-auto rounded-circle text-center" style="background-color: silver;">
+                        <span>S1</span>
+                      </div>
+                      <div class="summoner_name">
+                        <span>정재호임</span>
+                      </div>
+                    </div>
+                    <!-- KDA -->
+                    <div class="d-flex justify-content- text-center">
+                      <span>12/2/10</span>&nbsp;
+                      <span style="color: red;">11.00:1</span>
+                    </div>
                   </div>
                 </div>
-                <!-- KDA -->
-                <div class="d-flex flex-column justify-content-center text-center me-xl-4">
-                  <span>12 / 2 / 10</span>
-                  <span>11.00 : 1</span>
-                  <div class="rounded-pill bg-danger text-center text-white">
-                    <span>더블킬</span>
-                  </div>
-                </div>
-                <!-- KDA -->
-                <div class="d-flex flex-column justify-content-center text-center me-xl-4">
-                  <span>레벨 16</span>
-                  <span>201 (7) CS</span>
-                  <span>킬관여 48%</span>
-                </div>
-                <!-- 아이템 -->
-                <div class="rune_speli d-flex me-xl-4">
-                  <div class="rune_spell_icon d-flex flex-column justify-content-center">
+                <!-- 오른쪽 정보 -->
+                <div class="d-flex flex-column  text-center">
+                  <!-- 아이템 -->
+                  <div class="item_icon d-flex">
                     <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/item/4630.png">
                     <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/item/3157.png">
-                  </div>
-                  <div class="rune_spell_icon d-flex flex-column justify-content-center">
                     <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/item/3115.png">
                     <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/item/1026.png">
-                  </div>
-                  <div class="rune_spell_icon d-flex flex-column justify-content-center">
                     <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/item/1026.png">
                     <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/item/6653.png">
                   </div>
-                </div>
-              </div>
-            </div>
-            <!-- 숨김 컨텐츠 -->
-            <div id="match_4" class="accordion-collapse collapse">
-              <div class="accordion-body">
-                <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse
-                plugin adds the appropriate classes that we use to style each element. These classes control the overall
-                appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with
-                custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go
-                within the <code>.accordion-body</code>, though the transition does limit overflow.
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- 한개 게임 데이터 컨테이너 -->
-        <div class="accordion" id="match_list">
-          <div class="accordion-item">
-            <!-- 타이틀 -->
-            <h2 class="accordion-header">
-              <button class="accordion-button collapsed text-dark" type="button" data-bs-toggle="collapse"
-                data-bs-target="#match_4" style="background-color: #E2B6B3;">
-                자유 랭크 · 4일전 / 28분 / 승리
-              </button>
-            </h2>
-            <!-- 중앙 컨텐츠 -->
-            <div class="accordion-body">
-              <div class="d-flex justify-content-evenly">
-                <!-- 캐릭터 초상화 -->
-                <div class="champion_icon my-auto me-xl-4">
-                  <img class="rounded-circle"
-                    src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/champion/Azir.png">
-                </div>
-                <!-- 룬 스펠 -->
-                <div class="rune_speli d-flex me-xl-4">
-                  <div class="rune_spell_icon d-flex flex-column justify-content-center">
-                    <img src=" https://ddragon.leagueoflegends.com/cdn/11.7.1/img/spell/SummonerFlash.png">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/spell/SummonerDot.png">
-                  </div>
-                  <div class="rune_spell_icon d-flex flex-column justify-content-center me-2">
-                    <img
-                      src="https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Domination/HailOfBlades/HailOfBlades.png">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/7201_Precision.png">
+                  <!-- 딜량, cs-->
+                  <div class="d-flex row row-cols-2">
+                    <span class="p-0 col-5">198/1.4만</span>
+                    <div class="progress p-0">
+                      <div class="progress-bar bg-danger" role="progressbar" style="width: 95%;" aria-valuemin="0"
+                        aria-valuemax="100">22053</div>
+                    </div>
                   </div>
                 </div>
-                <!-- KDA -->
-                <div class="d-flex flex-column justify-content-center text-center me-xl-4">
-                  <span>12 / 2 / 10</span>
-                  <span>11.00 : 1</span>
-                  <div class="rounded-pill bg-danger text-center text-white">
-                    <span>더블킬</span>
-                  </div>
-                </div>
-                <!-- KDA -->
-                <div class="d-flex flex-column justify-content-center text-center me-xl-4">
-                  <span>레벨 16</span>
-                  <span>201 (7) CS</span>
-                  <span>킬관여 48%</span>
-                </div>
-                <!-- 아이템 -->
-                <div class="rune_speli d-flex me-xl-4">
-                  <div class="rune_spell_icon d-flex flex-column justify-content-center">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/item/4630.png">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/item/3157.png">
-                  </div>
-                  <div class="rune_spell_icon d-flex flex-column justify-content-center">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/item/3115.png">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/item/1026.png">
-                  </div>
-                  <div class="rune_spell_icon d-flex flex-column justify-content-center">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/item/1026.png">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/item/6653.png">
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- 숨김 컨텐츠 -->
-            <div id="match_4" class="accordion-collapse collapse">
-              <div class="accordion-body">
-                <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse
-                plugin adds the appropriate classes that we use to style each element. These classes control the overall
-                appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with
-                custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go
-                within the <code>.accordion-body</code>, though the transition does limit overflow.
               </div>
             </div>
           </div>
