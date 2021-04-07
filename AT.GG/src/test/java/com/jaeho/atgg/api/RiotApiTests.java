@@ -1,6 +1,9 @@
 package com.jaeho.atgg.api;
 
 import java.io.IOException;
+import java.util.Iterator;
+
+import javax.sound.midi.MidiDevice.Info;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -27,13 +30,9 @@ public class RiotApiTests {
 
 	@Test
 	public void getSummoner() throws IOException {
-		SummonerVO summoner1 = RiotAPIUtility.getSummonerByName("정재호임");
-		SummonerVO summoner2 = RiotAPIUtility.getSummonerByName("정재호");
-		SummonerVO summoner3 = RiotAPIUtility.getSummonerByName("정재호2");
-		SummonerVO summoner4 = RiotAPIUtility.getSummonerByName("정재호4");
-		log.info(summoner1);
-		log.info(summoner2);
-		log.info(summoner3);
-		log.info(summoner4);
+		
+		for (int i = 0; i < 1000; i++) {
+			log.info(RiotAPIUtility.getSummonerByName("정재호임"));
+		}
 	}
 }
