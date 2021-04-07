@@ -3,9 +3,9 @@
 -- select * from user;
 -- alter user 'root'@'localhost' identified with mysql_native_password by '123456';
 
-create database atgg;
 drop database if exists atgg;
 
+create database atgg;
 use atgg;
 
 drop table if exists summoner;
@@ -19,3 +19,5 @@ create table summoner(
     revisionDate varchar(60) not null,
     summonerLevel varchar(60) not null
 );
+
+insert into summoner values('a','b','c','d','e','f','g');
