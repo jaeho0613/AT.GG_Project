@@ -7,5 +7,23 @@
 	<select id="getList" resultType="com.jaeho.atgg.domain.SummonerVO">
 		select * from summoner
 	</select>
+
+	<select id="getSummonerByName" resultType="com.jaeho.atgg.domain.SummonerVO">
+		select * from summoner where name = #{summonerName}
+	</select>
 	
+	<select id="checkSummonerName" resultType="String">
+		select name
+		from summoner
+		where name = #{summonerName}
+	</select>
+	
+	<insert id="insertSummoner">
+	
+		insert into summoner values(#{id},#{accountId},#{puuid},#{name},#{profileIconId},#{revisionDate},#{summonerLevel});
+	
+	</insert>
+	
+	
+
 </mapper>

@@ -19,6 +19,3 @@ create table summoner(
     revisionDate varchar(60) not null,
     summonerLevel varchar(60) not null
 );
-
-select * from summoner;
-insert into summoner values('a','b','c','정재호4','e','f','g');
