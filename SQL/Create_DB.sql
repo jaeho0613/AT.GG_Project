@@ -10,6 +10,7 @@ use atgg;
 
 drop table if exists summoner;
 
+-- 소환사 정보 
 create table summoner(
 	id varchar(60) not null,
     accountId varchar(60) not null,
@@ -19,3 +20,5 @@ create table summoner(
     revisionDate varchar(60) not null,
     summonerLevel varchar(60) not null
 );
+
+-- 

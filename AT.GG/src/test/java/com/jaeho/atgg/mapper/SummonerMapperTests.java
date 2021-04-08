@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.jaeho.atgg.domain.SummonerVO;
 import com.jaeho.atgg.utility.RiotAPIUtility;
 
 import lombok.Setter;
@@ -45,15 +46,12 @@ public class SummonerMapperTests {
 	@Test
 	public void insertSummoner() {
 
-		try {
-			if(summonerMapper.checkSummonerName("정재호임") == null) {
-				summonerMapper.insertSummoner(RiotAPIUtility.getSummonerByName(summonerMapper,"정재호임"));
-			} else {
-				log.info("이미 데이터가 있습니다.");
-			}
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		if(summonerMapper.checkSummonerName("정재호임") == null) {
+			SummonerVO summoner = new SummonerVO("test","test","test","test","test","test","test");
+			
+			summonerMapper.insertSummoner(summoner);
+		} else {
+			log.info("이미 데이터가 있습니다.");
 		}
 	}
 }

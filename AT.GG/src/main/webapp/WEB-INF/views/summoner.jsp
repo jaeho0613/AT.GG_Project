@@ -14,8 +14,8 @@
           <div class="card-body d-flex flex-column justify-content-start align-content-center">
             <img class="summoner_icon mx-auto" src="https://tinyurl.com/yhjlx9bv" width="100" height="100">
             <div class="summoner_info d-flex flex-column text-center mt-2">
-              <span>정재호임</span>
-              <span>LV : 228</span>
+              <span>${ summoner.name }</span>
+              <span>LV : ${ summoner.summonerLevel }</span>
               <span>
                 <button type="button" class="btn btn-primary">업데이트</button>
               </span>

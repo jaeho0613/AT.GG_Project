@@ -15,6 +15,7 @@ import com.google.gson.Gson;
 import com.google.gson.stream.JsonReader;
 import com.jaeho.atgg.domain.SummonerVO;
 import com.jaeho.atgg.mapper.SummonerMapper;
+import com.jaeho.atgg.service.SummonerService;
 import com.jaeho.atgg.utility.RiotAPIUtility;
 import com.mysql.cj.xdevapi.Client;
 
@@ -32,11 +33,12 @@ import okhttp3.Response;
 public class RiotApiTests {
 	
 	@Setter(onMethod_ = @Autowired)
-	SummonerMapper summonerMapper;
+	SummonerService serivce;
+	//SummonerMapper summonerMapper;
 
 	@Test
 	public void getSummoner() throws IOException {
 
-		log.info(RiotAPIUtility.getSummonerByName(summonerMapper,"정재호임"));
+		log.info(RiotAPIUtility.getSummonerByName(serivce,"정재호임"));
 	}
 }
