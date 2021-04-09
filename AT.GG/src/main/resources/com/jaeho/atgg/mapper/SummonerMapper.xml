@@ -4,26 +4,34 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.jaeho.atgg.mapper.SummonerMapper">
 
-	<select id="getList" resultType="com.jaeho.atgg.domain.SummonerVO">
-		select * from summoner
-	</select>
-
 	<select id="getSummonerByName" resultType="com.jaeho.atgg.domain.SummonerVO">
 		select * from summoner where name = #{summonerName}
 	</select>
+	
+	<select id="getLeagueEntryList" resultType="com.jaeho.atgg.domain.LeagueEntryVO">
+		select * from leagueEntry where name = #{summonerName}
+	</select>
+	
+	<select id="getMiniSeriesList" resultType="com.jaeho.atgg.domain.MiniSeriesVO">
+		select * from miniSeries where name = #{summonerName}
+	</select>
+	
+	<insert id="insertSummoner">
+		insert into summoner values(#{id},#{accountId},#{puuid},#{name},#{profileIconId},#{revisionDate},#{summonerLevel});
+	</insert>
+	
+	<insert id="insertLeagueEntry">
+		insert into leagueEntry values(#{summonerName},#{queueType},#{tier},#{rank},#{leaguePoints},#{wins},#{losses});
+	</insert>
+	
+	<insert id="insertMiniSeries">
+		insert into miniSeries values(#{name},#{target},#{wins},#{losses},#{progress});
+	</insert>
 	
 	<select id="checkSummonerName" resultType="String">
 		select name
 		from summoner
 		where name = #{summonerName}
 	</select>
-	
-	<insert id="insertSummoner">
-	
-		insert into summoner values(#{id},#{accountId},#{puuid},#{name},#{profileIconId},#{revisionDate},#{summonerLevel});
-	
-	</insert>
-	
-	
 
 </mapper>

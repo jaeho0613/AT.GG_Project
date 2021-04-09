@@ -16,7 +16,15 @@ public class RestAPIUtility {
 	private static ConnectionPool connectionPool = new ConnectionPool();
 
 	// client 객체
-	private static OkHttpClient client = new OkHttpClient.Builder().connectionPool(connectionPool).build();
+	private static OkHttpClient client;
+
+	protected static OkHttpClient getOkHttpClient() {
+		if (client == null) {
+			client = new OkHttpClient.Builder().connectionPool(connectionPool).build();
+		}
+
+		return client;
+	}
 
 	// API 사용하기 (Headers가 없을 때)
 	public static String restAPI(String url) throws IOException {
@@ -65,12 +73,4 @@ public class RestAPIUtility {
 		return "404";
 	}
 
-	// client 얻기
-	protected static OkHttpClient getOkHttpClient() {
-		if (client == null) {
-			client = new OkHttpClient.Builder().connectionPool(connectionPool).build();
-		}
-
-		return client;
-	}
 }

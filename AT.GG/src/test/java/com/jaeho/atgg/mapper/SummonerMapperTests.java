@@ -23,11 +23,6 @@ public class SummonerMapperTests {
 	private SummonerMapper summonerMapper;
 
 //	@Test
-	public void testGetList() {
-		summonerMapper.getList().forEach(summoenr -> log.info(summoenr));
-	}
-
-//	@Test
 	public void getSummonerByName() {
 		log.info(summonerMapper.getSummonerByName("정재호임"));
 	}
@@ -43,12 +38,12 @@ public class SummonerMapperTests {
 		}
 	}
 
-	@Test
+//	@Test
 	public void insertSummoner() {
 
-		if(summonerMapper.checkSummonerName("정재호임") == null) {
-			SummonerVO summoner = new SummonerVO("test","test","test","test","test","test","test");
-			
+		if (summonerMapper.checkSummonerName("test") == null) {
+			SummonerVO summoner = new SummonerVO("test", "test", "test", "test", "test", "test", "test");
+
 			summonerMapper.insertSummoner(summoner);
 		} else {
 			log.info("이미 데이터가 있습니다.");
