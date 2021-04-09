@@ -59,7 +59,7 @@ public class RiotAPIUtility extends RestAPIUtility {
 
 						// 승급전이 있다면
 						if (leagueEntry.getMiniSeries() != null) {
-							leagueEntry.getMiniSeries().setName(summonerName);
+                            leagueEntry.getMiniSeries().setName(summonerName);
 							service.insertMiniseries(leagueEntry.getMiniSeries());
 						}
 					}

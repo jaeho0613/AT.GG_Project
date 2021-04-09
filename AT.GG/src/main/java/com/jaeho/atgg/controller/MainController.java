@@ -10,6 +10,12 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+import com.jaeho.atgg.domain.LeagueEntryVO;
+import com.jaeho.atgg.domain.MiniSeriesVO;
 import com.jaeho.atgg.domain.SummonerVO;
 import com.jaeho.atgg.utility.RestAPIUtility;
 
@@ -28,12 +34,22 @@ public class MainController {
 
 	@GetMapping("/summoner")
 	public String summoner(@ModelAttribute("userName") String userName, Model model) throws IOException {
-		Gson gson = new Gson();
 
-		SummonerVO summoner = gson.fromJson(RestAPIUtility.restAPI("http://localhost:8080/lol/summoner/" + userName),
-				SummonerVO.class);
-		log.info(summoner);
+		String summonerInfo = RestAPIUtility.restAPI("http://localhost:8080/lol/summoner/" + userName);
+
+		JsonElement jelement = new JsonParser().parse(summonerInfo);
+
+		JsonObject j_summoner = (JsonObject) jelement.getAsJsonObject().get("summonerVO");
+		JsonArray j_leagueEntry = (JsonArray) jelement.getAsJsonObject().get("leagueEntryVO");
+		JsonArray j_miniseries = (JsonArray) jelement.getAsJsonObject().get("miniSeriesVO");
+
+		SummonerVO summoner = new Gson().fromJson(j_summoner, SummonerVO.class);
+		LeagueEntryVO[] leagueEntry = new Gson().fromJson(j_leagueEntry, LeagueEntryVO[].class);
+		MiniSeriesVO[] miniSeries = new Gson().fromJson(j_miniseries, MiniSeriesVO[].class);
+
 		model.addAttribute("summoner", summoner);
+		model.addAttribute("leagueEntry", leagueEntry);
+		model.addAttribute("miniSeries", miniSeries);
 
 		return "summoner";
 	}

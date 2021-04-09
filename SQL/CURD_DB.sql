@@ -1,7 +1,7 @@
 -- 전체 테이블 검색
 select * from summoner;
 select * from leagueEntry;
-select * from MiniSeries;
+select * from miniSeries;
 
 -- 테이블 join
 -- select sm.name, sm.profileIconId, sm.summonerLevel, le.queueType, le.tier, le.rank, le.leaguePoints, mi.target, mi.

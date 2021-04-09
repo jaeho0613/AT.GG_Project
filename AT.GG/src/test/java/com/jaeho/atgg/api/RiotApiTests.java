@@ -88,7 +88,7 @@ public class RiotApiTests {
 		for (LeagueEntryVO leagueEntryVO : leagues) {
 			if(leagueEntryVO.getMiniSeries() != null) {
 				log.info("승급전이 있습니다.");
-				leagueEntryVO.getMiniSeries().setName(leagueEntryVO.getSummonerName());
+				// leagueEntryVO.getMiniSeries().setName(leagueEntryVO.getSummonerName());
 			} else {
 				log.info("승급전이 없습니다.");
 			}

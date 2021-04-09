@@ -10,7 +10,7 @@ use atgg;
 
 drop table if exists summoner;
 drop table if exists leagueEntry;
-drop table if exists MiniSeries;
+drop table if exists miniSeries;
 
 -- 소환사 정보 
 create table summoner(

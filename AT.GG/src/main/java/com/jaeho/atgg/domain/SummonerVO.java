@@ -16,5 +16,5 @@ public class SummonerVO {
 	private String profileIconId;
 	private String revisionDate;
 	private String summonerLevel;
-
+	
 }
