@@ -9,7 +9,7 @@
 	</select>
 	
 	<select id="getLeagueEntryList" resultType="com.jaeho.atgg.domain.LeagueEntryVO">
-		select * from leagueEntry where name = #{summonerName}
+		select * from leagueEntry where summonerName = #{summonerName}
 	</select>
 	
 	<select id="getMiniSeriesList" resultType="com.jaeho.atgg.domain.MiniSeriesVO">

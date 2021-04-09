@@ -14,4 +14,5 @@ public class MiniSeriesVO {
 	int wins;
 	int losses;
 	String progress;
+
 }

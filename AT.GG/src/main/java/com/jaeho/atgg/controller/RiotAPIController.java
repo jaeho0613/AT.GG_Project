@@ -1,7 +1,9 @@
 package com.jaeho.atgg.controller;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -15,11 +17,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.jaeho.atgg.domain.SummonerVO;
-import com.jaeho.atgg.mapper.SummonerMapper;
 import com.jaeho.atgg.service.SummonerService;
-import com.jaeho.atgg.service.SummonerServiceImpl;
-import com.jaeho.atgg.utility.RestAPIUtility;
 import com.jaeho.atgg.utility.RiotAPIUtility;
 
 import lombok.Setter;
@@ -32,7 +30,6 @@ public class RiotAPIController {
 
 	@Setter(onMethod_ = @Autowired)
 	private SummonerService summonerService;
-	// private SummonerMapper summonerMapper;
 
 	@InitBinder
 	public void initBinder(HttpServletRequest request) throws IOException {
@@ -50,11 +47,12 @@ public class RiotAPIController {
 	}
 
 	@GetMapping(value = "/summoner/{summonerName}", produces = { MediaType.APPLICATION_JSON_UTF8_VALUE })
-	public ResponseEntity<SummonerVO> getSummoner(@PathVariable("summonerName") String summonerName)
+	public ResponseEntity<Map<String, Object>> getSummoner(@PathVariable("summonerName") String summonerName)
 			throws IOException {
 
-		SummonerVO summoner = summonerService.getSummonerInfo(summonerName);
+		Map<String, Object> map = summonerService.getSummonerInfoAll(summonerName);
 
-		return new ResponseEntity<SummonerVO>(summoner, HttpStatus.OK);
+		return new ResponseEntity<Map<String, Object>>(map, HttpStatus.OK);
+
 	}
 }

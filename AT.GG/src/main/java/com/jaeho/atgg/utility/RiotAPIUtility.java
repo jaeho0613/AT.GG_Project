@@ -55,11 +55,13 @@ public class RiotAPIUtility extends RestAPIUtility {
 
 					for (LeagueEntryVO leagueEntry : leagues) {
 
+						service.insertLeagueInfo(leagueEntry);
+
 						// 승급전이 있다면
 						if (leagueEntry.getMiniSeries() != null) {
 							leagueEntry.getMiniSeries().setName(summonerName);
+							service.insertMiniseries(leagueEntry.getMiniSeries());
 						}
-						service.insertLeagueInfo(leagueEntry);
 					}
 				}
 			} else {

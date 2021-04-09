@@ -17,5 +17,5 @@ public class LeagueEntryVO {
 	int wins;
 	int losses;
 	MiniSeriesVO miniSeries;
-
+	
 }

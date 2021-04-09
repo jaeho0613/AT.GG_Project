@@ -1,11 +1,15 @@
 package com.jaeho.atgg.service;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.jaeho.atgg.domain.LeagueEntryVO;
+import com.jaeho.atgg.domain.MiniSeriesVO;
 import com.jaeho.atgg.domain.SummonerVO;
 import com.jaeho.atgg.mapper.SummonerMapper;
 
@@ -21,11 +25,18 @@ public class SummonerServiceImpl implements SummonerService {
 	private SummonerMapper summonerMapper;
 
 	@Override
-	public SummonerVO getSummonerInfo(String summonerName) {
+	public Map<String, Object> getSummonerInfoAll(String summonerName) {
 		log.info("==============================");
 		log.info("getSummoner - Database 접근 :" + summonerName);
 		log.info("==============================");
-		return summonerMapper.getSummonerByName(summonerName);
+		
+		Map<String, Object> summonerInfo = new HashMap<String, Object>();
+		
+		summonerInfo.put("summonerVO", summonerMapper.getSummonerByName(summonerName));
+		summonerInfo.put("leagueEntryVO", summonerMapper.getLeagueEntryList(summonerName));
+		summonerInfo.put("miniSeriesVO", summonerMapper.getMiniSeriesList(summonerName));
+		
+		return summonerInfo;
 	}
 
 	@Override
@@ -36,6 +47,16 @@ public class SummonerServiceImpl implements SummonerService {
 		log.info("==============================");
 
 		summonerMapper.insertLeagueEntry(leagueEntry);
+	}
+
+	@Override
+	public void insertMiniseries(MiniSeriesVO miniSeries) {
+		log.info("==============================");
+		log.info("insertMiniseries - Database 접근 :" + miniSeries);
+		log.info("==============================");
+
+		summonerMapper.insertMiniSeries(miniSeries);
+
 	}
 
 	@Override
@@ -53,7 +74,7 @@ public class SummonerServiceImpl implements SummonerService {
 		log.info("==============================");
 		log.info("isDuplicateDateCheck - Database 접근 :" + summonerName);
 		log.info("==============================");
-		
+
 		// 데이터가 존재
 		if (summonerMapper.checkSummonerName(summonerName) != null) {
 			return true;
@@ -61,4 +82,5 @@ public class SummonerServiceImpl implements SummonerService {
 			return false;
 		}
 	}
+
 }
