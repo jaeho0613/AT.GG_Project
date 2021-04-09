@@ -16,7 +16,7 @@
 		<!-- Search Bar -->
 		<div class="searchBar mx-auto my-5">
 			<form action="/at.gg/summoner" method="GET" class="d-flex m-0">
-				<input type="search" class="form-control me-2" name="userName" placeholder="소환사, 소환사명..." autocomplete="off">
+				<input type="search" class="form-control me-2" name="summonerName" placeholder="소환사, 소환사명..." autocomplete="off">
 				<button type="submit" class="btn btn-primary">.GG</button>
 			</form>
 		</div>

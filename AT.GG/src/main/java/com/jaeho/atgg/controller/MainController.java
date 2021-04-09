@@ -33,9 +33,9 @@ public class MainController {
 	}
 
 	@GetMapping("/summoner")
-	public String summoner(@ModelAttribute("userName") String userName, Model model) throws IOException {
+	public String summoner(@ModelAttribute("summonerName") String summonerName, Model model) throws IOException {
 
-		String summonerInfo = RestAPIUtility.restAPI("http://localhost:8080/lol/summoner/" + userName);
+		String summonerInfo = RestAPIUtility.restAPI("http://localhost:8080/lol/summoner/" + summonerName);
 
 		JsonElement jelement = new JsonParser().parse(summonerInfo);
 
