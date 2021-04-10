@@ -3,6 +3,9 @@ select * from summoner;
 select * from leagueEntry;
 select * from miniSeries;
 
+select *
+from summoner, leagueEntry, miniSeries;
+
 -- 테이블 join
 -- select sm.name, sm.profileIconId, sm.summonerLevel, le.queueType, le.tier, le.rank, le.leaguePoints, mi.target, mi.
 -- from summoner as sm

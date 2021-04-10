@@ -38,23 +38,27 @@ public class SummonerServiceImpl implements SummonerService {
 		List<LeagueEntryVO> leagueEntryList = summonerMapper.getLeagueEntryList(summonerName);
 		List<MiniSeriesVO> miniSeriesList = summonerMapper.getMiniSeriesList(summonerName);
 
+		// 승급전 데이터 저장
 		for (int i = 0; i < leagueEntryList.size(); i++) {
-			if (leagueEntryList.get(i).getQueueType().contains("SOLO")) {
-				log.info("SOLO");
-				for (int j = 0; j < miniSeriesList.size(); j++) {
-					if (miniSeriesList.get(i).getType().contains("SOLO")) {
-						log.info("SOLO INSERT");
-						leagueEntryList.get(i).setMiniSeries(miniSeriesList.get(i));
+			// 승급전이 존재 한다면
+			if (leagueEntryList.get(i).getMiniSeries() != null) {
+				if (leagueEntryList.get(i).getQueueType().contains("SOLO")) {
+					log.info("SOLO");
+					for (int j = 0; j < miniSeriesList.size(); j++) {
+						if (miniSeriesList.get(i).getType().contains("SOLO")) {
+							log.info("SOLO INSERT");
+							leagueEntryList.get(i).setMiniSeries(miniSeriesList.get(i));
+						}
 					}
 				}
-			}
 
-			if (leagueEntryList.get(i).getQueueType().contains("FLEX")) {
-				log.info("FLEX");
-				for (int j = 0; j < miniSeriesList.size(); j++) {
-					if (miniSeriesList.get(i).getType().contains("FLEX")) {
-						log.info("FLEX INSERT");
-						leagueEntryList.get(i).setMiniSeries(miniSeriesList.get(i));
+				if (leagueEntryList.get(i).getQueueType().contains("FLEX")) {
+					log.info("FLEX");
+					for (int j = 0; j < miniSeriesList.size(); j++) {
+						if (miniSeriesList.get(i).getType().contains("FLEX")) {
+							log.info("FLEX INSERT");
+							leagueEntryList.get(i).setMiniSeries(miniSeriesList.get(i));
+						}
 					}
 				}
 			}
