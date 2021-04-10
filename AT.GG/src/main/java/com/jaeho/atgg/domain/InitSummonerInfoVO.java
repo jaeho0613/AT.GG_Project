@@ -7,7 +7,6 @@ import lombok.Data;
 @Data
 public class InitSummonerInfoVO {
 
-	private List<MiniSeriesVO> miniSeriesVO;
 	private List<LeagueEntryVO> leagueEntryVO;
 	private SummonerVO summonerVO;
 	

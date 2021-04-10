@@ -28,83 +28,75 @@
       <!--랭크 정보 컨테이너 -->
       <div class="d-flex flex-xl-column mb-2 col">
         <c:choose>
-          <c:when test="${not empty isFull }">
-            <c:forEach items="${ leagues }" var="league">
-              <c:choose>
-                <c:when test="${ fn:contains(league.queueType, 'SOLO') }">
-                  <div class="card shadow" style="min-width: 50%;">
-                    <div class="summoner_solo card-body d-flex flex-column text-center">
-                      <img class=" mx-auto d-block" src="${ path }/resources/img/${ league.tier }.png" width="90"
-                        height="90">
-                      <span>솔로랭크</span>
-                      <span>${ league.tier }${ league.rank } / ${ league.leaguePoints }LP</span>
-                      <span>${ league.wins }승 ${ league.losses }패</span>
-                    </div>
-                  </div>
-                </c:when>
-                <c:otherwise>
-                  <div class="card shadow" style="min-width: 50%;">
-                    <div class="summoner_solo card-body d-flex flex-column text-center">
-                      <img class=" mx-auto d-block" src="${ path }/resources/img/${ league.tier }.png" width="90"
-                        height="90">
-                      <span>자유랭크</span>
-                      <span>${ league.tier }${ league.rank } / ${ league.leaguePoints }LP</span>
-                      <span>${ league.wins }승 ${ league.losses }패</span>
-                    </div>
-                  </div>
-                </c:otherwise>
-              </c:choose>
-            </c:forEach>
+          <c:when test="${not empty soloLeague && not empty  flexLeague}">
+            <div class="card shadow" style="min-width: 50%;">
+              <div class="summoner_solo card-body d-flex flex-column text-center">
+                <img class=" mx-auto d-block" src="${ path }/resources/img/${ soloLeague.tier }.png" width="90"
+                  height="90">
+                <span>솔로랭크</span>
+                <span>${ soloLeague.tier }${ soloLeague.rank } / ${ soloLeague.leaguePoints }LP</span>
+                <span>${ soloLeague.wins }승 ${ soloLeague.losses }패</span>
+              </div>
+            </div>
+            <div class="card shadow" style="min-width: 50%;">
+              <div class="summoner_solo card-body d-flex flex-column text-center">
+                <img class=" mx-auto d-block" src="${ path }/resources/img/${ flexLeague.tier }.png" width="90"
+                  height="90">
+                <span>자유랭크</span>
+                <span>${ flexLeague.tier }${ flexLeague.rank } / ${ flexLeague.leaguePoints }LP</span>
+                <span>${ flexLeague.wins }승 ${ flexLeague.losses }패</span>
+              </div>
+            </div>
           </c:when>
-          <c:when test="${not empty isHalf }">
-            <c:choose>
-              <c:when test="${ not empty isSolo }">
-                <div class="card shadow" style="min-width: 50%;">
-                  <div class="summoner_solo card-body d-flex flex-column text-center">
-                    <img class=" mx-auto d-block" src="${ path }/resources/img/${ leagues[0].tier }.png" width="90"
-                      height="90">
-                    <span>솔로랭크</span>
-                    <span>${ leagues[0].tier }${ leagues[0].rank } / ${ leagues[0].leaguePoints }LP</span>
-                    <span>${ leagues[0].wins }승 ${ leagues[0].losses }패</span>
-                  </div>
-                </div>
-                <div class="card shadow" style="min-width: 50%;">
-                  <div class="summoner_team card-body d-flex flex-column text-center">
-                    <img class=" mx-auto d-block" src="${ path }/resources/img/UNRANK.png" width="90" height="90">
-                    <span>자유랭크</span>
-                  </div>
-                </div>
-              </c:when>
-              <c:when test="${ not empty isFlex }">
-                <div class="card shadow" style="min-width: 50%;">
-                  <div class="summoner_solo card-body d-flex flex-column text-center">
-                    <img class=" mx-auto d-block" src="${ path }/resources/img/UNRANK.png" width="90" height="90">
-                    <span>솔로랭크</span>
-                  </div>
-                </div>
-                <div class="card shadow" style="min-width: 50%;">
-                  <div class="summoner_team card-body d-flex flex-column text-center">
-                    <img class=" mx-auto d-block" src="${ path }/resources/img/${ leagues[0].tier }.png" width="90"
-                      height="90">
-                    <span>자유랭크</span>
-                    <span>${ leagues[0].tier }${ leagues[0].rank } / ${ leagues[0].leaguePoints }LP</span>
-                    <span>${ leagues[0].wins }승 ${ leagues[0].losses }패</span>
-                  </div>
-                </div>
-              </c:when>
-            </c:choose>
+          <c:when test="${not empty soloLeague && empty  flexLeague}">
+            <div class="card shadow" style="min-width: 50%;">
+              <div class="summoner_solo card-body d-flex flex-column text-center">
+                <img class=" mx-auto d-block" src="${ path }/resources/img/${ soloLeague.tier }.png" width="90"
+                  height="90">
+                <span>솔로랭크</span>
+                <span>${ soloLeague.tier }${ soloLeague.rank } / ${ soloLeague.leaguePoints }LP</span>
+                <span>${ soloLeague.wins }승 ${ soloLeague.losses }패</span>
+              </div>
+            </div>
+            <div class="card shadow" style="min-width: 50%;">
+              <div class="summoner_solo card-body d-flex flex-column text-center">
+                <img class=" mx-auto d-block" src="${ path }/resources/img/UNRANK.png" width="90" height="90">
+                <span>자유랭크</span>
+                <span>Unranked</span>
+              </div>
+            </div>
           </c:when>
-          <c:when test="${not empty isUnrank }">
+          <c:when test="${empty soloLeague && not empty  flexLeague}">
             <div class="card shadow" style="min-width: 50%;">
               <div class="summoner_solo card-body d-flex flex-column text-center">
                 <img class=" mx-auto d-block" src="${ path }/resources/img/UNRANK.png" width="90" height="90">
                 <span>솔로랭크</span>
+                <span>Unranked</span>
               </div>
             </div>
             <div class="card shadow" style="min-width: 50%;">
-              <div class="summoner_team card-body d-flex flex-column text-center">
+              <div class="summoner_solo card-body d-flex flex-column text-center">
+                <img class=" mx-auto d-block" src="${ path }/resources/img/${ flexLeague.tier }.png" width="90"
+                  height="90">
+                <span>자유랭크</span>
+                <span>${ flexLeague.tier }${ flexLeague.rank } / ${ flexLeague.leaguePoints }LP</span>
+                <span>${ flexLeague.wins }승 ${ flexLeague.losses }패</span>
+              </div>
+            </div>
+          </c:when>
+          <c:when test="${empty soloLeague && empty  flexLeague}">
+            <div class="card shadow" style="min-width: 50%;">
+              <div class="summoner_solo card-body d-flex flex-column text-center">
+                <img class=" mx-auto d-block" src="${ path }/resources/img/UNRANK.png" width="90" height="90">
+                <span>솔로랭크</span>
+                <span>Unranked</span>
+              </div>
+            </div>
+            <div class="card shadow" style="min-width: 50%;">
+              <div class="summoner_solo card-body d-flex flex-column text-center">
                 <img class=" mx-auto d-block" src="${ path }/resources/img/UNRANK.png" width="90" height="90">
                 <span>자유랭크</span>
+                <span>Unranked</span>
               </div>
             </div>
           </c:when>

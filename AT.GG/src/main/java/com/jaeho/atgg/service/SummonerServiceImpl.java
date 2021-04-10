@@ -1,6 +1,7 @@
 package com.jaeho.atgg.service;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,14 +30,40 @@ public class SummonerServiceImpl implements SummonerService {
 		log.info("==============================");
 		log.info("getSummoner - Database 접근 :" + summonerName);
 		log.info("==============================");
-		
+
 		Map<String, Object> summonerInfo = new HashMap<String, Object>();
-		
+
 		summonerInfo.put("summonerVO", summonerMapper.getSummonerByName(summonerName));
-		summonerInfo.put("leagueEntryVO", summonerMapper.getLeagueEntryList(summonerName));
-		summonerInfo.put("miniSeriesVO", summonerMapper.getMiniSeriesList(summonerName));
-		
+
+		List<LeagueEntryVO> leagueEntryList = summonerMapper.getLeagueEntryList(summonerName);
+		List<MiniSeriesVO> miniSeriesList = summonerMapper.getMiniSeriesList(summonerName);
+
+		for (int i = 0; i < leagueEntryList.size(); i++) {
+			if (leagueEntryList.get(i).getQueueType().contains("SOLO")) {
+				log.info("SOLO");
+				for (int j = 0; j < miniSeriesList.size(); j++) {
+					if (miniSeriesList.get(i).getType().contains("SOLO")) {
+						log.info("SOLO INSERT");
+						leagueEntryList.get(i).setMiniSeries(miniSeriesList.get(i));
+					}
+				}
+			}
+
+			if (leagueEntryList.get(i).getQueueType().contains("FLEX")) {
+				log.info("FLEX");
+				for (int j = 0; j < miniSeriesList.size(); j++) {
+					if (miniSeriesList.get(i).getType().contains("FLEX")) {
+						log.info("FLEX INSERT");
+						leagueEntryList.get(i).setMiniSeries(miniSeriesList.get(i));
+					}
+				}
+			}
+		}
+
+		summonerInfo.put("leagueEntryVO", leagueEntryList);
+
 		return summonerInfo;
+
 	}
 
 	@Override

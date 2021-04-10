@@ -9,12 +9,12 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class SummonerVO {
 
-	private String id;
-	private String accountId;
-	private String puuid;
-	private String name;
-	private String profileIconId;
-	private String revisionDate;
-	private String summonerLevel;
+	private String id; // DB
+	private String accountId; // DB
+	private String puuid; // DB
+	private String name; // DB
+	private String profileIconId; // DB
+	private String revisionDate; // DB
+	private String summonerLevel; // DB
 	
 }

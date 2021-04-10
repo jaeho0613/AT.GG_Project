@@ -25,7 +25,7 @@
 	</insert>
 	
 	<insert id="insertMiniSeries">
-		insert into miniSeries values(#{name},#{target},#{wins},#{losses},#{progress});
+		insert into miniSeries values(#{name},#{target},#{wins},#{losses},#{progress},#{type});
 	</insert>
 	
 	<select id="checkSummonerName" resultType="String">

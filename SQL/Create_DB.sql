@@ -42,5 +42,6 @@ create table miniSeries(
     wins 		integer,
     losses 		integer,
     progress	varchar(10),
+    `type`		varchar(20),
     foreign key (name) references leagueEntry(summonerName) on update cascade on delete cascade
 );

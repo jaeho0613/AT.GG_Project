@@ -54,12 +54,13 @@ public class RiotAPIUtility extends RestAPIUtility {
 					LeagueEntryVO[] leagues = new Gson().fromJson(leagueEntryResult, LeagueEntryVO[].class);
 
 					for (LeagueEntryVO leagueEntry : leagues) {
-
+						leagueEntry.setSummonerName(summonerName);
 						service.insertLeagueInfo(leagueEntry);
 
 						// 승급전이 있다면
 						if (leagueEntry.getMiniSeries() != null) {
-                            leagueEntry.getMiniSeries().setName(summonerName);
+							leagueEntry.getMiniSeries().setName(summonerName);
+							leagueEntry.getMiniSeries().setType(leagueEntry.getQueueType());
 							service.insertMiniseries(leagueEntry.getMiniSeries());
 						}
 					}

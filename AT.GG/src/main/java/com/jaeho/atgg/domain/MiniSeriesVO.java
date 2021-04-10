@@ -9,10 +9,11 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class MiniSeriesVO {
 
-	String name;
-	int target;
-	int wins;
-	int losses;
-	String progress;
+	String name; // DB
+	int target; // DB
+	int wins; // DB
+	int losses; // DB
+	String progress; // DB
+	String type; // DB
 
 }

@@ -42,35 +42,17 @@ public class MainController {
 
 		log.info("=========initSummonerInfo==========");
 		log.info(initSummonerInfo.getSummonerVO());
-		log.info(initSummonerInfo.getLeagueEntryVO());
-		log.info(initSummonerInfo.getMiniSeriesVO());
+		for (LeagueEntryVO league : initSummonerInfo.getLeagueEntryVO()) {
+			log.info(league);
+			if (league.getQueueType().contains("SOLO")) {
+				model.addAttribute("soloLeague", league);
+			} else if (league.getQueueType().contains("FLEX")) {
+				model.addAttribute("flexLeague", league);
+			}
+		}
 		log.info("===================================");
-		
-		// 랭크 정보가 없는 경우
-		if (initSummonerInfo.getLeagueEntryVO().size() == 0) {
-			model.addAttribute("isUnrank", true);
-		}
-
-		// 랭크 정보 한개인 경우
-		else if (initSummonerInfo.getLeagueEntryVO().size() == 1) {
-			model.addAttribute("isHalf", true);
-			if (initSummonerInfo.getLeagueEntryVO().get(0).getQueueType().contains("SOLO")) {
-				model.addAttribute("isSolo", true);
-			}
-
-			else {
-				model.addAttribute("isFlex", true);
-			}
-		}
-
-		// 랭크 정보가 두개인 경우
-		else {
-			model.addAttribute("isFull", true);
-		}
 
 		model.addAttribute("summoner", initSummonerInfo.getSummonerVO());
-		model.addAttribute("leagues", initSummonerInfo.getLeagueEntryVO());
-		model.addAttribute("miniseries", initSummonerInfo.getMiniSeriesVO());
 
 		return "summoner";
 	}

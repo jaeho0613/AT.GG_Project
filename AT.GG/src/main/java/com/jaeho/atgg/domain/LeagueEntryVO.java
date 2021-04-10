@@ -9,13 +9,13 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class LeagueEntryVO {
 
-	String summonerName;
-	String queueType;
-	String tier;
-	String rank;
-	int leaguePoints;
-	int wins;
-	int losses;
+	String summonerName; // DB
+	String queueType; // DB
+	String tier; // DB
+	String rank; // DB
+	int leaguePoints; // DB
+	int wins; // DB
+	int losses; // DB
 	MiniSeriesVO miniSeries;
-	
+
 }
