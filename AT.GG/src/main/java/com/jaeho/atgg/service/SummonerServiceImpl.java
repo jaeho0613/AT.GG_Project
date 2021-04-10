@@ -32,9 +32,6 @@ public class SummonerServiceImpl implements SummonerService {
 		log.info("==============================");
 
 		Map<String, Object> summonerInfo = new HashMap<String, Object>();
-
-		summonerInfo.put("summonerVO", summonerMapper.getSummonerByName(summonerName));
-
 		List<LeagueEntryVO> leagueEntryList = summonerMapper.getLeagueEntryList(summonerName);
 		List<MiniSeriesVO> miniSeriesList = summonerMapper.getMiniSeriesList(summonerName);
 
@@ -42,6 +39,8 @@ public class SummonerServiceImpl implements SummonerService {
 		for (int i = 0; i < leagueEntryList.size(); i++) {
 			// 승급전이 존재 한다면
 			if (leagueEntryList.get(i).getMiniSeries() != null) {
+
+				// 솔랭 승급전
 				if (leagueEntryList.get(i).getQueueType().contains("SOLO")) {
 					log.info("SOLO");
 					for (int j = 0; j < miniSeriesList.size(); j++) {
@@ -52,6 +51,7 @@ public class SummonerServiceImpl implements SummonerService {
 					}
 				}
 
+				// 팀랭 승급전
 				if (leagueEntryList.get(i).getQueueType().contains("FLEX")) {
 					log.info("FLEX");
 					for (int j = 0; j < miniSeriesList.size(); j++) {
@@ -64,6 +64,7 @@ public class SummonerServiceImpl implements SummonerService {
 			}
 		}
 
+		summonerInfo.put("summonerVO", summonerMapper.getSummonerByName(summonerName));
 		summonerInfo.put("leagueEntryVO", leagueEntryList);
 
 		return summonerInfo;
