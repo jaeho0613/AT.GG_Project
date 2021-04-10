@@ -18,7 +18,7 @@ public class RiotAPIUtility extends RestAPIUtility {
 	private static Gson gson = new Gson();
 
 	// Riot API
-	private final static String API_KEY = "RGAPI-09e5a48d-9f5d-4552-83af-67a2358a866a";
+	private final static String API_KEY = "RGAPI-9f6c25a1-f086-48ae-a188-79f9bea6bda0";
 
 	// API EndPoint
 	private final static String SUMMONER_BY_NAME = "https://kr.api.riotgames.com/lol/summoner/v4/summoners/by-name/";

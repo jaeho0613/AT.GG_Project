@@ -14,6 +14,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.jaeho.atgg.domain.InitSummonerInfoVO;
 import com.jaeho.atgg.domain.LeagueEntryVO;
 import com.jaeho.atgg.domain.MiniSeriesVO;
 import com.jaeho.atgg.domain.SummonerVO;
@@ -37,19 +38,27 @@ public class MainController {
 
 		String summonerInfo = RestAPIUtility.restAPI("http://localhost:8080/lol/summoner/" + summonerName);
 
-		JsonElement jelement = new JsonParser().parse(summonerInfo);
+		InitSummonerInfoVO initSummonerInfo = new Gson().fromJson(summonerInfo, InitSummonerInfoVO.class);
 
-		JsonObject j_summoner = (JsonObject) jelement.getAsJsonObject().get("summonerVO");
-		JsonArray j_leagueEntry = (JsonArray) jelement.getAsJsonObject().get("leagueEntryVO");
-		JsonArray j_miniseries = (JsonArray) jelement.getAsJsonObject().get("miniSeriesVO");
+		log.info("=========initSummonerInfo==========");
+		log.info(initSummonerInfo.getSummonerVO());
+		log.info(initSummonerInfo.getLeagueEntryVO());
+		log.info(initSummonerInfo.getMiniSeriesVO());
+		log.info("===================================");
 
-		SummonerVO summoner = new Gson().fromJson(j_summoner, SummonerVO.class);
-		LeagueEntryVO[] leagueEntry = new Gson().fromJson(j_leagueEntry, LeagueEntryVO[].class);
-		MiniSeriesVO[] miniSeries = new Gson().fromJson(j_miniseries, MiniSeriesVO[].class);
+		for (LeagueEntryVO league : initSummonerInfo.getLeagueEntryVO()) {
+			if (league.getQueueType().contains("SOLO")) {
+				model.addAttribute("isSolo", true);
+			}
 
-		model.addAttribute("summoner", summoner);
-		model.addAttribute("leagueEntry", leagueEntry);
-		model.addAttribute("miniSeries", miniSeries);
+			if (league.getQueueType().contains("FLEX")) {
+				model.addAttribute("isFlex", true);
+			}
+		}
+
+		model.addAttribute("summoner", initSummonerInfo.getSummonerVO());
+		model.addAttribute("leagues", initSummonerInfo.getLeagueEntryVO());
+		model.addAttribute("miniseries", initSummonerInfo.getMiniSeriesVO());
 
 		return "summoner";
 	}

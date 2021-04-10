@@ -18,7 +18,7 @@ public class RestAPIUtility {
 	// client 객체
 	private static OkHttpClient client;
 
-	protected static OkHttpClient getOkHttpClient() {
+	private static OkHttpClient getOkHttpClient() {
 		if (client == null) {
 			client = new OkHttpClient.Builder().connectionPool(connectionPool).build();
 		}
@@ -39,12 +39,12 @@ public class RestAPIUtility {
 	}
 
 	// 동기식 요청 (기본 요청)
-	protected static Request syncGetRequest(String url) {
+	private static Request syncGetRequest(String url) {
 		return new Request.Builder().url(url).build();
 	}
 
 	// 동기식 요청 (헤드 요청)
-	protected static Request syncGetRequest(String url, Map<String, String> headers) {
+	private static Request syncGetRequest(String url, Map<String, String> headers) {
 
 		Request.Builder builder = new Request.Builder().get();
 		builder.url(url);
@@ -57,7 +57,7 @@ public class RestAPIUtility {
 	}
 
 	// 동기식 응답
-	protected static String syncGetResponse(OkHttpClient client, Request request) throws IOException {
+	private static String syncGetResponse(OkHttpClient client, Request request) throws IOException {
 
 		try (Response response = client.newCall(request).execute()) {
 			if (response.isSuccessful()) {
