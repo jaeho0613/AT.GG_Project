@@ -45,15 +45,27 @@ public class MainController {
 		log.info(initSummonerInfo.getLeagueEntryVO());
 		log.info(initSummonerInfo.getMiniSeriesVO());
 		log.info("===================================");
+		
+		// 랭크 정보가 없는 경우
+		if (initSummonerInfo.getLeagueEntryVO().size() == 0) {
+			model.addAttribute("isUnrank", true);
+		}
 
-		for (LeagueEntryVO league : initSummonerInfo.getLeagueEntryVO()) {
-			if (league.getQueueType().contains("SOLO")) {
+		// 랭크 정보 한개인 경우
+		else if (initSummonerInfo.getLeagueEntryVO().size() == 1) {
+			model.addAttribute("isHalf", true);
+			if (initSummonerInfo.getLeagueEntryVO().get(0).getQueueType().contains("SOLO")) {
 				model.addAttribute("isSolo", true);
 			}
 
-			if (league.getQueueType().contains("FLEX")) {
+			else {
 				model.addAttribute("isFlex", true);
 			}
+		}
+
+		// 랭크 정보가 두개인 경우
+		else {
+			model.addAttribute("isFull", true);
 		}
 
 		model.addAttribute("summoner", initSummonerInfo.getSummonerVO());
