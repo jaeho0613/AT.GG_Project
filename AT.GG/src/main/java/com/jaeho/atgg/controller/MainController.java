@@ -41,12 +41,23 @@ public class MainController {
 		InitSummonerInfoVO initSummonerInfo = new Gson().fromJson(summonerInfo, InitSummonerInfoVO.class);
 
 		log.info("=========initSummonerInfo==========");
-		log.info(initSummonerInfo.getSummonerVO());
+		log.info(initSummonerInfo);
 		for (LeagueEntryVO league : initSummonerInfo.getLeagueEntryVO()) {
-			log.info(league);
 			if (league.getQueueType().contains("SOLO")) {
+
+				if (league.getMiniSeries() != null) {
+					String[] proArr = league.getMiniSeries().getProgress().split("");
+					model.addAttribute("soloPro", proArr);
+				}
+
 				model.addAttribute("soloLeague", league);
 			} else if (league.getQueueType().contains("FLEX")) {
+
+				if (league.getMiniSeries() != null) {
+					String[] proArr = league.getMiniSeries().getProgress().split("");
+					model.addAttribute("flexPro", proArr);
+				}
+
 				model.addAttribute("flexLeague", league);
 			}
 		}
