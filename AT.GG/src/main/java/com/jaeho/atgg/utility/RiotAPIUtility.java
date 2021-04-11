@@ -10,6 +10,9 @@ import com.jaeho.atgg.service.SummonerService;
 
 import lombok.extern.log4j.Log4j;
 
+// RiotAPI 통신 클래스입니다.
+// - Riot의 데이터를 얻어와 My DB에 저장하는 역할을 수행합니다.
+// - 동시에 My DB에 데이터가 있다면 DB 데이터를 보내줍니다.
 @Log4j
 public class RiotAPIUtility extends RestAPIUtility {
 

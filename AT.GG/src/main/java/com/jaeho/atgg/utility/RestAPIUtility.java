@@ -9,6 +9,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
+// 기본 RestAPI 통신 클래스입니다.
 @Log4j
 public class RestAPIUtility {
 

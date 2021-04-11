@@ -29,16 +29,48 @@
       <div class="d-flex flex-xl-column mb-2 col">
         <c:choose>
           <c:when test="${not empty soloLeague && not empty  flexLeague}">
-            <div class="card shadow" style="min-width: 50%;">
-              <div class="summoner_solo card-body d-flex flex-column text-center">
+            <div class="card shadow py-2" style="min-width: 50%;">
+              <!-- 랭크 정보 -->
+              <div class="summoner_solo d-flex flex-column text-center mb-2">
                 <img class=" mx-auto d-block" src="${ path }/resources/img/${ soloLeague.tier }.png" width="90"
                   height="90">
                 <span>솔로랭크</span>
                 <span>${ soloLeague.tier }${ soloLeague.rank } / ${ soloLeague.leaguePoints }LP</span>
                 <span>${ soloLeague.wins }승 ${ soloLeague.losses }패</span>
               </div>
+              <!-- 승급전 진행 상태 -->
+              <c:if test="${ not empty soloLeague.miniSeries }">
+                <div class="summoner_solo d-flex flex-column justify-content-center align-content-center text-center">
+                  <div class="mini_series_title">
+                    승급전 진행중
+                  </div>
+                  <c:forEach items="${ soloLeague.miniSeries.progress }" var="pro" >
+                  	${ pro }
+                  </c:forEach>
+                  <div class="mini_series_wl d-flex justify-content-center align-content-center">
+                    <div class="position-relative mini_series border rounded-circle">
+                    </div>
+                    <div class="position-relative mini_series border rounded-circle">
+                      <img class="position-absolute top-50 start-50 translate-middle"
+                        src="${ path }/resources/img/lose.png">
+                    </div>
+                    <div class="position-relative mini_series border rounded-circle">
+                      <img class="position-absolute top-50 start-50 translate-middle"
+                        src="${ path }/resources/img/win.png">
+                    </div>
+                    <div class="position-relative mini_series border rounded-circle">
+                      <img class="position-absolute top-50 start-50 translate-middle"
+                        src="${ path }/resources/img/lose.png">
+                    </div>
+                    <div class="position-relative mini_series border rounded-circle">
+                      <img class="position-absolute top-50 start-50 translate-middle"
+                        src="${ path }/resources/img/lose.png">
+                    </div>
+                  </div>
+                </div>
+              </c:if>
             </div>
-            <div class="card shadow" style="min-width: 50%;">
+            <div class=" card shadow" style="min-width: 50%;">
               <div class="summoner_solo card-body d-flex flex-column text-center">
                 <img class=" mx-auto d-block" src="${ path }/resources/img/${ flexLeague.tier }.png" width="90"
                   height="90">
@@ -46,6 +78,34 @@
                 <span>${ flexLeague.tier }${ flexLeague.rank } / ${ flexLeague.leaguePoints }LP</span>
                 <span>${ flexLeague.wins }승 ${ flexLeague.losses }패</span>
               </div>
+              <!-- 승급전 진행 상태 -->
+              <c:if test="${ not empty flexLeague.miniSeries }">
+                <div class="summoner_solo d-flex flex-column justify-content-center align-content-center text-center">
+                  <div class="mini_series_title">
+                    승급전 진행중
+                  </div>
+                  <div class="mini_series_wl d-flex justify-content-center align-content-center">
+                    <div class="position-relative mini_series border rounded-circle">
+                    </div>
+                    <div class="position-relative mini_series border rounded-circle">
+                      <img class="position-absolute top-50 start-50 translate-middle"
+                        src="${ path }/resources/img/lose.png">
+                    </div>
+                    <div class="position-relative mini_series border rounded-circle">
+                      <img class="position-absolute top-50 start-50 translate-middle"
+                        src="${ path }/resources/img/win.png">
+                    </div>
+                    <div class="position-relative mini_series border rounded-circle">
+                      <img class="position-absolute top-50 start-50 translate-middle"
+                        src="${ path }/resources/img/lose.png">
+                    </div>
+                    <div class="position-relative mini_series border rounded-circle">
+                      <img class="position-absolute top-50 start-50 translate-middle"
+                        src="${ path }/resources/img/lose.png">
+                    </div>
+                  </div>
+                </div>
+              </c:if>
             </div>
           </c:when>
           <c:when test="${not empty soloLeague && empty  flexLeague}">

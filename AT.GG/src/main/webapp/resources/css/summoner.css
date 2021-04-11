@@ -18,6 +18,12 @@ footer li.icon {
   background-color: white;
 }
 
+.mini_series {
+  width: 18px;
+  height: 18px;
+  background: gray;
+}
+
 /* 화면 가로가 767 이상일 때 (PC)*/
 @media (min-width: 768.98px) {
 
