@@ -2,9 +2,9 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.jaeho.atgg.mapper.MathMapper">
+<mapper namespace="com.jaeho.atgg.mapper.MatchMapper">
 	
-	<select id="getMatMatchReferenceList" resultType="com.jaeho.atgg.domain.match.MatchReferenceVO">
+	<select id="getMatchReferenceList" resultType="com.jaeho.atgg.domain.match.MatchReferenceVO">
 		select *
 		from (
 			select @ROWNUM:=@ROWNUM+1 rownum, A.*
@@ -30,5 +30,10 @@
 		from ParticipantStats
 		where gameId = #{gameId}
 	</select>
+	
+	<insert id="insertMatchList">
+		insert into MatchReference(matchId, name, gameId, timestamp, role, lane, champion, queue) 
+				values(null, #{name}, #{gameId},#{timestamp},#{role},#{lane},#{champion},#{queue})
+	</insert>
 
 </mapper>

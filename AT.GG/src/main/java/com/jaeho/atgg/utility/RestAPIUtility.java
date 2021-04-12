@@ -5,6 +5,7 @@ import java.util.Map;
 
 import lombok.extern.log4j.Log4j;
 import okhttp3.ConnectionPool;
+import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -38,6 +39,12 @@ public class RestAPIUtility {
 		Request request = syncGetRequest(url, headers);
 		return syncGetResponse(getOkHttpClient(), request);
 	}
+	
+	// API 사용하기 (Headers가 있을 때)
+		public static String restAPI(String url, Map<String, String> headers, Map<String, String> parameters) throws IOException {
+			Request request = syncGetRequest(url, headers, parameters);
+			return syncGetResponse(getOkHttpClient(), request);
+		}
 
 	// 동기식 요청 (기본 요청)
 	private static Request syncGetRequest(String url) {
@@ -49,6 +56,25 @@ public class RestAPIUtility {
 
 		Request.Builder builder = new Request.Builder().get();
 		builder.url(url);
+
+		headers.forEach((key, value) -> {
+			builder.addHeader(key, value);
+		});
+
+		return builder.build();
+	}
+
+	// 동기식 요청 (헤드 요청)
+	private static Request syncGetRequest(String url, Map<String, String> headers, Map<String, String> parameters) {
+
+		HttpUrl.Builder urlBuilder = HttpUrl.parse(url).newBuilder();
+
+		parameters.forEach((key, value) -> {
+			urlBuilder.addQueryParameter(key, value);
+		});
+
+		Request.Builder builder = new Request.Builder().get();
+		builder.url(urlBuilder.build().toString());
 
 		headers.forEach((key, value) -> {
 			builder.addHeader(key, value);

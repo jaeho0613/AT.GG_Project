@@ -53,6 +53,9 @@ insert into ParticipantStats() values(1, 1, 1, 1,1,1,1,1,1,1,1,1);
 
 insert into MatchReference(name) values('정재호임');
 
+insert into MatchReference(name, gameId, timestamp, role, lane, champion, queue) 
+				values(#{name}, #{gameId},#{timestamp},#{role},#{lane},#{champion},#{queue});
+
 -- getMatMatchReferenceList
 select *
 from (
