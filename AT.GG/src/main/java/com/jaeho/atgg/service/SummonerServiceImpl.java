@@ -9,9 +9,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.jaeho.atgg.domain.LeagueEntryVO;
-import com.jaeho.atgg.domain.MiniSeriesVO;
-import com.jaeho.atgg.domain.SummonerVO;
+import com.jaeho.atgg.domain.summoner.LeagueEntryVO;
+import com.jaeho.atgg.domain.summoner.MiniSeriesVO;
+import com.jaeho.atgg.domain.summoner.SummonerVO;
 import com.jaeho.atgg.mapper.SummonerMapper;
 
 import lombok.Setter;
@@ -25,6 +25,7 @@ public class SummonerServiceImpl implements SummonerService {
 	@Setter(onMethod_ = @Autowired)
 	private SummonerMapper summonerMapper;
 
+	@Transactional
 	@Override
 	public Map<String, Object> getSummonerInfoAll(String summonerName) {
 		log.info("==============================");

@@ -14,10 +14,10 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import com.jaeho.atgg.domain.InitSummonerInfoVO;
-import com.jaeho.atgg.domain.LeagueEntryVO;
-import com.jaeho.atgg.domain.MiniSeriesVO;
-import com.jaeho.atgg.domain.SummonerVO;
+import com.jaeho.atgg.domain.summoner.LeagueEntryVO;
+import com.jaeho.atgg.domain.summoner.MiniSeriesVO;
+import com.jaeho.atgg.domain.summoner.SummonerVO;
+import com.jaeho.atgg.dto.SummonerDTO;
 import com.jaeho.atgg.utility.RestAPIUtility;
 
 import lombok.extern.log4j.Log4j;
@@ -38,7 +38,7 @@ public class MainController {
 
 		String summonerInfo = RestAPIUtility.restAPI("http://localhost:8080/lol/summoner/" + summonerName);
 
-		InitSummonerInfoVO initSummonerInfo = new Gson().fromJson(summonerInfo, InitSummonerInfoVO.class);
+		SummonerDTO initSummonerInfo = new Gson().fromJson(summonerInfo, SummonerDTO.class);
 
 		log.info("=========initSummonerInfo==========");
 		log.info(initSummonerInfo);

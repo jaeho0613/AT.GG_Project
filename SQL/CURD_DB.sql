@@ -41,3 +41,6 @@ insert into miniSeries values();
 select name
 from summoner
 where name = '정재호임';
+
+-- 데이터 insert
+insert into ParticipantStats() values(1, 1, 1, 1,1,1,1,1,1,1,1,1);

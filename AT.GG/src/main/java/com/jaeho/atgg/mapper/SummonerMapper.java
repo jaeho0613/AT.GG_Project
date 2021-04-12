@@ -2,9 +2,9 @@ package com.jaeho.atgg.mapper;
 
 import java.util.List;
 
-import com.jaeho.atgg.domain.LeagueEntryVO;
-import com.jaeho.atgg.domain.MiniSeriesVO;
-import com.jaeho.atgg.domain.SummonerVO;
+import com.jaeho.atgg.domain.summoner.LeagueEntryVO;
+import com.jaeho.atgg.domain.summoner.MiniSeriesVO;
+import com.jaeho.atgg.domain.summoner.SummonerVO;
 
 public interface SummonerMapper {
 

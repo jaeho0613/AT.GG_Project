@@ -1,4 +1,4 @@
-package com.jaeho.atgg.domain;
+package com.jaeho.atgg.domain.summoner;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

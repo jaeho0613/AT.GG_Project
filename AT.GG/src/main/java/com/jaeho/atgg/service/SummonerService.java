@@ -2,9 +2,9 @@ package com.jaeho.atgg.service;
 
 import java.util.Map;
 
-import com.jaeho.atgg.domain.LeagueEntryVO;
-import com.jaeho.atgg.domain.MiniSeriesVO;
-import com.jaeho.atgg.domain.SummonerVO;
+import com.jaeho.atgg.domain.summoner.LeagueEntryVO;
+import com.jaeho.atgg.domain.summoner.MiniSeriesVO;
+import com.jaeho.atgg.domain.summoner.SummonerVO;
 
 public interface SummonerService {
 

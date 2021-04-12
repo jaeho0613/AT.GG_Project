@@ -4,15 +4,15 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.jaeho.atgg.mapper.SummonerMapper">
 
-	<select id="getSummonerByName" resultType="com.jaeho.atgg.domain.SummonerVO">
+	<select id="getSummonerByName" resultType="com.jaeho.atgg.domain.summoner.SummonerVO">
 		select * from summoner where name = #{summonerName}
 	</select>
 	
-	<select id="getLeagueEntryList" resultType="com.jaeho.atgg.domain.LeagueEntryVO">
+	<select id="getLeagueEntryList" resultType="com.jaeho.atgg.domain.summoner.LeagueEntryVO">
 		select * from leagueEntry where summonerName = #{summonerName}
 	</select>
 	
-	<select id="getMiniSeriesList" resultType="com.jaeho.atgg.domain.MiniSeriesVO">
+	<select id="getMiniSeriesList" resultType="com.jaeho.atgg.domain.summoner.MiniSeriesVO">
 		select * from miniSeries where name = #{summonerName}
 	</select>
 	

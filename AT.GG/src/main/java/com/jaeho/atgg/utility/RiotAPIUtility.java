@@ -4,8 +4,8 @@ import java.io.IOException;
 import java.util.HashMap;
 
 import com.google.gson.Gson;
-import com.jaeho.atgg.domain.LeagueEntryVO;
-import com.jaeho.atgg.domain.SummonerVO;
+import com.jaeho.atgg.domain.summoner.LeagueEntryVO;
+import com.jaeho.atgg.domain.summoner.SummonerVO;
 import com.jaeho.atgg.service.SummonerService;
 
 import lombok.extern.log4j.Log4j;
@@ -21,7 +21,7 @@ public class RiotAPIUtility extends RestAPIUtility {
 	private static Gson gson = new Gson();
 
 	// Riot API
-	private final static String API_KEY = "RGAPI-9f6c25a1-f086-48ae-a188-79f9bea6bda0";
+	private final static String API_KEY = "RGAPI-c48dd79b-65ed-4941-87be-d97a8e2b5a14";
 
 	// API EndPoint
 	private final static String SUMMONER_BY_NAME = "https://kr.api.riotgames.com/lol/summoner/v4/summoners/by-name/";
@@ -67,6 +67,8 @@ public class RiotAPIUtility extends RestAPIUtility {
 							service.insertMiniseries(leagueEntry.getMiniSeries());
 						}
 					}
+				} else {
+					log.error("소환사 티어 정보 통신에 실패했습니다.");
 				}
 			} else {
 				log.error("소환사 정보 통신에 실패했습니다.");
