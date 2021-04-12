@@ -4,7 +4,7 @@ import lombok.Data;
 
 @Data
 public class TeamsVO {
-	long gameId;
+	String gameId;
 	int towerKills;
 	int dragonKills;
 	int baronKills;

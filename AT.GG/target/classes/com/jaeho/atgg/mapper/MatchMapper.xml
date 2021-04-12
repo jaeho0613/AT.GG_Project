@@ -32,8 +32,8 @@
 	</select>
 	
 	<insert id="insertMatchList">
-		insert into MatchReference(matchId, name, gameId, timestamp, role, lane, champion, queue) 
-				values(null, #{name}, #{gameId},#{timestamp},#{role},#{lane},#{champion},#{queue})
+		insert IGNORE into MatchReference(name, gameId, timestamp, role, lane, champion, queue) 
+				values(#{name}, #{gameId},#{timestamp},#{role},#{lane},#{champion},#{queue})
 	</insert>
 
 </mapper>

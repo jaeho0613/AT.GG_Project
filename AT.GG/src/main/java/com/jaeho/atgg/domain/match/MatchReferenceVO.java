@@ -10,7 +10,7 @@ public class MatchReferenceVO {
 	@Data
 	public class Matches {
 		String name;
-		long gameId;
+		String gameId;
 		long timestamp;
 		String role;
 		String lane;

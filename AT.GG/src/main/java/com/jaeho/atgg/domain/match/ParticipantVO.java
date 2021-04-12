@@ -5,7 +5,7 @@ import lombok.Data;
 @Data
 public class ParticipantVO {
 	String summoner;
-	long gameId;
+	String gameId;
 	int participantId;
 	int championId;
 	int teamId;

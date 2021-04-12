@@ -53,8 +53,11 @@ insert into ParticipantStats() values(1, 1, 1, 1,1,1,1,1,1,1,1,1);
 
 insert into MatchReference(name) values('정재호임');
 
-insert into MatchReference(name, gameId, timestamp, role, lane, champion, queue) 
-				values(#{name}, #{gameId},#{timestamp},#{role},#{lane},#{champion},#{queue});
+insert IGNORE into MatchReference(name, gameId, timestamp, role, lane, champion, queue) 
+						values('정재호임', 1,1,'1','1',1,1);
+
+-- insert into MatchReference(name, gameId, timestamp, role, lane, champion, queue) 
+-- 				values(#{name}, #{gameId},#{timestamp},#{role},#{lane},#{champion},#{queue});
 
 -- getMatMatchReferenceList
 select *
@@ -64,6 +67,10 @@ from (
     ) rownum
 where rownum between '1' and '20';
 
+select *
+from MatchReference
+where gameid = '5120527754';
+
 -- rownum 생성
 select @ROWNUM:=@ROWNUM+1 rownum, A.*
 from MatchReference A, (select @ROWNUM:=0) R;
@@ -72,3 +79,6 @@ from MatchReference A, (select @ROWNUM:=0) R;
 select *
 from Teams
 where gameId = '1234';
+
+delete from summoner
+where name = '정재호임';

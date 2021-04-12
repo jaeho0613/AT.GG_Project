@@ -52,9 +52,8 @@ create table MiniSeries(
 
 -- 게임 기본 정보
 create table MatchReference (
-	matchId		integer 	primary key auto_increment,
+	gameId 		varchar(10) primary key,
 	name 		varchar(20) not null,
-	gameId 		long,
     timestamp 	long,
     role 		varchar(20),
     lane 		varchar(20),
@@ -65,28 +64,30 @@ create table MatchReference (
 
 -- 게임 정보 팀 정보
 create table Teams(
-	gameId 		long,
+	gameId 		varchar(10) not null,
 	towerKills 	integer,
     dragonKills integer,
     baronKills 	integer,
     teamId 		integer,
-    win 		varchar(10)
+    win 		varchar(10),
+    foreign key (gameId) references MatchReference(gameId) on update cascade on delete cascade
 );
 
 -- 게임 참여자(소환사) 상세 정보
 create table  Participant(
-	gameId 			long,
+	gameId 			varchar(10) not null,
 	participantId 	integer,
     championId 		integer,
     teamId 			integer,
     spell1Id 		integer,
     spell2Id 		integer,
-    summoner 		varchar(20)
+    summoner 		varchar(20),
+    foreign key (gameId) references MatchReference(gameId) on update cascade on delete cascade
 );
 
 -- 게임 참여자(소환사) 상세 정보 스텟
 create table ParticipantStats(
-	gameId 						long,
+	gameId 						varchar(10) not null,
     participantId 				integer,
     totalDamageDealtToChampions long,
 	item0 						integer,
@@ -116,5 +117,6 @@ create table ParticipantStats(
     statPerk0 					integer,
     statPerk1 					integer,
     statPerk2 					integer,
-    win 						boolean
+    win 						boolean,
+    foreign key (gameId) references MatchReference(gameId) on update cascade on delete cascade
 );

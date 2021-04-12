@@ -2,6 +2,7 @@ package com.jaeho.atgg.mapper;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.junit.Test;
@@ -36,8 +37,15 @@ public class MatchMapperTests {
 	@Setter(onMethod_ = @Autowired)
 	private MatchMapper mapper;
 	
+//	@Test
+	public void getMatchReferenceList() {
+		
+//		List<MatchReferenceVO> matchList
+		
+	}
+	
 	@Test
-	public void getMatchReferenceList() throws IOException {
+	public void insertMatchList() throws IOException {
 
 		Map<String, String> headers = new HashMap<String, String>() {
 			{

@@ -115,7 +115,8 @@ public class RiotApiTests {
 				headers, parameters);
 //		log.info(matchResult);
 		MatchReferenceVO matches = new Gson().fromJson(matchResult, MatchReferenceVO.class);
-		matches.getMatches().forEach(match -> {
+		matches.getMatches().forEach(match ->{
+			match.setName("정재호임");
 			log.info(match);
 		});
 
