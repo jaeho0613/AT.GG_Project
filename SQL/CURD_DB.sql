@@ -1,7 +1,13 @@
--- 전체 테이블 검색
+-- 유저 정보 테이블 검색
 select * from summoner;
 select * from leagueEntry;
 select * from miniSeries;
+
+-- 매칭 정보 테이블 검색
+select * from MatchReference;
+select * from Teams;
+select * from Participant;
+select * from ParticipantStats;
 
 select *
 from summoner, leagueEntry, miniSeries;
@@ -42,5 +48,24 @@ select name
 from summoner
 where name = '정재호임';
 
--- 데이터 insert
+-- damme 데이터 insert
 insert into ParticipantStats() values(1, 1, 1, 1,1,1,1,1,1,1,1,1);
+
+insert into MatchReference(name) values('정재호임');
+
+-- getMatMatchReferenceList
+select *
+from (
+	select @ROWNUM:=@ROWNUM+1 rownum, A.*
+	from MatchReference A, (select @ROWNUM:=0) R
+    ) rownum
+where rownum between '1' and '20';
+
+-- rownum 생성
+select @ROWNUM:=@ROWNUM+1 rownum, A.*
+from MatchReference A, (select @ROWNUM:=0) R;
+
+-- getTeamsList
+select *
+from Teams
+where gameId = '1234';

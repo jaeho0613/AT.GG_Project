@@ -42,9 +42,9 @@ public class SummonerMapperTests {
 	public void insertSummoner() {
 
 		if (summonerMapper.checkSummonerName("test") == null) {
-			SummonerVO summoner = new SummonerVO("test", "test", "test", "test", "test", "test", "test");
+			// SummonerVO summoner = new SummonerVO("test", "test", "test", "test", "test", "test", "test");
 
-			summonerMapper.insertSummoner(summoner);
+			// summonerMapper.insertSummoner(summoner);
 		} else {
 			log.info("이미 데이터가 있습니다.");
 		}
