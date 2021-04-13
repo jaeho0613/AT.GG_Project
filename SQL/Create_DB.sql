@@ -56,7 +56,7 @@ create table MatchRef (
 	gameId 			varchar(10) primary key,
     gameCreation 	long,
     gameDuration 	long,
-    queueId 			integer
+    queueId 		integer
 );
 
 -- 게임 정보 팀 정보

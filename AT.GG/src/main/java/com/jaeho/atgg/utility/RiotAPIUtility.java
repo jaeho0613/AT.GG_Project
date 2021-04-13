@@ -27,7 +27,7 @@ public class RiotAPIUtility extends RestAPIUtility {
 	private static Gson gson = new Gson();
 
 	// Riot API
-	private final static String API_KEY = "RGAPI-c41907e2-81fe-431e-879a-f91f3d2f8725";
+	private final static String API_KEY = "RGAPI-e55c9559-659d-424d-8f54-d685fb38ded7";
 
 	// API EndPoint
 	// 소환사 기본 정보
@@ -94,8 +94,6 @@ public class RiotAPIUtility extends RestAPIUtility {
 
 		List<String> gameIdList = getMatchList(beginIndex, endIndex);
 
-		Map<String, String> headers = new HashMap<String, String>();
-
 		for (int i = 0; i < gameIdList.size(); i++) {
 			
 			// 게임 리스트 불러오기
@@ -110,7 +108,7 @@ public class RiotAPIUtility extends RestAPIUtility {
 	}
 
 	// 소환사 매칭 정보 리스트
-	private static List<String> getMatchList(String beginIndex, String endIndex) throws IOException {
+	public static List<String> getMatchList(String beginIndex, String endIndex) throws IOException {
 		Map<String, String> headers = new HashMap<String, String>();
 		Map<String, String> parameters = new HashMap<String, String>();
 

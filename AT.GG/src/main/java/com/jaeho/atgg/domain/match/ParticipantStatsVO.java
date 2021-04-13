@@ -6,6 +6,7 @@ import lombok.Data;
 @Data
 public class ParticipantStatsVO {
 	String gameId;
+	int participantId;
 	long totalDamageDealtToChampions;
 	int item0;
 	int item1;
