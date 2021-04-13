@@ -90,23 +90,23 @@ public class RiotAPIUtility extends RestAPIUtility {
 		}
 	}
 
-	public static List<MatchDTO> getMatchInfo(String beginIndex, String endIndex) throws IOException {
+	public static void initMatchInfo(String beginIndex, String endIndex) throws IOException {
 
 		List<String> gameIdList = getMatchList(beginIndex, endIndex);
+
 		Map<String, String> headers = new HashMap<String, String>();
 
-		List<MatchDTO> matchList = new ArrayList<>();
-
-		headers.put("X-Riot-Token", API_KEY);
-
 		for (int i = 0; i < gameIdList.size(); i++) {
-			String result = asyncRestAPI(MATCH_INFO + gameIdList.get(i), headers);
+			
+			// 게임 리스트 불러오기
+			String result = asyncRestAPI(MATCH_INFO + gameIdList.get(i), new HashMap<String, String>() {
+				{
+					put("X-Riot-Token", API_KEY);
+				}
+			});
 
 			MatchDTO match = new Gson().fromJson(result, MatchDTO.class);
-			matchList.add(match);
 		}
-
-		return matchList;
 	}
 
 	// 소환사 매칭 정보 리스트

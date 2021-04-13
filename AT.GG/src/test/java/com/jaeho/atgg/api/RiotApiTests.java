@@ -37,31 +37,31 @@ public class RiotApiTests {
 	@Test
 	public void riotUtilityMatchList() throws IOException {
 
-		List<MatchDTO> result = RiotAPIUtility.getMatchInfo("0", "10");
-		result.forEach(re -> {
-			log.info("==========================");
-			log.info("게임 아이디");
-			log.info(re.getGameId());
-			log.info("게임 종류");
-			log.info(re.getQueueId());
-			log.info("게임 시작 시간");
-			log.info(re.getGameCreation());
-			log.info("총 게임 시간");
-			log.info(re.getGameDuration());
-			log.info("팀 정보");
-			re.getTeams().forEach(team -> {
-				log.info(team);
-			});
-			log.info("소환사 기본 정보");
-			re.getParticipants().forEach(participant -> {
-				log.info(participant);
-			});
-			log.info("게임 참여자 정보");
-			re.getParticipantIdentities().forEach(identities -> {
-				log.info(identities);
-			});
-			log.info("==========================");
-		});
+//		List<MatchDTO> result = RiotAPIUtility.getMatchInfo("0", "10");
+//		result.forEach(re -> {
+//			log.info("==========================");
+//			log.info("게임 아이디");
+//			log.info(re.getGameId());
+//			log.info("게임 종류");
+//			log.info(re.getQueueId());
+//			log.info("게임 시작 시간");
+//			log.info(re.getGameCreation());
+//			log.info("총 게임 시간");
+//			log.info(re.getGameDuration());
+//			log.info("팀 정보");
+//			re.getTeams().forEach(team -> {
+//				log.info(team);
+//			});
+//			log.info("소환사 기본 정보");
+//			re.getParticipants().forEach(participant -> {
+//				log.info(participant);
+//			});
+//			log.info("게임 참여자 정보");
+//			re.getParticipantIdentities().forEach(identities -> {
+//				log.info(identities);
+//			});
+//			log.info("==========================");
+//		});
 	}
 
 //	@Test

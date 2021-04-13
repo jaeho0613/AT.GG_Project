@@ -11,10 +11,11 @@ use atgg;
 drop table if exists Summoner;
 drop table if exists LeagueEntry;
 drop table if exists MiniSeries;
-drop table if exists MatchReference;
+drop table if exists MatchRef;
 drop table if exists Teams;
 drop table if exists Participant;
 drop table if exists ParticipantStats;
+drop table if exists Timeline;
 
 -- 소환사 정보 
 create table Summoner(
@@ -51,11 +52,11 @@ create table MiniSeries(
 );
 
 -- 게임 기본 정보
-create table MatchReference (
+create table MatchRef (
 	gameId 			varchar(10) primary key,
     gameCreation 	long,
     gameDuration 	long,
-    queue 			integer
+    queueId 			integer
 );
 
 -- 게임 정보 팀 정보
@@ -66,19 +67,28 @@ create table Teams(
     baronKills 	integer,
     teamId 		integer,
     win 		varchar(10),
-    foreign key (gameId) references MatchReference(gameId) on update cascade on delete cascade
+    foreign key (gameId) references MatchRef(gameId) on update cascade on delete cascade
 );
 
 -- 게임 참여자(소환사) 상세 정보
 create table  Participant(
+	summoner 		varchar(20),
 	gameId 			varchar(10) not null,
 	participantId 	integer,
     championId 		integer,
     teamId 			integer,
     spell1Id 		integer,
     spell2Id 		integer,
-    summoner 		varchar(20),
-    foreign key (gameId) references MatchReference(gameId) on update cascade on delete cascade
+    foreign key (gameId) references MatchRef(gameId) on update cascade on delete cascade
+);
+
+-- 매칭 소환사 라인
+create table Timeline(
+	gameId 			varchar(10) not null,
+    participantId 	integer,
+    role 			varchar(10), 
+    lane 			varchar(10),
+    foreign key (gameId) references MatchRef(gameId) on update cascade on delete cascade
 );
 
 -- 게임 참여자(소환사) 상세 정보 스텟
@@ -114,5 +124,5 @@ create table ParticipantStats(
     statPerk1 					integer,
     statPerk2 					integer,
     win 						boolean,
-    foreign key (gameId) references MatchReference(gameId) on update cascade on delete cascade
+    foreign key (gameId) references MatchRef(gameId) on update cascade on delete cascade
 );

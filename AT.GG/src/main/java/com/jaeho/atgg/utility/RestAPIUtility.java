@@ -109,7 +109,7 @@ public class RestAPIUtility {
 		return getResponse(client, request);
 	}
 
-	// 동기식 요청 (기본 요청)
+	// 동기식 요청
 	private static Request getRequest(String url) {
 		return new Request.Builder().url(url).build();
 	}

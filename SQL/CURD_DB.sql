@@ -4,85 +4,30 @@ select * from leagueEntry;
 select * from miniSeries;
 
 -- 매칭 정보 테이블 검색
-select * from MatchReference;
+select * from MatchRef;
 select * from Teams;
 select * from Participant;
 select * from ParticipantStats;
+select * from Timeline;
 
-select *
-from summoner, leagueEntry, miniSeries;
-
--- 테이블 join
--- select sm.name, sm.profileIconId, sm.summonerLevel, le.queueType, le.tier, le.rank, le.leaguePoints, mi.target, mi.
--- from summoner as sm
--- left join leagueEntry as le
--- on sm.name = le.summonerName
--- left join miniseries as mi
--- on sm.name = mi.name;
-
-select *
-from summoner as sm
-join leagueEntry as le
-on sm.name = le.summonerName;
-	 
--- 특정 소환사 검색
+-- Summoner Mapper
+-- getSummonerByName
 select * from summoner where name = '정재호임';
-	
--- 특정 소환사 티어 정보 검색
+
+-- getLeagueEntryList
 select * from leagueEntry where summonerName = '정재호임';
 
--- 특정 소환사 승급전 정보 검색
+-- getMiniSeriesList
 select * from miniSeries where name = '정재호임';
 
--- 소환사 정보 입력	
-insert into summoner values();
-	
--- 소환사 리그 정보 입력
-insert into leagueEntry values();
+-- insertSummoner
+-- insert into summoner values(#{id},#{accountId},#{puuid},#{name},#{profileIconId},#{revisionDate},#{summonerLevel});
 
--- 소환사 승급전 정보 입력
-insert into miniSeries values();
+-- insertLeagueEntry
+-- insert into leagueEntry values(#{summonerName},#{queueType},#{tier},#{rank},#{leaguePoints},#{wins},#{losses});
 
--- 데이터 베이스 정보 검색
-select name
-from summoner
-where name = '정재호임';
+-- insertMiniSeries
+-- insert into miniSeries values(#{name},#{target},#{wins},#{losses},#{progress},#{type});
 
--- damme 데이터 insert
-insert into ParticipantStats() values(1, 1, 1, 1,1,1,1,1,1,1,1,1);
-
-insert into MatchReference(name) values('정재호임');
-
-insert IGNORE into MatchReference(name, gameId, timestamp, role, lane, champion, queue) 
-						values('정재호임', 1,1,'1','1',1,1);
-
--- insert into MatchReference(name, gameId, timestamp, role, lane, champion, queue) 
--- 				values(#{name}, #{gameId},#{timestamp},#{role},#{lane},#{champion},#{queue});
-
--- getMatMatchReferenceList
-select *
-from (
-	select @ROWNUM:=@ROWNUM+1 rownum, A.*
-	from MatchReference A, (select @ROWNUM:=0) R
-    ) rownum
-where rownum between '1' and '5';
-
-select *
-from MatchReference
-where gameid = '5120527754';
-
--- rownum 생성
-select @ROWNUM:=@ROWNUM+1 rownum, A.*
-from MatchReference A, (select @ROWNUM:=0) R;
-
--- getTeamsList
-select *
-from Teams
-where gameId = '1234';
-
-delete from summoner
-where name = '정재호임';
-
-select *
-from MatchReference
-order by timestamp desc;
+-- checkSummonerName
+select name from summoner where name = '정재호임';
