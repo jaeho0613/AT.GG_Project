@@ -20,6 +20,7 @@ public class RestAPIUtility {
 	// client 객체
 	private static OkHttpClient client;
 
+	// 싱글톤
 	private static OkHttpClient getOkHttpClient() {
 		if (client == null) {
 			client = new OkHttpClient.Builder().connectionPool(connectionPool).build();

@@ -65,7 +65,7 @@ from (
 	select @ROWNUM:=@ROWNUM+1 rownum, A.*
 	from MatchReference A, (select @ROWNUM:=0) R
     ) rownum
-where rownum between '1' and '20';
+where rownum between '1' and '5';
 
 select *
 from MatchReference
@@ -82,3 +82,7 @@ where gameId = '1234';
 
 delete from summoner
 where name = '정재호임';
+
+select *
+from MatchReference
+order by timestamp desc;

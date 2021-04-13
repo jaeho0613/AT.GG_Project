@@ -21,11 +21,12 @@ public class RiotAPIUtility extends RestAPIUtility {
 	private static Gson gson = new Gson();
 
 	// Riot API
-	private final static String API_KEY = "RGAPI-c48dd79b-65ed-4941-87be-d97a8e2b5a14";
+	private final static String API_KEY = "RGAPI-18346a88-f665-4f60-8768-15981c2be879";
 
 	// API EndPoint
-	private final static String SUMMONER_BY_NAME = "https://kr.api.riotgames.com/lol/summoner/v4/summoners/by-name/";
-	private final static String LEAGUE_ENTRY = "https://kr.api.riotgames.com/lol/league/v4/entries/by-summoner/";
+	private final static String SUMMONER_BY_NAME = "https://kr.api.riotgames.com/lol/summoner/v4/summoners/by-name/"; // 소환사 정보
+	private final static String LEAGUE_ENTRY = "https://kr.api.riotgames.com/lol/league/v4/entries/by-summoner/"; // 소환사 리그 정보
+	private final static String MATCH_LIST = "https://kr.api.riotgames.com/lol/match/v4/matchlists/by-account/"; // 소환사 라인
 
 	// 최초 소환사 정보 초기화
 	// - 소환사 정보 , 소환사 랭크 , 소환사 승급전
@@ -76,5 +77,10 @@ public class RiotAPIUtility extends RestAPIUtility {
 		} else {
 			log.info("데이터가 이미 있습니다.");
 		}
+	}
+
+	// 소환사 매칭 정보
+	public static void initMatchInfo() {
+		
 	}
 }

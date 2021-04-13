@@ -52,14 +52,10 @@ create table MiniSeries(
 
 -- 게임 기본 정보
 create table MatchReference (
-	gameId 		varchar(10) primary key,
-	name 		varchar(20) not null,
-    timestamp 	long,
-    role 		varchar(20),
-    lane 		varchar(20),
-    champion 	integer,
-    queue 		integer,
-    foreign key (name) references summoner(name) on update cascade on delete cascade
+	gameId 			varchar(10) primary key,
+    gameCreation 	long,
+    gameDuration 	long,
+    queue 			integer
 );
 
 -- 게임 정보 팀 정보

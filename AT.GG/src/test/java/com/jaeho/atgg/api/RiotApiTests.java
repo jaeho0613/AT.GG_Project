@@ -18,7 +18,6 @@ import com.fasterxml.jackson.core.JsonParser;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.stream.JsonReader;
-import com.jaeho.atgg.domain.match.MatchReferenceVO;
 import com.jaeho.atgg.domain.summoner.LeagueEntryVO;
 import com.jaeho.atgg.domain.summoner.SummonerVO;
 import com.jaeho.atgg.mapper.SummonerMapper;
@@ -93,32 +92,5 @@ public class RiotApiTests {
 			log.info(leagueEntryVO);
 		}
 		log.info("==================");
-	}
-
-	@Test
-	public void getMatchReferenceList() throws IOException {
-
-		Map<String, String> headers = new HashMap<String, String>() {
-			{
-				put("X-Riot-Token", API_KEY);
-			}
-		};
-
-		Map<String, String> parameters = new HashMap<String, String>() {
-			{
-				put("beginIndex", "0");
-				put("endIndex", "10");
-			}
-		};
-
-		String matchResult = RestAPIUtility.restAPI(MATCH_LIST + "hBa-uU7svutxIZjKwLDATntUBaDaqoG3yHJxe-PDqpoB",
-				headers, parameters);
-//		log.info(matchResult);
-		MatchReferenceVO matches = new Gson().fromJson(matchResult, MatchReferenceVO.class);
-		matches.getMatches().forEach(match ->{
-			match.setName("정재호임");
-			log.info(match);
-		});
-
 	}
 }

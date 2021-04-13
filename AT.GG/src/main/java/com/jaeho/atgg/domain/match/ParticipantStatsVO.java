@@ -2,6 +2,7 @@ package com.jaeho.atgg.domain.match;
 
 import lombok.Data;
 
+//소환사 '1명'의 세부 정보
 @Data
 public class ParticipantStatsVO {
 	String gameId;
