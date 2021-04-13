@@ -41,7 +41,7 @@ public class RestAPIUtility {
 		return syncGetResponse(getOkHttpClient(), request);
 	}
 	
-	// API 사용하기 (Headers가 있을 때)
+	// API 사용하기 (Headers,Parameter가 있을 때)
 		public static String restAPI(String url, Map<String, String> headers, Map<String, String> parameters) throws IOException {
 			Request request = syncGetRequest(url, headers, parameters);
 			return syncGetResponse(getOkHttpClient(), request);
@@ -52,7 +52,7 @@ public class RestAPIUtility {
 		return new Request.Builder().url(url).build();
 	}
 
-	// 동기식 요청 (헤드 요청)
+	// 동기식 요청 
 	private static Request syncGetRequest(String url, Map<String, String> headers) {
 
 		Request.Builder builder = new Request.Builder().get();
@@ -65,7 +65,7 @@ public class RestAPIUtility {
 		return builder.build();
 	}
 
-	// 동기식 요청 (헤드 요청)
+	// 동기식 요청 
 	private static Request syncGetRequest(String url, Map<String, String> headers, Map<String, String> parameters) {
 
 		HttpUrl.Builder urlBuilder = HttpUrl.parse(url).newBuilder();

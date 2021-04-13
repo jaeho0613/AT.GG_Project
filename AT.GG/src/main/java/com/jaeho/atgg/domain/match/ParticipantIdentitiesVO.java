@@ -7,12 +7,12 @@ import lombok.Setter;
 // 게임에 참여한 소환사명단
 @Data
 public class ParticipantIdentitiesVO {
+	String gameId;
 	int participantId;
 	Player player;
 
+	@Data
 	public static class Player {
-		@Getter
-		@Setter
 		String summonerName;
 	}
 }

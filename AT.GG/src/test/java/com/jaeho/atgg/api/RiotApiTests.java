@@ -5,6 +5,9 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Executors;
 
 import javax.sound.midi.MidiDevice.Info;
 
@@ -14,12 +17,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.fasterxml.jackson.core.JsonParser;
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import com.google.gson.stream.JsonReader;
 import com.jaeho.atgg.domain.summoner.LeagueEntryVO;
 import com.jaeho.atgg.domain.summoner.SummonerVO;
+import com.jaeho.atgg.dto.MatchDTO;
 import com.jaeho.atgg.mapper.SummonerMapper;
 import com.jaeho.atgg.service.SummonerService;
 import com.jaeho.atgg.service.SummonerServiceImpl;
@@ -40,15 +45,8 @@ import okhttp3.Response;
 @Log4j
 public class RiotApiTests {
 
-	@Setter(onMethod_ = @Autowired)
-	SummonerService summonerService;
-	// SummonerMapper summonerMapper;
-
-	// 커넥션 Pool
-	// private static ConnectionPool connectionPool = new ConnectionPool();
-
 	// Riot API
-	private String API_KEY = "RGAPI-c48dd79b-65ed-4941-87be-d97a8e2b5a14";
+	private String API_KEY = "RGAPI-18346a88-f665-4f60-8768-15981c2be879";
 
 	// API EndPoint
 	private String SUMMONER_BY_NAME = "https://kr.api.riotgames.com/lol/summoner/v4/summoners/by-name/";
@@ -56,9 +54,56 @@ public class RiotApiTests {
 
 	private String MATCH_LIST = "https://kr.api.riotgames.com/lol/match/v4/matchlists/by-account/";
 
+	@Test
+	public void riotUtilityMatchList() throws IOException {
+
+		List<MatchDTO> result = RiotAPIUtility.getMatchInfo("0", "5");
+
+		result.forEach(re -> {
+			log.info("==========================");
+			log.info("게임 아이디");
+			log.info(re.getGameId());
+			log.info("게임 종류");
+			log.info(re.getQueueId());
+			log.info("게임 시작 시간");
+			log.info(re.getGameCreation());
+			log.info("총 게임 시간");
+			log.info(re.getGameDuration());
+			log.info("팀 정보");
+			re.getTeams().forEach(team ->{
+				log.info(team);
+			});
+			log.info("소환사 기본 정보");
+			re.getParticipants().forEach(participant ->{
+				log.info(participant);
+			});
+			log.info("게임 참여자 정보");
+			re.getParticipantIdentities().forEach(identities ->{
+				log.info(identities);
+			});
+			log.info("==========================");
+		});
+	}
+
 //	@Test
-	public void check() {
-		log.info(summonerService);
+	public void getMatchList() throws IOException {
+
+		Map<String, String> headers = new HashMap<String, String>();
+		Map<String, String> parameters = new HashMap<String, String>();
+
+		headers.put("X-Riot-Token", API_KEY);
+		parameters.put("beginIndex", "0");
+		parameters.put("endIndex", "100");
+
+		String result = RiotAPIUtility.restAPI(MATCH_LIST + "hBa-uU7svutxIZjKwLDATntUBaDaqoG3yHJxe-PDqpoB", headers,
+				parameters);
+
+		JsonArray matchList = new JsonParser().parse(result).getAsJsonObject().getAsJsonArray("matches");
+
+		for (int i = 0; i < matchList.size(); i++) {
+			String gameId = matchList.get(i).getAsJsonObject().get("gameId").getAsString();
+			log.info(gameId);
+		}
 	}
 
 //	@Test
