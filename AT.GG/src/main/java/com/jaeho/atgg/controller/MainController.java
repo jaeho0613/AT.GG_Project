@@ -36,7 +36,7 @@ public class MainController {
 	@GetMapping("/summoner")
 	public String summoner(@ModelAttribute("summonerName") String summonerName, Model model) throws IOException {
 
-		String summonerInfo = RestAPIUtility.restAPI("http://localhost:8080/lol/summoner/" + summonerName);
+		String summonerInfo = RestAPIUtility.syncRestAPI("http://localhost:8080/lol/summoner/" + summonerName);
 
 		SummonerDTO initSummonerInfo = new Gson().fromJson(summonerInfo, SummonerDTO.class);
 

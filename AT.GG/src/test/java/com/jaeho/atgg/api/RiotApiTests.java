@@ -2,43 +2,23 @@ package com.jaeho.atgg.api;
 
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.Executors;
-
-import javax.sound.midi.MidiDevice.Info;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import com.google.gson.stream.JsonReader;
 import com.jaeho.atgg.domain.summoner.LeagueEntryVO;
-import com.jaeho.atgg.domain.summoner.SummonerVO;
 import com.jaeho.atgg.dto.MatchDTO;
-import com.jaeho.atgg.mapper.SummonerMapper;
-import com.jaeho.atgg.service.SummonerService;
-import com.jaeho.atgg.service.SummonerServiceImpl;
 import com.jaeho.atgg.utility.RestAPIUtility;
 import com.jaeho.atgg.utility.RiotAPIUtility;
-import com.mysql.cj.xdevapi.Client;
 
-import lombok.Setter;
 import lombok.extern.log4j.Log4j;
-import okhttp3.Call;
-import okhttp3.HttpUrl;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root-context.xml")
@@ -57,8 +37,7 @@ public class RiotApiTests {
 	@Test
 	public void riotUtilityMatchList() throws IOException {
 
-		List<MatchDTO> result = RiotAPIUtility.getMatchInfo("0", "5");
-
+		List<MatchDTO> result = RiotAPIUtility.getMatchInfo("0", "10");
 		result.forEach(re -> {
 			log.info("==========================");
 			log.info("게임 아이디");
@@ -70,19 +49,31 @@ public class RiotApiTests {
 			log.info("총 게임 시간");
 			log.info(re.getGameDuration());
 			log.info("팀 정보");
-			re.getTeams().forEach(team ->{
+			re.getTeams().forEach(team -> {
 				log.info(team);
 			});
 			log.info("소환사 기본 정보");
-			re.getParticipants().forEach(participant ->{
+			re.getParticipants().forEach(participant -> {
 				log.info(participant);
 			});
 			log.info("게임 참여자 정보");
-			re.getParticipantIdentities().forEach(identities ->{
+			re.getParticipantIdentities().forEach(identities -> {
 				log.info(identities);
 			});
 			log.info("==========================");
 		});
+	}
+
+//	@Test
+	public void asyncTest() throws IOException {
+		Map<String, String> headers = new HashMap<String, String>();
+		Map<String, String> parameters = new HashMap<String, String>();
+
+		headers.put("X-Riot-Token", API_KEY);
+		parameters.put("beginIndex", "0");
+		parameters.put("endIndex", "10");
+
+		RiotAPIUtility.asyncRestAPI(MATCH_LIST + "hBa-uU7svutxIZjKwLDATntUBaDaqoG3yHJxe-PDqpoB", headers, parameters);
 	}
 
 //	@Test
@@ -95,7 +86,7 @@ public class RiotApiTests {
 		parameters.put("beginIndex", "0");
 		parameters.put("endIndex", "100");
 
-		String result = RiotAPIUtility.restAPI(MATCH_LIST + "hBa-uU7svutxIZjKwLDATntUBaDaqoG3yHJxe-PDqpoB", headers,
+		String result = RiotAPIUtility.syncRestAPI(MATCH_LIST + "hBa-uU7svutxIZjKwLDATntUBaDaqoG3yHJxe-PDqpoB", headers,
 				parameters);
 
 		JsonArray matchList = new JsonParser().parse(result).getAsJsonObject().getAsJsonArray("matches");
@@ -115,7 +106,7 @@ public class RiotApiTests {
 
 		// log.info();
 		// 소환사 티어 정보 http 통신
-		String leagueEntryResult = RestAPIUtility.restAPI(
+		String leagueEntryResult = RestAPIUtility.syncRestAPI(
 				LEAGUE_ENTRY + "X6kFsb4E1aQ4FipO4Td1_-0ErEfEkARATeJ97OLk22bLhw", new HashMap<String, String>() {
 					{
 						put("X-Riot-Token", API_KEY);

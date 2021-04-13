@@ -6,10 +6,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.springframework.context.annotation.Configuration;
-import org.springframework.scheduling.annotation.Async;
-import org.springframework.scheduling.annotation.EnableAsync;
-
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonParser;
@@ -19,7 +15,6 @@ import com.jaeho.atgg.dto.MatchDTO;
 import com.jaeho.atgg.service.SummonerService;
 
 import lombok.extern.log4j.Log4j;
-import okhttp3.Request;
 
 // RiotAPI 통신 클래스입니다.
 // - Riot의 데이터를 얻어와 My DB에 저장하는 역할을 수행합니다.
@@ -32,7 +27,7 @@ public class RiotAPIUtility extends RestAPIUtility {
 	private static Gson gson = new Gson();
 
 	// Riot API
-	private final static String API_KEY = "RGAPI-18346a88-f665-4f60-8768-15981c2be879";
+	private final static String API_KEY = "RGAPI-c41907e2-81fe-431e-879a-f91f3d2f8725";
 
 	// API EndPoint
 	// 소환사 기본 정보
@@ -50,7 +45,7 @@ public class RiotAPIUtility extends RestAPIUtility {
 
 		if (!service.isDuplicateDateCheck(summonerName)) {
 			// 소환사 정보 http 통신
-			String summonerResult = restAPI(SUMMONER_BY_NAME + summonerName, new HashMap<String, String>() {
+			String summonerResult = syncRestAPI(SUMMONER_BY_NAME + summonerName, new HashMap<String, String>() {
 				{
 					put("X-Riot-Token", API_KEY);
 				}
@@ -64,7 +59,7 @@ public class RiotAPIUtility extends RestAPIUtility {
 				service.insertSummonerInfo(summoner);
 
 				// 소환사 티어 정보 http 통신
-				String leagueEntryResult = restAPI(LEAGUE_ENTRY + summoner.getId(), new HashMap<String, String>() {
+				String leagueEntryResult = syncRestAPI(LEAGUE_ENTRY + summoner.getId(), new HashMap<String, String>() {
 					{
 						put("X-Riot-Token", API_KEY);
 					}
@@ -96,6 +91,7 @@ public class RiotAPIUtility extends RestAPIUtility {
 	}
 
 	public static List<MatchDTO> getMatchInfo(String beginIndex, String endIndex) throws IOException {
+
 		List<String> gameIdList = getMatchList(beginIndex, endIndex);
 		Map<String, String> headers = new HashMap<String, String>();
 
@@ -104,7 +100,7 @@ public class RiotAPIUtility extends RestAPIUtility {
 		headers.put("X-Riot-Token", API_KEY);
 
 		for (int i = 0; i < gameIdList.size(); i++) {
-			String result = restAPI(MATCH_INFO + gameIdList.get(i), headers);
+			String result = asyncRestAPI(MATCH_INFO + gameIdList.get(i), headers);
 
 			MatchDTO match = new Gson().fromJson(result, MatchDTO.class);
 			matchList.add(match);
@@ -124,7 +120,7 @@ public class RiotAPIUtility extends RestAPIUtility {
 		parameters.put("beginIndex", beginIndex);
 		parameters.put("endIndex", endIndex);
 
-		String result = restAPI(MATCH_LIST + "hBa-uU7svutxIZjKwLDATntUBaDaqoG3yHJxe-PDqpoB", headers, parameters);
+		String result = syncRestAPI(MATCH_LIST + "hBa-uU7svutxIZjKwLDATntUBaDaqoG3yHJxe-PDqpoB", headers, parameters);
 
 		JsonArray matchList = new JsonParser().parse(result).getAsJsonObject().getAsJsonArray("matches");
 
