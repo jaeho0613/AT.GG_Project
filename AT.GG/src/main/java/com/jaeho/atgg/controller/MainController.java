@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
@@ -34,10 +35,11 @@ public class MainController {
 	}
 
 	@GetMapping("/summoner")
-	public String summoner(@ModelAttribute("summonerName") String summonerName, Model model) throws IOException {
+	public String summoner(@RequestParam("summonerName") String summonerName, @RequestParam(value = "pageNum", defaultValue = "1") String pageNum,
+			Model model) throws IOException {
 
 		String summonerInfo = RestAPIUtility.syncRestAPI("http://localhost:8080/lol/summoner/" + summonerName);
-
+		
 		SummonerDTO initSummonerInfo = new Gson().fromJson(summonerInfo, SummonerDTO.class);
 
 		log.info("=========initSummonerInfo==========");

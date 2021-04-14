@@ -21,6 +21,8 @@ public interface MatchMapper {
 
 	public List<TimelineVO> selectTimeline(String gameId);
 
+	public int totalMatchRefCount(String summonerName);
+
 	// insert
 	public void insertMatchRef(MatchDTO match);
 

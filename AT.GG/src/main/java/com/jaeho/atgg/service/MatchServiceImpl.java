@@ -86,4 +86,9 @@ public class MatchServiceImpl implements MatchService {
 			return false;
 		}
 	}
+
+	@Override
+	public int totalMatchRefCount(String summonerName) {
+		return mapper.totalMatchRefCount(summonerName);
+	}
 }

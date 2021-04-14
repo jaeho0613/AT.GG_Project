@@ -36,8 +36,8 @@ public class SummonerServiceImpl implements SummonerService {
 		List<LeagueEntryVO> leagueEntryList = summonerMapper.getLeagueEntryList(summonerName);
 		List<MiniSeriesVO> miniSeriesList = summonerMapper.getMiniSeriesList(summonerName);
 
-		log.info(leagueEntryList);
-		log.info(miniSeriesList);
+//		log.info(leagueEntryList);
+//		log.info(miniSeriesList);
 
 		// 승급전 데이터 저장
 		for (int i = 0; i < leagueEntryList.size(); i++) {

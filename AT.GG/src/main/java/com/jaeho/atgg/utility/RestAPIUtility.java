@@ -70,9 +70,9 @@ public class RestAPIUtility {
 
 			@Override
 			public void onResponse(Call call, Response response) throws IOException {
-				log.info("===============Response=================");
-				log.info(response.body().string());
-				log.info("========================================");
+//				log.info("===============Response=================");
+//				log.info(response.body().string());
+//				log.info("========================================");
 			}
 
 			@Override
@@ -94,9 +94,9 @@ public class RestAPIUtility {
 
 			@Override
 			public void onResponse(Call call, Response response) throws IOException {
-				log.info("===============Response=================");
-				log.info(response.body().string());
-				log.info("========================================");
+//				log.info("===============Response=================");
+//				log.info(response.body().string());
+//				log.info("========================================");
 			}
 
 			@Override

@@ -43,6 +43,11 @@ public class MatchMapperTests {
 	private MatchMapper mapper;
 
 	@Test
+	public void totalCount() {
+//		log.info(mapper.totalMatchRefCount());
+	}
+
+//	@Test
 	public void MatchMapperSelect() {
 
 		log.info(mapper.selectMatchRef("5120307891"));

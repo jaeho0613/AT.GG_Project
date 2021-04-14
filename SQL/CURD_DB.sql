@@ -50,3 +50,6 @@ select * from Timeline where gameId = '5120527754';
 select ifnull(gameId, 1) null_check
 from MatchRef
 where gameId = '5120307891';
+
+-- totalCount
+select count(gameId) from MatchRef;

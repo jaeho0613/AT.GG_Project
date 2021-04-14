@@ -10,6 +10,8 @@ public interface MatchService {
 	// select
 	public MatchDTO selectMatchRef(String gameId);
 	
+	public int totalMatchRefCount(String summonerName);
+	
 	// check
 	public boolean isDuplicateDateCheck(String gameId);
 

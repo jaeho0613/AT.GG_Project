@@ -99,22 +99,25 @@ public class RiotAPIUtility extends RestAPIUtility {
 
 	// 소환사 매칭 데이터
 	// - 소환사 룬, 딜량, 팀 전적 등등
-	public static void initMatchInfo(MatchService service, String accountId, String beginIndex, String endIndex)
-			throws IOException {
+	public static void initMatchInfo(MatchService service, String summonerName, String accountId, String beginIndex,
+			String endIndex) throws IOException {
 
-		List<String> gameIdList = getMatchList(beginIndex, endIndex, accountId);
-		gameIdList.forEach(id -> {
-
-			try {
-				if (!service.isDuplicateDateCheck(id)) {
-					service.insertMatchRef(getMatchRef(id));
-				} else {
-					log.info("매칭 데이터가 있습니다.");
+		if (service.totalMatchRefCount(summonerName) <= 0) {
+			List<String> gameIdList = getMatchList(beginIndex, endIndex, accountId);
+			gameIdList.forEach(id -> {
+				try {
+					if (!service.isDuplicateDateCheck(id)) {
+						service.insertMatchRef(getMatchRef(id));
+					} else {
+						log.info("매칭 데이터가 있습니다.");
+					}
+				} catch (IOException e) {
+					e.printStackTrace();
 				}
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		});
+			});
+		} else {
+			log.info("초기 전적이 있다고 판단합니다.");
+		}
 	}
 
 	// 매치 상세 정보
@@ -128,23 +131,23 @@ public class RiotAPIUtility extends RestAPIUtility {
 		});
 
 		MatchDTO match = new Gson().fromJson(result, MatchDTO.class);
-		log.info("==========================");
-		log.info("게임 아이디 : getGameId");
-		log.info(match.getGameId());
-
-		log.info("게임 종류 : getQueueId");
-		log.info(match.getQueueId());
-
-		log.info("게임 시작 시간 : getGameCreation");
-		log.info(match.getGameCreation());
-
-		log.info("총 게임 시간 : getGameDuration");
-		log.info(match.getGameDuration());
-
-		log.info("팀 정보 : getTeams");
+//		log.info("==========================");
+//		log.info("게임 아이디 : getGameId");
+//		log.info(match.getGameId());
+//
+//		log.info("게임 종류 : getQueueId");
+//		log.info(match.getQueueId());
+//
+//		log.info("게임 시작 시간 : getGameCreation");
+//		log.info(match.getGameCreation());
+//
+//		log.info("총 게임 시간 : getGameDuration");
+//		log.info(match.getGameDuration());
+//
+//		log.info("팀 정보 : getTeams");
 		match.getTeams().forEach(team -> {
 			team.setGameId(match.getGameId());
-			log.info(team);
+//			log.info(team);
 		});
 
 		for (int j = 0; j < match.getParticipants().size(); j++) {
@@ -160,17 +163,17 @@ public class RiotAPIUtility extends RestAPIUtility {
 
 		}
 
-		log.info("소환사 기본 정보 : getParticipants");
-		match.getParticipants().forEach(participant -> {
-			log.info(participant);
-		});
-
-		log.info("게임 참여자 정보 : getParticipantIdentities");
-		match.getParticipantIdentities().forEach(identities -> {
-			log.info(identities);
-		});
-
-		log.info("==========================");
+//		log.info("소환사 기본 정보 : getParticipants");
+//		match.getParticipants().forEach(participant -> {
+//			log.info(participant);
+//		});
+//
+//		log.info("게임 참여자 정보 : getParticipantIdentities");
+//		match.getParticipantIdentities().forEach(identities -> {
+//			log.info(identities);
+//		});
+//
+//		log.info("==========================");
 
 		return match;
 	}
@@ -193,7 +196,7 @@ public class RiotAPIUtility extends RestAPIUtility {
 		for (int i = 0; i < matchList.size(); i++) {
 			String gameId = matchList.get(i).getAsJsonObject().get("gameId").getAsString();
 			gameIdList.add(gameId);
-			log.info(gameId);
+//			log.info(gameId);
 		}
 
 		return gameIdList;
