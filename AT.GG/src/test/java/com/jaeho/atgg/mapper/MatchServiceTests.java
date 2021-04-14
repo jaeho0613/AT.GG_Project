@@ -42,9 +42,41 @@ public class MatchServiceTests {
 	@Setter(onMethod_ = @Autowired)
 	private MatchService service;
 
-	@Test
+//	@Test
 	public void MatchRefInsert() throws IOException {
 
 		RiotAPIUtility.initMatchInfo(service, "0", "5");
+	}
+
+	@Test
+	public void MatchSelect() {
+		MatchDTO match = service.selectMatchRef("5120527754");
+		
+		log.info("==========================");
+		log.info("게임 아이디 : getGameId");
+		log.info(match.getGameId());
+
+		log.info("게임 종류 : getQueueId");
+		log.info(match.getQueueId());
+
+		log.info("게임 시작 시간 : getGameCreation");
+		log.info(match.getGameCreation());
+
+		log.info("총 게임 시간 : getGameDuration");
+		log.info(match.getGameDuration());
+
+		log.info("팀 정보 : getTeams");
+		match.getTeams().forEach(team -> {
+			team.setGameId(match.getGameId());
+			log.info(team);
+		});
+		
+		log.info("소환사 기본 정보 : getParticipants");
+		match.getParticipants().forEach(participant -> {
+			log.info(participant);
+		});
+
+		log.info("==========================");
+
 	}
 }

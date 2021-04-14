@@ -63,13 +63,13 @@ public class RiotAPIController {
 
 	}
 	
-	@GetMapping(value = "/match/{gameId}", produces = { MediaType.APPLICATION_JSON_UTF8_VALUE })
-	public ResponseEntity<Map<String, Object>> getMatch(@PathVariable("gameId") String gameId)
-			throws IOException {
-
-		MatchDTO match = matchService.
-
-		return new ResponseEntity<Map<String, Object>>(map, HttpStatus.OK);
-
-	}
+//	@GetMapping(value = "/match/{gameId}", produces = { MediaType.APPLICATION_JSON_UTF8_VALUE })
+//	public ResponseEntity<Map<String, Object>> getMatch(@PathVariable("gameId") String gameId)
+//			throws IOException {
+//
+//		MatchDTO match = matchService.
+//
+//		return new ResponseEntity<Map<String, Object>>(map, HttpStatus.OK);
+//
+//	}
 }

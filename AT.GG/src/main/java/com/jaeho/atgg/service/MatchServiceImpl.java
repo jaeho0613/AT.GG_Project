@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.jaeho.atgg.domain.match.ParticipantIdentitiesVO;
 import com.jaeho.atgg.domain.match.ParticipantStatsVO;
 import com.jaeho.atgg.domain.match.ParticipantVO;
 import com.jaeho.atgg.domain.match.TeamsVO;
@@ -46,6 +47,19 @@ public class MatchServiceImpl implements MatchService {
 	@Transactional
 	public MatchDTO selectMatchRef(String gameId) {
 		MatchDTO match = mapper.selectMatchRef(gameId);
+
+		List<TeamsVO> teams = mapper.selectTeams(gameId);
+		List<TimelineVO> timeline = mapper.selectTimeline(gameId);
+		List<ParticipantVO> participants = mapper.selectParticipant(gameId);
+		List<ParticipantStatsVO> participantStats = mapper.selectParticipantStats(gameId);
+
+		for (int i = 0; i < participants.size(); i++) {
+			participants.get(i).setStats(participantStats.get(i));
+			participants.get(i).setTimeline(timeline.get(i));
+		}
+
+		match.setParticipants(participants);
+		match.setTeams(teams);
 
 		return match;
 	}
