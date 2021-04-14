@@ -119,4 +119,11 @@ public class SummonerServiceImpl implements SummonerService {
 		}
 	}
 
+	@Override
+	public String getSummonerAccountId(String summonerName) {
+		log.info("==============================");
+		log.info("getSummonerAccountId - Database 접근 :" + summonerName);
+		log.info("==============================");
+		return summonerMapper.getSummonerByAccountId(summonerName);
+	}
 }

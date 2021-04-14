@@ -22,6 +22,11 @@ public class SummonerMapperTests {
 	@Setter(onMethod_ = @Autowired)
 	private SummonerMapper summonerMapper;
 
+	@Test
+	public void getsummonerByColumn() {
+		log.info(summonerMapper.getSummonerByAccountId("정재호임"));
+	}
+
 //	@Test
 	public void getSummonerByName() {
 		log.info(summonerMapper.getSummonerByName("정재호임"));
@@ -42,7 +47,8 @@ public class SummonerMapperTests {
 	public void insertSummoner() {
 
 		if (summonerMapper.checkSummonerName("test") == null) {
-			// SummonerVO summoner = new SummonerVO("test", "test", "test", "test", "test", "test", "test");
+			// SummonerVO summoner = new SummonerVO("test", "test", "test", "test", "test",
+			// "test", "test");
 
 			// summonerMapper.insertSummoner(summoner);
 		} else {

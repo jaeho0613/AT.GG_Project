@@ -14,7 +14,9 @@ public interface SummonerMapper {
 	public List<LeagueEntryVO> getLeagueEntryList(String summonerName); // 소환사 티어 정보 가져오기
 
 	public List<MiniSeriesVO> getMiniSeriesList(String summonerName); // 소환사 승급전 정보
-	
+
+	public String getSummonerByAccountId(String summonerName);
+
 	// Insert
 	public void insertSummoner(SummonerVO summoner); // 소환사 정보 입력
 

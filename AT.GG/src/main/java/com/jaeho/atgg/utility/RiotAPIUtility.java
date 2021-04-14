@@ -34,7 +34,7 @@ public class RiotAPIUtility extends RestAPIUtility {
 	private static Gson gson = new Gson();
 
 	// Riot API
-	private final static String API_KEY = "RGAPI-e55c9559-659d-424d-8f54-d685fb38ded7";
+	private final static String API_KEY = "RGAPI-42bfc354-b286-44f0-9319-8164b8be0ed4";
 
 	// API EndPoint
 	// 소환사 기본 정보
@@ -99,13 +99,18 @@ public class RiotAPIUtility extends RestAPIUtility {
 
 	// 소환사 매칭 데이터
 	// - 소환사 룬, 딜량, 팀 전적 등등
-	public static void initMatchInfo(MatchService service, String beginIndex, String endIndex) throws IOException {
+	public static void initMatchInfo(MatchService service, String accountId, String beginIndex, String endIndex)
+			throws IOException {
 
-		List<String> gameIdList = getMatchList(beginIndex, endIndex);
-
+		List<String> gameIdList = getMatchList(beginIndex, endIndex, accountId);
 		gameIdList.forEach(id -> {
+
 			try {
-				service.insertMatchRef(getMatchRef(id));
+				if (!service.isDuplicateDateCheck(id)) {
+					service.insertMatchRef(getMatchRef(id));
+				} else {
+					log.info("매칭 데이터가 있습니다.");
+				}
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -171,7 +176,7 @@ public class RiotAPIUtility extends RestAPIUtility {
 	}
 
 	// 소환사 매칭 정보 리스트
-	private static List<String> getMatchList(String beginIndex, String endIndex) throws IOException {
+	private static List<String> getMatchList(String beginIndex, String endIndex, String accountId) throws IOException {
 		Map<String, String> headers = new HashMap<String, String>();
 		Map<String, String> parameters = new HashMap<String, String>();
 
@@ -181,7 +186,7 @@ public class RiotAPIUtility extends RestAPIUtility {
 		parameters.put("beginIndex", beginIndex);
 		parameters.put("endIndex", endIndex);
 
-		String result = syncRestAPI(MATCH_LIST + "hBa-uU7svutxIZjKwLDATntUBaDaqoG3yHJxe-PDqpoB", headers, parameters);
+		String result = syncRestAPI(MATCH_LIST + accountId, headers, parameters);
 
 		JsonArray matchList = new JsonParser().parse(result).getAsJsonObject().getAsJsonArray("matches");
 

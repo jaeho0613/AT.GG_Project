@@ -21,6 +21,7 @@ import com.jaeho.atgg.domain.match.TimelineVO;
 import com.jaeho.atgg.domain.summoner.SummonerVO;
 import com.jaeho.atgg.dto.MatchDTO;
 import com.jaeho.atgg.service.MatchService;
+import com.jaeho.atgg.service.SummonerService;
 import com.jaeho.atgg.utility.RestAPIUtility;
 import com.jaeho.atgg.utility.RiotAPIUtility;
 
@@ -40,18 +41,23 @@ public class MatchServiceTests {
 	private String MATCH_INFO = "https://kr.api.riotgames.com/lol/match/v4/matches/";
 
 	@Setter(onMethod_ = @Autowired)
-	private MatchService service;
+	private MatchService matchService;
 
-//	@Test
-	public void MatchRefInsert() throws IOException {
-
-		RiotAPIUtility.initMatchInfo(service, "0", "5");
-	}
+	@Setter(onMethod_ = @Autowired)
+	private SummonerService summonerService;
 
 	@Test
+	public void MatchRefInsert() throws IOException {
+
+		String accountId = summonerService.getSummonerAccountId("정재호임");
+
+		RiotAPIUtility.initMatchInfo(matchService, accountId, "0", "5");
+	}
+
+//	@Test
 	public void MatchSelect() {
-		MatchDTO match = service.selectMatchRef("5120527754");
-		
+		MatchDTO match = matchService.selectMatchRef("5120527754");
+
 		log.info("==========================");
 		log.info("게임 아이디 : getGameId");
 		log.info(match.getGameId());
@@ -70,7 +76,7 @@ public class MatchServiceTests {
 			team.setGameId(match.getGameId());
 			log.info(team);
 		});
-		
+
 		log.info("소환사 기본 정보 : getParticipants");
 		match.getParticipants().forEach(participant -> {
 			log.info(participant);

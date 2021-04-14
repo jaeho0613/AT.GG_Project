@@ -42,6 +42,7 @@ public class RiotAPIController {
 
 		String endPoint = "";
 		String summonerName = "";
+
 		String[] urlSplit = request.getServletPath().split("/");
 		endPoint = urlSplit[2];
 		summonerName = urlSplit[3];
@@ -49,8 +50,13 @@ public class RiotAPIController {
 		log.info("endPoint : " + endPoint);
 		log.info("summonerName : " + summonerName);
 
-		RiotAPIUtility.initSummonerInfo(summonerService, summonerName);
-		RiotAPIUtility.initMatchInfo(matchService, "0", "5");
+		if (endPoint.equals("match")) {
+			RiotAPIUtility.initMatchInfo(matchService, summonerService.getSummonerAccountId(summonerName), "0", "5");
+		}
+
+		else if (endPoint.equals("summoner")) {
+			RiotAPIUtility.initSummonerInfo(summonerService, summonerName);
+		}
 	}
 
 	@GetMapping(value = "/summoner/{summonerName}", produces = { MediaType.APPLICATION_JSON_UTF8_VALUE })
@@ -62,14 +68,13 @@ public class RiotAPIController {
 		return new ResponseEntity<Map<String, Object>>(map, HttpStatus.OK);
 
 	}
-	
-//	@GetMapping(value = "/match/{gameId}", produces = { MediaType.APPLICATION_JSON_UTF8_VALUE })
-//	public ResponseEntity<Map<String, Object>> getMatch(@PathVariable("gameId") String gameId)
-//			throws IOException {
-//
-//		MatchDTO match = matchService.
-//
-//		return new ResponseEntity<Map<String, Object>>(map, HttpStatus.OK);
-//
-//	}
+
+	@GetMapping(value = "/match/{summonerName}/{gameId}", produces = { MediaType.APPLICATION_JSON_UTF8_VALUE })
+	public ResponseEntity<MatchDTO> getMatch(@PathVariable("gameId") String gameId) throws IOException {
+
+		MatchDTO match = matchService.selectMatchRef(gameId);
+
+		return new ResponseEntity<MatchDTO>(match, HttpStatus.OK);
+
+	}
 }

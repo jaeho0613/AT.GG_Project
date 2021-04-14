@@ -10,6 +10,9 @@ public interface SummonerService {
 
 	// 소환사 아이디 얻기
 	public Map<String, Object> getSummonerInfoAll(String summonerName);
+	
+	// 소환사 AccountId 얻기
+	public String getSummonerAccountId(String summonerName);
 
 	// 소환사 정보 추가
 	public void insertSummonerInfo(SummonerVO summoner);
@@ -19,7 +22,7 @@ public interface SummonerService {
 
 	// 소환사 승급전 정보 추가
 	public void insertMiniseries(MiniSeriesVO miniSeries);
-
+	
 	// DB 중복 체크
 	public boolean isDuplicateDateCheck(String summonerName);
 

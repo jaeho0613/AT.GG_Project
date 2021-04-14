@@ -9,5 +9,8 @@ public interface MatchService {
 	
 	// select
 	public MatchDTO selectMatchRef(String gameId);
+	
+	// check
+	public boolean isDuplicateDateCheck(String gameId);
 
 }

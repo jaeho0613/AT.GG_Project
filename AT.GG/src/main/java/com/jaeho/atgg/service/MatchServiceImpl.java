@@ -27,6 +27,10 @@ public class MatchServiceImpl implements MatchService {
 	@Override
 	@Transactional
 	public void insertMatchRef(MatchDTO match) {
+		log.info("==============================");
+		log.info("insertMatchRef - Database 접근");
+		log.info(match);
+		log.info("==============================");
 
 		mapper.insertMatchRef(match);
 
@@ -46,6 +50,11 @@ public class MatchServiceImpl implements MatchService {
 	@Override
 	@Transactional
 	public MatchDTO selectMatchRef(String gameId) {
+		log.info("==============================");
+		log.info("selectMatchRef - Database 접근");
+		log.info(gameId);
+		log.info("==============================");
+
 		MatchDTO match = mapper.selectMatchRef(gameId);
 
 		List<TeamsVO> teams = mapper.selectTeams(gameId);
@@ -62,5 +71,19 @@ public class MatchServiceImpl implements MatchService {
 		match.setTeams(teams);
 
 		return match;
+	}
+
+	@Override
+	public boolean isDuplicateDateCheck(String gameId) {
+		log.info("==============================");
+		log.info("isDuplicateDateCheck - Database 접근");
+		log.info(gameId);
+		log.info("==============================");
+
+		if (mapper.selectMatchRef(gameId) != null) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 }
