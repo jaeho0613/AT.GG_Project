@@ -43,6 +43,13 @@ public class MatchMapperTests {
 	private MatchMapper mapper;
 
 	@Test
+	public void selectMatchPagsing() {
+		List<ParticipantVO> matchs = mapper.selectPaging("정재호임", 0, 3);
+
+		matchs.forEach(match -> log.info(match));
+	}
+
+//	@Test
 	public void totalCount() {
 //		log.info(mapper.totalMatchRefCount());
 	}

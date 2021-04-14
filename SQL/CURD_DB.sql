@@ -53,3 +53,13 @@ where gameId = '5120307891';
 
 -- totalCount
 select count(gameId) from MatchRef;
+
+-- select
+select count(summoner) from Participant where summoner = '정재호임';
+
+-- match pagsing
+select *
+from Participant
+where summoner = '정재호임' 
+order by gameId desc
+limit 0,1;

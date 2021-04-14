@@ -51,7 +51,7 @@ public class MatchServiceTests {
 
 		String accountId = summonerService.getSummonerAccountId("정재호임");
 
-		RiotAPIUtility.initMatchInfo(matchService, accountId, "0", "5");
+//		RiotAPIUtility.initMatchInfo(matchService, accountId, "0", "5");
 	}
 
 //	@Test

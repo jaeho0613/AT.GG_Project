@@ -99,25 +99,21 @@ public class RiotAPIUtility extends RestAPIUtility {
 
 	// 소환사 매칭 데이터
 	// - 소환사 룬, 딜량, 팀 전적 등등
-	public static void initMatchInfo(MatchService service, String summonerName, String accountId, String beginIndex,
-			String endIndex) throws IOException {
+	public static void initMatchInfo(MatchService service, String accountId, String beginIndex, String endIndex)
+			throws IOException {
 
-		if (service.totalMatchRefCount(summonerName) <= 0) {
-			List<String> gameIdList = getMatchList(beginIndex, endIndex, accountId);
-			gameIdList.forEach(id -> {
-				try {
-					if (!service.isDuplicateDateCheck(id)) {
-						service.insertMatchRef(getMatchRef(id));
-					} else {
-						log.info("매칭 데이터가 있습니다.");
-					}
-				} catch (IOException e) {
-					e.printStackTrace();
+		List<String> gameIdList = getMatchList(beginIndex, endIndex, accountId);
+		gameIdList.forEach(id -> {
+			try {
+				if (!service.isDuplicateDateCheck(id)) {
+					service.insertMatchRef(getMatchRef(id));
+				} else {
+					log.info("매칭 데이터가 있습니다.");
 				}
-			});
-		} else {
-			log.info("초기 전적이 있다고 판단합니다.");
-		}
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		});
 	}
 
 	// 매치 상세 정보

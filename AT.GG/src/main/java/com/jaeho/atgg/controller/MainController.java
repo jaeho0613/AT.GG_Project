@@ -35,11 +35,11 @@ public class MainController {
 	}
 
 	@GetMapping("/summoner")
-	public String summoner(@RequestParam("summonerName") String summonerName, @RequestParam(value = "pageNum", defaultValue = "1") String pageNum,
-			Model model) throws IOException {
+	public String summoner(@RequestParam("summonerName") String summonerName,
+			@RequestParam(value = "pageNum", defaultValue = "1") String pageNum, Model model) throws IOException {
 
 		String summonerInfo = RestAPIUtility.syncRestAPI("http://localhost:8080/lol/summoner/" + summonerName);
-		
+
 		SummonerDTO initSummonerInfo = new Gson().fromJson(summonerInfo, SummonerDTO.class);
 
 		log.info("=========initSummonerInfo==========");
@@ -64,6 +64,8 @@ public class MainController {
 			}
 		}
 		log.info("===================================");
+
+//		String matchInfo = RestAPIUtility.syncRestAPI("http://localhost:8080/lol/match/" + )
 
 		model.addAttribute("summoner", initSummonerInfo.getSummonerVO());
 

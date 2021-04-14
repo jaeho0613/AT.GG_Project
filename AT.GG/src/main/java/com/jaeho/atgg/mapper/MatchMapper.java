@@ -2,6 +2,8 @@ package com.jaeho.atgg.mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.jaeho.atgg.domain.match.ParticipantStatsVO;
 import com.jaeho.atgg.domain.match.ParticipantVO;
 import com.jaeho.atgg.domain.match.TeamsVO;
@@ -33,5 +35,9 @@ public interface MatchMapper {
 	public void insertParticipantStats(ParticipantStatsVO pps);
 
 	public void insertTimeline(TimelineVO timeline);
+
+	// pagsing
+	public List<ParticipantVO> selectPaging(@Param("summonerName") String summonerName,
+			@Param("beginIndex") int beginIndex, @Param("endIndex") int endIndex);
 
 }

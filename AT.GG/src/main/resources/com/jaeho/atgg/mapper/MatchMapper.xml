@@ -27,6 +27,16 @@
 	<select id="totalMatchRefCount" resultType="int">
 		select count(summoner) from Participant where summoner = #{summonerName}
 	</select>
+	
+	<select id="selectPaging" resultType="com.jaeho.atgg.domain.match.ParticipantVO">
+	 <![CDATA[
+		select *
+		from Participant
+		where summoner = #{summonerName} 
+		order by gameId desc
+		limit #{beginIndex} , #{endIndex}
+	 ]]>
+	</select>
 
 	<insert id="insertMatchRef">
 		insert into MatchRef
