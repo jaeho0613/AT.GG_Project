@@ -84,10 +84,10 @@ create table  Participant(
 
 -- 매칭 소환사 라인
 create table Timeline(
-	gameId 			varchar(10) not null,
+	gameId 			varchar(11) not null,
     participantId 	integer,
-    role 			varchar(10), 
-    lane 			varchar(10),
+    role 			varchar(20), 
+    lane 			varchar(20),
     foreign key (gameId) references MatchRef(gameId) on update cascade on delete cascade
 );
 

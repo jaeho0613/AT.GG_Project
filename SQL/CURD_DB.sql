@@ -4,7 +4,7 @@ select * from leagueEntry;
 select * from miniSeries;
 
 -- 매칭 정보 테이블 검색
-select * from MatchRef;
+select * from MatchRef; 
 select * from Teams;
 select * from Participant;
 select * from ParticipantStats;
@@ -34,5 +34,12 @@ select name from summoner where name = '정재호임';
 -- ------------------------------------------------------------------------------------------------------
 
 -- ------------------------------[Match Mapper]--------------------------------------------------------------------------
--- insertMatchRef
+-- insert
 insert into MatchRef values();
+
+-- select
+select * from MatchRef where gameId = '51205277534';
+select * from Teams where gameId = '5120527754';
+select * from Participant where gameId = '5120527754';
+select * from ParticipantStats where gameId = '5120527754';
+select * from Timeline where gameId = '5120527754';

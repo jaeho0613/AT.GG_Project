@@ -6,12 +6,19 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.scheduling.annotation.Async;
+import org.springframework.scheduling.annotation.EnableAsync;
+
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonParser;
+import com.jaeho.atgg.domain.match.ParticipantVO;
+import com.jaeho.atgg.domain.match.TeamsVO;
 import com.jaeho.atgg.domain.summoner.LeagueEntryVO;
 import com.jaeho.atgg.domain.summoner.SummonerVO;
 import com.jaeho.atgg.dto.MatchDTO;
+import com.jaeho.atgg.mapper.MatchMapper;
+import com.jaeho.atgg.service.MatchService;
 import com.jaeho.atgg.service.SummonerService;
 
 import lombok.extern.log4j.Log4j;
@@ -90,25 +97,81 @@ public class RiotAPIUtility extends RestAPIUtility {
 		}
 	}
 
-	public static void initMatchInfo(String beginIndex, String endIndex) throws IOException {
+	// 소환사 매칭 데이터
+	// - 소환사 룬, 딜량, 팀 전적 등등
+	public static void initMatchInfo(MatchService service, String beginIndex, String endIndex) throws IOException {
 
 		List<String> gameIdList = getMatchList(beginIndex, endIndex);
 
-		for (int i = 0; i < gameIdList.size(); i++) {
-			
-			// 게임 리스트 불러오기
-			String result = asyncRestAPI(MATCH_INFO + gameIdList.get(i), new HashMap<String, String>() {
-				{
-					put("X-Riot-Token", API_KEY);
-				}
-			});
+		gameIdList.forEach(id -> {
+			try {
+				service.insertMatchRef(getMatchRef(id));
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		});
+	}
 
-			MatchDTO match = new Gson().fromJson(result, MatchDTO.class);
+	// 매치 상세 정보
+	private static MatchDTO getMatchRef(String gameId) throws IOException {
+
+		// 게임 리스트 불러오기
+		String result = RestAPIUtility.asyncRestAPI(MATCH_INFO + gameId, new HashMap<String, String>() {
+			{
+				put("X-Riot-Token", API_KEY);
+			}
+		});
+
+		MatchDTO match = new Gson().fromJson(result, MatchDTO.class);
+		log.info("==========================");
+		log.info("게임 아이디 : getGameId");
+		log.info(match.getGameId());
+
+		log.info("게임 종류 : getQueueId");
+		log.info(match.getQueueId());
+
+		log.info("게임 시작 시간 : getGameCreation");
+		log.info(match.getGameCreation());
+
+		log.info("총 게임 시간 : getGameDuration");
+		log.info(match.getGameDuration());
+
+		log.info("팀 정보 : getTeams");
+		match.getTeams().forEach(team -> {
+			team.setGameId(match.getGameId());
+			log.info(team);
+		});
+
+		for (int j = 0; j < match.getParticipants().size(); j++) {
+
+			match.getParticipants().get(j).setGameId(match.getGameId());
+
+			match.getParticipants().get(j)
+					.setSummoner(match.getParticipantIdentities().get(j).getPlayer().getSummonerName());
+
+			match.getParticipants().get(j).getStats().setGameId(match.getGameId());
+
+			match.getParticipants().get(j).getTimeline().setGameId(match.getGameId());
+
 		}
+
+		log.info("소환사 기본 정보 : getParticipants");
+		match.getParticipants().forEach(participant -> {
+			log.info(participant);
+		});
+
+		log.info("게임 참여자 정보 : getParticipantIdentities");
+		match.getParticipantIdentities().forEach(identities -> {
+			log.info(identities);
+		});
+
+		log.info("==========================");
+
+		return match;
 	}
 
 	// 소환사 매칭 정보 리스트
-	public static List<String> getMatchList(String beginIndex, String endIndex) throws IOException {
+	private static List<String> getMatchList(String beginIndex, String endIndex) throws IOException {
 		Map<String, String> headers = new HashMap<String, String>();
 		Map<String, String> parameters = new HashMap<String, String>();
 

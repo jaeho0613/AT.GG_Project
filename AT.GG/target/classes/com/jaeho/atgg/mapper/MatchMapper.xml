@@ -4,36 +4,65 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.jaeho.atgg.mapper.MatchMapper">
 
+	<select id="selectMatchRef" resultType="com.jaeho.atgg.dto.MatchDTO">
+		select * from MatchRef where gameId = #{gameId}
+	</select>
+
+	<select id="selectTeams" resultType="com.jaeho.atgg.domain.match.TeamsVO">
+		select * from Teams where gameId = #{gameId}
+	</select>
+
+	<select id="selectParticipant" resultType="com.jaeho.atgg.domain.match.ParticipantVO">
+		select * from Participant where gameId = #{gameId}
+	</select>
+
+	<select id="selectParticipantStats" resultType="com.jaeho.atgg.domain.match.ParticipantStatsVO">
+		select * from ParticipantStats where gameId = #{gameId}
+	</select>
+
+	<select id="selectTimeline"	resultType="com.jaeho.atgg.domain.match.TimelineVO">
+		select * from Timeline where gameId = #{gameId}
+	</select>
+
 	<insert id="insertMatchRef">
-		insert into MatchRef 
-		values(#{gameId}, #{gameCreation}, #{gameDuration}, #{queueId})
+		insert into MatchRef
+		values(#{gameId},
+		#{gameCreation}, #{gameDuration}, #{queueId})
 	</insert>
-	
+
 	<insert id="insertTeams">
-		insert into Teams 
-		values(#{gameId}, #{towerKills}, #{dragonKills}, #{baronKills}, #{teamId}, #{win})
+		insert into Teams
+		values(#{gameId}, #{towerKills},
+		#{dragonKills}, #{baronKills}, #{teamId}, #{win})
 	</insert>
-	
+
 	<insert id="insertParticipant">
-		insert into Participant 
-		values(#{summoner}, #{gameId}, #{participantId}, #{championId}, #{teamId}, #{spell1Id}, #{spell2Id})
+		insert into Participant
+		values(#{summoner}, #{gameId},
+		#{participantId}, #{championId}, #{teamId}, #{spell1Id},
+		#{spell2Id})
 	</insert>
-	
+
 	<insert id="insertParticipantStats">
-		insert into ParticipantStats 
+		insert into ParticipantStats
 		values(
-		#{gameId}, #{participantId}, #{totalDamageDealtToChampions},
-		#{item0}, #{item1}, #{item2}, #{item3}, #{item4}, #{item5},
-		#{largestMultiKill}, #{goldEarned}, #{wardsKilled}, #{wardsPlaced}, 
-		#{totalMinionsKilled}, #{visionWardsBoughtInGame},
+		#{gameId},
+		#{participantId}, #{totalDamageDealtToChampions},
+		#{item0}, #{item1},	#{item2}, #{item3}, #{item4}, #{item5},
+		#{largestMultiKill},
+		#{goldEarned}, #{wardsKilled}, #{wardsPlaced},
+		#{totalMinionsKilled},
+		#{visionWardsBoughtInGame},
 		#{kills},#{deaths}, #{assists},
 		#{neutralMinionsKilled},#{perk0},#{perk1},#{perk2},#{perk3},#{perk4},#{perk5},
-		#{perkPrimaryStyle},#{perkSubStyle},#{statPerk0},#{statPerk1},#{statPerk2}, #{win})
+		#{perkPrimaryStyle},#{perkSubStyle},#{statPerk0},#{statPerk1},#{statPerk2},
+		#{win})
 	</insert>
-	
+
 	<insert id="insertTimeline">
-		insert into Timeline 
-		values(#{gameId}, #{participantId}, #{role}, #{lane});
+		insert into Timeline
+		values(#{gameId},
+		#{participantId}, #{role}, #{lane});
 	</insert>
 
 </mapper>

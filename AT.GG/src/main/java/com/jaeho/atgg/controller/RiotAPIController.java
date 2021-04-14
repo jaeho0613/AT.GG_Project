@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.jaeho.atgg.dto.MatchDTO;
+import com.jaeho.atgg.service.MatchService;
 import com.jaeho.atgg.service.SummonerService;
 import com.jaeho.atgg.utility.RiotAPIUtility;
 
@@ -32,6 +34,9 @@ public class RiotAPIController {
 	@Setter(onMethod_ = @Autowired)
 	private SummonerService summonerService;
 
+	@Setter(onMethod_ = @Autowired)
+	private MatchService matchService;
+
 	@InitBinder
 	public void initBinder(HttpServletRequest request) throws IOException {
 
@@ -45,6 +50,7 @@ public class RiotAPIController {
 		log.info("summonerName : " + summonerName);
 
 		RiotAPIUtility.initSummonerInfo(summonerService, summonerName);
+		RiotAPIUtility.initMatchInfo(matchService, "0", "5");
 	}
 
 	@GetMapping(value = "/summoner/{summonerName}", produces = { MediaType.APPLICATION_JSON_UTF8_VALUE })
@@ -52,6 +58,16 @@ public class RiotAPIController {
 			throws IOException {
 
 		Map<String, Object> map = summonerService.getSummonerInfoAll(summonerName);
+
+		return new ResponseEntity<Map<String, Object>>(map, HttpStatus.OK);
+
+	}
+	
+	@GetMapping(value = "/match/{gameId}", produces = { MediaType.APPLICATION_JSON_UTF8_VALUE })
+	public ResponseEntity<Map<String, Object>> getMatch(@PathVariable("gameId") String gameId)
+			throws IOException {
+
+		MatchDTO match = matchService.
 
 		return new ResponseEntity<Map<String, Object>>(map, HttpStatus.OK);
 
