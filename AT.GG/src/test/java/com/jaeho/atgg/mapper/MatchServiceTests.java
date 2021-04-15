@@ -47,6 +47,13 @@ public class MatchServiceTests {
 	private SummonerService summonerService;
 
 	@Test
+	public void MatchRefList() {
+		List<MatchDTO> matchList = matchService.selectMatchByPagsing("정재호임", 0, 5);
+
+		matchList.forEach(match -> log.info(match));
+	}
+
+//	@Test
 	public void MatchRefInsert() throws IOException {
 
 		String accountId = summonerService.getSummonerAccountId("정재호임");

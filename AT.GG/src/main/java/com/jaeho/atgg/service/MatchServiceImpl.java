@@ -1,12 +1,12 @@
 package com.jaeho.atgg.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.jaeho.atgg.domain.match.ParticipantIdentitiesVO;
 import com.jaeho.atgg.domain.match.ParticipantStatsVO;
 import com.jaeho.atgg.domain.match.ParticipantVO;
 import com.jaeho.atgg.domain.match.TeamsVO;
@@ -23,6 +23,23 @@ public class MatchServiceImpl implements MatchService {
 
 	@Setter(onMethod_ = @Autowired)
 	private MatchMapper mapper;
+
+	@Override
+	@Transactional
+	public List<MatchDTO> selectMatchByPagsing(String summonerName, int beginIndex, int endIndex) {
+		log.info("==============================");
+		log.info("selectMatchByPagsing - Database 접근");
+		log.info("name : " + summonerName + ", begin : " + beginIndex + ", end : " + endIndex);
+		log.info("==============================");
+
+		List<String> gameIds = mapper.selectSummonerByMatchRef(summonerName, beginIndex, endIndex);
+		List<MatchDTO> matchList = new ArrayList<>();
+		gameIds.forEach(gameId -> {
+			matchList.add(selectMatchRef(gameId));
+		});
+
+		return matchList;
+	}
 
 	@Override
 	@Transactional
@@ -89,6 +106,11 @@ public class MatchServiceImpl implements MatchService {
 
 	@Override
 	public int totalMatchRefCount(String summonerName) {
+		log.info("==============================");
+		log.info("totalMatchRefCount - Database 접근");
+		log.info(summonerName);
+		log.info("==============================");
 		return mapper.totalMatchRefCount(summonerName);
 	}
+
 }

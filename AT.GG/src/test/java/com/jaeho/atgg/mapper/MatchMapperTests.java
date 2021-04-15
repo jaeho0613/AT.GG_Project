@@ -44,7 +44,7 @@ public class MatchMapperTests {
 
 	@Test
 	public void selectMatchPagsing() {
-		List<ParticipantVO> matchs = mapper.selectPaging("정재호임", 0, 3);
+		List<String> matchs = mapper.selectSummonerByMatchRef("정재호임", 0, 3);
 
 		matchs.forEach(match -> log.info(match));
 	}

@@ -1,3 +1,4 @@
+use atgg;
 -- 유저 정보 테이블 검색
 select * from summoner;
 select * from leagueEntry;
@@ -62,4 +63,4 @@ select *
 from Participant
 where summoner = '정재호임' 
 order by gameId desc
-limit 0,1;
+limit 0,3;

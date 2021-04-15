@@ -37,7 +37,7 @@ public interface MatchMapper {
 	public void insertTimeline(TimelineVO timeline);
 
 	// pagsing
-	public List<ParticipantVO> selectPaging(@Param("summonerName") String summonerName,
+	public List<String> selectSummonerByMatchRef(@Param("summonerName") String summonerName,
 			@Param("beginIndex") int beginIndex, @Param("endIndex") int endIndex);
 
 }
