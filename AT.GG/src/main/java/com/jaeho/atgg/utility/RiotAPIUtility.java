@@ -50,7 +50,7 @@ public class RiotAPIUtility extends RestAPIUtility {
 	// 소환사 전적 상세 정보
 	private final static String MATCH_INFO = "https://kr.api.riotgames.com/lol/match/v4/matches/";
 
-	private static GlobalObjUtility utility = new GlobalObjUtility();
+	private static RiotStaticDataUtility utility = new RiotStaticDataUtility();
 
 	// 최초 소환사 정보 초기화
 	// - 소환사 정보 , 소환사 랭크 , 소환사 승급전

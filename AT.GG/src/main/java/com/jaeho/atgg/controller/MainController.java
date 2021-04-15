@@ -70,7 +70,7 @@ public class MainController {
 
 		String matchInfos = RestAPIUtility
 				.syncRestAPI("http://localhost:8080/lol/matchs/" + summonerName + "?pageNum=" + pageNum);
-		
+
 		MatchDTO[] matchs = new Gson().fromJson(matchInfos, MatchDTO[].class);
 		log.info("=========matchInfos==========");
 		for (int i = 0; i < matchs.length; i++) {

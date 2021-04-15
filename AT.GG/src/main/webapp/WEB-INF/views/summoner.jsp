@@ -248,7 +248,7 @@
                 <!-- 캐릭터 초상화 -->
                 <div class="champion_icon my-auto me-xl-4">
                   <img class="rounded-circle"
-                    src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/champion/${match.participants[0].championId}.png">
+                    src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/champion/${match.participants[match.participantId - 1].championId}.png">
                 </div>
                 <!-- 룬 스펠 -->
                 <div class="rune_speli d-flex me-xl-4">

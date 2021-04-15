@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.jaeho.atgg.dto.MatchDTO;
 import com.jaeho.atgg.service.MatchService;
 import com.jaeho.atgg.service.SummonerService;
-import com.jaeho.atgg.utility.GlobalObjUtility;
+import com.jaeho.atgg.utility.RiotStaticDataUtility;
 import com.jaeho.atgg.utility.RiotAPIUtility;
 
 import lombok.Setter;
@@ -39,7 +39,7 @@ public class RiotAPIController {
 	@Setter(onMethod_ = @Autowired)
 	private MatchService matchService;
 
-	private GlobalObjUtility utility;
+	private RiotStaticDataUtility utility;
 
 	@InitBinder
 	public void initBinder(HttpServletRequest request) throws IOException {

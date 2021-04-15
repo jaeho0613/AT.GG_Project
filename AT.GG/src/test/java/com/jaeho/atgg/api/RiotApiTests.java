@@ -16,7 +16,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonParser;
 import com.jaeho.atgg.domain.summoner.LeagueEntryVO;
 import com.jaeho.atgg.dto.MatchDTO;
-import com.jaeho.atgg.utility.GlobalObjUtility;
+import com.jaeho.atgg.utility.RiotStaticDataUtility;
 import com.jaeho.atgg.utility.RestAPIUtility;
 import com.jaeho.atgg.utility.RiotAPIUtility;
 
@@ -35,8 +35,14 @@ public class RiotApiTests {
 	private String LEAGUE_ENTRY = "https://kr.api.riotgames.com/lol/league/v4/entries/by-summoner/";
 
 	private String MATCH_LIST = "https://kr.api.riotgames.com/lol/match/v4/matchlists/by-account/";
+	
+	@Test 
+	public void spell() {
+		RiotStaticDataUtility utility = new RiotStaticDataUtility();
+		log.info(utility.getSpellByName("21"));
+	}
 
-	@Test
+//	@Test
 	public void championNum() throws IOException {
 //		log.info(utility.getChampionByName("432"));
 	}
