@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.jaeho.atgg.dto.MatchDTO;
@@ -78,5 +79,16 @@ public class RiotAPIController {
 		MatchDTO match = matchService.selectMatchRef(gameId);
 
 		return new ResponseEntity<MatchDTO>(match, HttpStatus.OK);
+	}
+
+	@GetMapping(value = "/matchs/{summonerName}", produces = { MediaType.APPLICATION_JSON_UTF8_VALUE })
+	public ResponseEntity<List<MatchDTO>> getMatch(@PathVariable("summonerName") String summonerName, @RequestParam("pageNum") String pageNum) throws IOException {
+
+		int beginIndex = Integer.parseInt(pageNum);
+		int endIndex = beginIndex + 5;
+		
+		List<MatchDTO> matchs = matchService.selectMatchByPagsing(summonerName, beginIndex, endIndex);
+
+		return new ResponseEntity<List<MatchDTO>>(matchs, HttpStatus.OK);
 	}
 }

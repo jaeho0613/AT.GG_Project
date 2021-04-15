@@ -18,6 +18,7 @@ import com.google.gson.JsonParser;
 import com.jaeho.atgg.domain.summoner.LeagueEntryVO;
 import com.jaeho.atgg.domain.summoner.MiniSeriesVO;
 import com.jaeho.atgg.domain.summoner.SummonerVO;
+import com.jaeho.atgg.dto.MatchDTO;
 import com.jaeho.atgg.dto.SummonerDTO;
 import com.jaeho.atgg.utility.RestAPIUtility;
 
@@ -36,7 +37,7 @@ public class MainController {
 
 	@GetMapping("/summoner")
 	public String summoner(@RequestParam("summonerName") String summonerName,
-			@RequestParam(value = "pageNum", defaultValue = "1") String pageNum, Model model) throws IOException {
+			@RequestParam(value = "pageNum", defaultValue = "0") String pageNum, Model model) throws IOException {
 
 		String summonerInfo = RestAPIUtility.syncRestAPI("http://localhost:8080/lol/summoner/" + summonerName);
 
@@ -65,7 +66,15 @@ public class MainController {
 		}
 		log.info("===================================");
 
-//		String matchInfo = RestAPIUtility.syncRestAPI("http://localhost:8080/lol/match/" + )
+		String matchInfos = RestAPIUtility
+				.syncRestAPI("http://localhost:8080/lol/matchs/" + summonerName + "?pageNum=" + pageNum);
+
+		MatchDTO[] matchs = new Gson().fromJson(matchInfos, MatchDTO[].class);
+		log.info("=========matchInfos==========");
+		for (int i = 0; i < matchs.length; i++) {
+			log.info(matchs[i]);
+		}
+		log.info("===================================");
 
 		model.addAttribute("summoner", initSummonerInfo.getSummonerVO());
 
