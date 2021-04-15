@@ -94,6 +94,7 @@ create table Timeline(
 -- 게임 참여자(소환사) 상세 정보 스텟
 create table ParticipantStats(
 	gameId 						varchar(10) not null,
+    champLevel					integer,
     participantId 				integer,
     totalDamageDealtToChampions long,
 	item0 						integer,

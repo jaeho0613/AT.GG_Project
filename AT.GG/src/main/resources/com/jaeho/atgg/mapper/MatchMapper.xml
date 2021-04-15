@@ -60,7 +60,7 @@
 	<insert id="insertParticipantStats">
 		insert into ParticipantStats
 		values(
-		#{gameId},
+		#{gameId}, #{champLevel},
 		#{participantId}, #{totalDamageDealtToChampions},
 		#{item0}, #{item1},	#{item2}, #{item3}, #{item4}, #{item5},
 		#{largestMultiKill},

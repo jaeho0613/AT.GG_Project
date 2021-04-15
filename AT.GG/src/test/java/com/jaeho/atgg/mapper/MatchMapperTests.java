@@ -42,7 +42,7 @@ public class MatchMapperTests {
 	@Setter(onMethod_ = @Autowired)
 	private MatchMapper mapper;
 
-	@Test
+//	@Test
 	public void selectMatchPagsing() {
 		List<String> matchs = mapper.selectSummonerByMatchRef("정재호임", 0, 3);
 
@@ -54,7 +54,7 @@ public class MatchMapperTests {
 //		log.info(mapper.totalMatchRefCount());
 	}
 
-//	@Test
+	@Test
 	public void MatchMapperSelect() {
 
 		log.info(mapper.selectMatchRef("5120307891"));

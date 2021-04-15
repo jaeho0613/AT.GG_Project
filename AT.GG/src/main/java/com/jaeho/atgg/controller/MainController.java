@@ -77,6 +77,7 @@ public class MainController {
 		log.info("===================================");
 
 		model.addAttribute("summoner", initSummonerInfo.getSummonerVO());
+		model.addAttribute("matchs", matchs);
 
 		return "summoner";
 	}
