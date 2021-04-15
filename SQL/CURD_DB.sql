@@ -63,4 +63,4 @@ select *
 from Participant
 where summoner = '정재호임' 
 order by gameId desc
-limit 0,3;
+limit 0,5;

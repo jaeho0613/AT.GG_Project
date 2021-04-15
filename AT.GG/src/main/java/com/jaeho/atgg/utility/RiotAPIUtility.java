@@ -155,8 +155,15 @@ public class RiotAPIUtility extends RestAPIUtility {
 		for (int j = 0; j < match.getParticipants().size(); j++) {
 
 			String championId = match.getParticipants().get(j).getChampionId();
+			String spell1 = match.getParticipants().get(j).getSpell1Id();
+			String spell2 = match.getParticipants().get(j).getSpell2Id();
 
+			// 챔피언 정보 변경
 			match.getParticipants().get(j).setChampionId(utility.getChampionByName(championId));
+
+			// 소환사 스펠 정보 변경
+			match.getParticipants().get(j).setSpell1Id(utility.getSpellByName(spell1));
+			match.getParticipants().get(j).setSpell1Id(utility.getSpellByName(spell2));
 
 			match.getParticipants().get(j).setGameId(match.getGameId());
 

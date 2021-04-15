@@ -77,8 +77,8 @@ create table  Participant(
 	participantId 	integer,
     championId 		varchar(20),
     teamId 			integer,
-    spell1Id 		integer,
-    spell2Id 		integer,
+    spell1Id 		varchar(20),
+    spell2Id 		varchar(20),
     foreign key (gameId) references MatchRef(gameId) on update cascade on delete cascade
 );
 
