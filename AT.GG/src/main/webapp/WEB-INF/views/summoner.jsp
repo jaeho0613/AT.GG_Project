@@ -253,8 +253,8 @@
                 <!-- 룬 스펠 -->
                 <div class="rune_speli d-flex me-xl-4">
                   <div class="rune_spell_icon d-flex flex-column justify-content-center">
-                    <img src=" https://ddragon.leagueoflegends.com/cdn/11.7.1/img/spell/SummonerFlash.png">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/spell/SummonerDot.png">
+                    <img src=" https://ddragon.leagueoflegends.com/cdn/11.7.1/img/spell/${match.participants[match.participantId - 1].spell1Id}.png">
+                    <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/spell/${match.participants[match.participantId - 1].spell2Id}.png">
                   </div>
                   <div class="rune_spell_icon d-flex flex-column justify-content-center me-2">
                     <img

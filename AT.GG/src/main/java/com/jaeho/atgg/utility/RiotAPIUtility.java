@@ -163,7 +163,7 @@ public class RiotAPIUtility extends RestAPIUtility {
 
 			// 소환사 스펠 정보 변경
 			match.getParticipants().get(j).setSpell1Id(utility.getSpellByName(spell1));
-			match.getParticipants().get(j).setSpell1Id(utility.getSpellByName(spell2));
+			match.getParticipants().get(j).setSpell2Id(utility.getSpellByName(spell2));
 
 			match.getParticipants().get(j).setGameId(match.getGameId());
 
