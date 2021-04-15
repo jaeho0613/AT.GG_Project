@@ -253,21 +253,41 @@
                 <!-- 룬 스펠 -->
                 <div class="rune_speli d-flex me-xl-4">
                   <div class="rune_spell_icon d-flex flex-column justify-content-center">
-                    <img src=" https://ddragon.leagueoflegends.com/cdn/11.7.1/img/spell/${match.participants[match.participantId - 1].spell1Id}.png">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/spell/${match.participants[match.participantId - 1].spell2Id}.png">
+                    <img
+                      src=" https://ddragon.leagueoflegends.com/cdn/11.7.1/img/spell/${match.participants[match.participantId - 1].spell1Id}.png">
+                    <img
+                      src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/spell/${match.participants[match.participantId - 1].spell2Id}.png">
                   </div>
                   <div class="rune_spell_icon d-flex flex-column justify-content-center me-2">
                     <img
-                      src="https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Domination/HailOfBlades/HailOfBlades.png">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/7201_Precision.png">
+                      src="https://opgg-static.akamaized.net/images/lol/perk/${match.participants[match.participantId - 1].stats.perk0}.png">
+                    <img
+                      src="https://opgg-static.akamaized.net/images/lol/perkStyle/${match.participants[match.participantId - 1].stats.perkSubStyle}.png">
                   </div>
                 </div>
                 <!-- KDA -->
                 <div class="d-flex flex-column justify-content-center text-center lh-1 me-xl-4">
-                  <span>12 / 2 / 10</span>
-                  <span>11.00 : 1</span>
+                  <span>${match.participants[match.participantId - 1].stats.kills} /
+                    ${match.participants[match.participantId - 1].stats.deaths} /
+                    ${match.participants[match.participantId - 1].stats.assists}</span>
                   <div class="rounded-pill bg-danger text-center text-white">
-                    <span>더블킬</span>
+                    <c:choose>
+                      <c:when test="${match.participants[match.participantId - 1].stats.largestMultiKill <= 1}">
+                        <span>노말</span>
+                      </c:when>
+                      <c:when test="${match.participants[match.participantId - 1].stats.largestMultiKill == 2}">
+                        <span>더블킬</span>
+                      </c:when>
+                      <c:when test="${match.participants[match.participantId - 1].stats.largestMultiKill == 3}">
+                        <span>트리플킬</span>
+                      </c:when>
+                      <c:when test="${match.participants[match.participantId - 1].stats.largestMultiKill == 4}">
+                        <span>쿼드라킬</span>
+                      </c:when>
+                      <c:when test="${match.participants[match.participantId - 1].stats.largestMultiKill == 5}">
+                        <span>펜타킬</span>
+                      </c:when>
+                    </c:choose>
                   </div>
                 </div>
                 <!-- KDA -->
