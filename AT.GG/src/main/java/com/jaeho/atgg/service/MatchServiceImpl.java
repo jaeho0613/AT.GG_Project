@@ -32,10 +32,10 @@ public class MatchServiceImpl implements MatchService {
 		log.info("name : " + summonerName + ", begin : " + beginIndex + ", end : " + endIndex);
 		log.info("==============================");
 
-		List<String> gameIds = mapper.selectSummonerByMatchRef(summonerName, beginIndex, endIndex);
+		List<ParticipantVO> participants = mapper.selectSummonerByMatchRef(summonerName, beginIndex, endIndex);
 		List<MatchDTO> matchList = new ArrayList<>();
-		gameIds.forEach(gameId -> {
-			matchList.add(selectMatchRef(gameId));
+		participants.forEach(partici -> {
+			matchList.add(selectMatchRef(partici.getGameId()));
 		});
 
 		return matchList;
@@ -111,6 +111,11 @@ public class MatchServiceImpl implements MatchService {
 		log.info(summonerName);
 		log.info("==============================");
 		return mapper.totalMatchRefCount(summonerName);
+	}
+
+	@Override
+	public String getParticipantId(String summonerName) {
+		return null;
 	}
 
 }

@@ -230,7 +230,8 @@
     <!-- 오른쪽 컨테이너 -->
     <div class="summoner_match_container col-xl-10 d-flex flex-column">
 
-      <c:forEach items="${ matchs }" var="match">
+      <c:forEach items="${ matchs }" var="match" varStatus="loop">
+
         <!-- 한개 게임 데이터 컨테이너 -->
         <div class="accordion" id="match_list">
           <div class="accordion-item">
@@ -247,7 +248,7 @@
                 <!-- 캐릭터 초상화 -->
                 <div class="champion_icon my-auto me-xl-4">
                   <img class="rounded-circle"
-                    src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/champion/Azir.png">
+                    src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/champion/${match.participants[0].championId}.png">
                 </div>
                 <!-- 룬 스펠 -->
                 <div class="rune_speli d-flex me-xl-4">

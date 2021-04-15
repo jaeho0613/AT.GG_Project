@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.jaeho.atgg.dto.MatchDTO;
 import com.jaeho.atgg.service.MatchService;
 import com.jaeho.atgg.service.SummonerService;
+import com.jaeho.atgg.utility.GlobalObjUtility;
 import com.jaeho.atgg.utility.RiotAPIUtility;
 
 import lombok.Setter;
@@ -38,6 +39,8 @@ public class RiotAPIController {
 	@Setter(onMethod_ = @Autowired)
 	private MatchService matchService;
 
+	private GlobalObjUtility utility;
+
 	@InitBinder
 	public void initBinder(HttpServletRequest request) throws IOException {
 
@@ -52,14 +55,21 @@ public class RiotAPIController {
 		log.info("endPoint : " + endPoint);
 		log.info("summonerName : " + summonerName);
 
-		// 소환사 정보 초기화
-		if (endPoint.equals("summoner")) {
+		switch (endPoint) {
+		case "summoner":
 			RiotAPIUtility.initSummonerInfo(summonerService, summonerName);
 			// 소환사 매칭 정보 초기화 (최초 5개)
 			if (matchService.totalMatchRefCount(summonerName) <= 0) {
 				RiotAPIUtility.initMatchInfo(matchService, summonerService.getSummonerAccountId(summonerName), "0",
 						"5");
 			}
+			break;
+		case "matchs":
+			if (matchService.totalMatchRefCount(summonerName) <= 0) {
+				RiotAPIUtility.initMatchInfo(matchService, summonerService.getSummonerAccountId(summonerName), "0",
+						"5");
+			}
+			break;
 		}
 	}
 
@@ -82,12 +92,26 @@ public class RiotAPIController {
 	}
 
 	@GetMapping(value = "/matchs/{summonerName}", produces = { MediaType.APPLICATION_JSON_UTF8_VALUE })
-	public ResponseEntity<List<MatchDTO>> getMatch(@PathVariable("summonerName") String summonerName, @RequestParam("pageNum") String pageNum) throws IOException {
+	public ResponseEntity<List<MatchDTO>> getMatch(@PathVariable("summonerName") String summonerName,
+			@RequestParam("pageNum") String pageNum) throws IOException {
 
-		int beginIndex = Integer.parseInt(pageNum);
-		int endIndex = beginIndex + 5;
-		
+		int endIndex = Integer.parseInt(pageNum) * 5;
+		int beginIndex = endIndex - 5;
+
+		if (pageNum.equals("0")) {
+			endIndex = 5;
+			beginIndex = 0;
+		}
+
 		List<MatchDTO> matchs = matchService.selectMatchByPagsing(summonerName, beginIndex, endIndex);
+
+		matchs.forEach(match -> {
+			match.getParticipants().forEach(partici -> {
+				if (partici.getSummoner().equals(summonerName)) {
+					match.setParticipantId(partici.getParticipantId());
+				}
+			});
+		});
 
 		return new ResponseEntity<List<MatchDTO>>(matchs, HttpStatus.OK);
 	}

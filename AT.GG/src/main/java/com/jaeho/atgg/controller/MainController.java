@@ -15,11 +15,13 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.jaeho.atgg.domain.match.ParticipantVO;
 import com.jaeho.atgg.domain.summoner.LeagueEntryVO;
 import com.jaeho.atgg.domain.summoner.MiniSeriesVO;
 import com.jaeho.atgg.domain.summoner.SummonerVO;
 import com.jaeho.atgg.dto.MatchDTO;
 import com.jaeho.atgg.dto.SummonerDTO;
+import com.jaeho.atgg.service.MatchService;
 import com.jaeho.atgg.utility.RestAPIUtility;
 
 import lombok.extern.log4j.Log4j;
@@ -68,7 +70,7 @@ public class MainController {
 
 		String matchInfos = RestAPIUtility
 				.syncRestAPI("http://localhost:8080/lol/matchs/" + summonerName + "?pageNum=" + pageNum);
-
+		
 		MatchDTO[] matchs = new Gson().fromJson(matchInfos, MatchDTO[].class);
 		log.info("=========matchInfos==========");
 		for (int i = 0; i < matchs.length; i++) {

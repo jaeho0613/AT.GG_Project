@@ -7,6 +7,7 @@ import java.util.Map;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -15,6 +16,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonParser;
 import com.jaeho.atgg.domain.summoner.LeagueEntryVO;
 import com.jaeho.atgg.dto.MatchDTO;
+import com.jaeho.atgg.utility.GlobalObjUtility;
 import com.jaeho.atgg.utility.RestAPIUtility;
 import com.jaeho.atgg.utility.RiotAPIUtility;
 
@@ -35,6 +37,11 @@ public class RiotApiTests {
 	private String MATCH_LIST = "https://kr.api.riotgames.com/lol/match/v4/matchlists/by-account/";
 
 	@Test
+	public void championNum() throws IOException {
+//		log.info(utility.getChampionByName("432"));
+	}
+
+//	@Test
 	public void riotUtilityMatchList() throws IOException {
 
 //		List<MatchDTO> result = RiotAPIUtility.getMatchInfo("0", "10");

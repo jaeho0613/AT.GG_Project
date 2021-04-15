@@ -28,9 +28,9 @@
 		select count(summoner) from Participant where summoner = #{summonerName}
 	</select>
 	
-	<select id="selectSummonerByMatchRef" resultType="string">
+	<select id="selectSummonerByMatchRef" resultType="com.jaeho.atgg.domain.match.ParticipantVO">
 	 <![CDATA[
-		select gameId
+		select *
 		from Participant
 		where summoner = #{summonerName} 
 		order by gameId desc

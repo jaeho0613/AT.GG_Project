@@ -42,9 +42,9 @@ public class MatchMapperTests {
 	@Setter(onMethod_ = @Autowired)
 	private MatchMapper mapper;
 
-//	@Test
+	@Test
 	public void selectMatchPagsing() {
-		List<String> matchs = mapper.selectSummonerByMatchRef("정재호임", 0, 3);
+		List<ParticipantVO> matchs = mapper.selectSummonerByMatchRef("정재호임", 0, 3);
 
 		matchs.forEach(match -> log.info(match));
 	}

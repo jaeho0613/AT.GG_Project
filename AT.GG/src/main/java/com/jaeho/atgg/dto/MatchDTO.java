@@ -14,6 +14,7 @@ public class MatchDTO {
 	long gameCreation;
 	long gameDuration;
 	int queueId;
+	int participantId;
 	List<TeamsVO> teams;
 	List<ParticipantVO> participants;
 	List<ParticipantIdentitiesVO> participantIdentities; // 매칭에 참여한 소환사 명단

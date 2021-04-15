@@ -75,7 +75,7 @@ create table  Participant(
 	summoner 		varchar(20),
 	gameId 			varchar(10) not null,
 	participantId 	integer,
-    championId 		integer,
+    championId 		varchar(20),
     teamId 			integer,
     spell1Id 		integer,
     spell2Id 		integer,

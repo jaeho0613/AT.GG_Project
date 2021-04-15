@@ -2,15 +2,22 @@ package com.jaeho.atgg.utility;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
+import java.util.stream.Collectors;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.EnableAsync;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.jaeho.atgg.domain.match.ParticipantVO;
 import com.jaeho.atgg.domain.match.TeamsVO;
@@ -21,6 +28,7 @@ import com.jaeho.atgg.mapper.MatchMapper;
 import com.jaeho.atgg.service.MatchService;
 import com.jaeho.atgg.service.SummonerService;
 
+import jdk.nashorn.internal.objects.annotations.Setter;
 import lombok.extern.log4j.Log4j;
 
 // RiotAPI 통신 클래스입니다.
@@ -29,12 +37,8 @@ import lombok.extern.log4j.Log4j;
 @Log4j
 public class RiotAPIUtility extends RestAPIUtility {
 
-	// 커넥션 Pool
-	// private static ConnectionPool connectionPool = new ConnectionPool();
-	private static Gson gson = new Gson();
-
 	// Riot API
-	private final static String API_KEY = "RGAPI-42bfc354-b286-44f0-9319-8164b8be0ed4";
+	private final static String API_KEY = "RGAPI-deb2ce6c-56eb-41b6-b4a7-b9d94bc8a681";
 
 	// API EndPoint
 	// 소환사 기본 정보
@@ -45,6 +49,8 @@ public class RiotAPIUtility extends RestAPIUtility {
 	private final static String MATCH_LIST = "https://kr.api.riotgames.com/lol/match/v4/matchlists/by-account/";
 	// 소환사 전적 상세 정보
 	private final static String MATCH_INFO = "https://kr.api.riotgames.com/lol/match/v4/matches/";
+
+	private static GlobalObjUtility utility = new GlobalObjUtility();
 
 	// 최초 소환사 정보 초기화
 	// - 소환사 정보 , 소환사 랭크 , 소환사 승급전
@@ -59,7 +65,7 @@ public class RiotAPIUtility extends RestAPIUtility {
 			});
 
 			if (!summonerResult.equals("404")) {
-				SummonerVO summoner = gson.fromJson(summonerResult, SummonerVO.class);
+				SummonerVO summoner = new Gson().fromJson(summonerResult, SummonerVO.class);
 				summoner.setName(summonerName);
 
 				// DB에 저장
@@ -147,6 +153,10 @@ public class RiotAPIUtility extends RestAPIUtility {
 		});
 
 		for (int j = 0; j < match.getParticipants().size(); j++) {
+
+			String championId = match.getParticipants().get(j).getChampionId();
+
+			match.getParticipants().get(j).setChampionId(utility.getChampionByName(championId));
 
 			match.getParticipants().get(j).setGameId(match.getGameId());
 
