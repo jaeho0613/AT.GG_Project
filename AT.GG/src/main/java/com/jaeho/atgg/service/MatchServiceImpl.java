@@ -32,10 +32,10 @@ public class MatchServiceImpl implements MatchService {
 		log.info("name : " + summonerName + ", begin : " + beginIndex + ", end : " + endIndex);
 		log.info("==============================");
 
-		List<ParticipantVO> participants = mapper.selectSummonerByMatchRef(summonerName, beginIndex, endIndex);
+		List<String> gameIdList = mapper.selectMatchByGameIdList(summonerName, beginIndex, endIndex);
 		List<MatchDTO> matchList = new ArrayList<>();
-		participants.forEach(partici -> {
-			matchList.add(selectMatchRef(partici.getGameId()));
+		gameIdList.forEach(gameId -> {
+			matchList.add(selectMatchRef(gameId));
 		});
 
 		return matchList;

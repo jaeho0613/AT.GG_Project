@@ -1,29 +1,15 @@
-package com.jaeho.atgg.mapper;
+package com.jaeho.atgg.ms;
 
-import java.io.IOException;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.transaction.annotation.Transactional;
-
-import com.google.gson.Gson;
-import com.jaeho.atgg.domain.match.ParticipantIdentitiesVO;
-import com.jaeho.atgg.domain.match.ParticipantStatsVO;
 import com.jaeho.atgg.domain.match.ParticipantVO;
-import com.jaeho.atgg.domain.match.TeamsVO;
-import com.jaeho.atgg.domain.match.TimelineVO;
-import com.jaeho.atgg.domain.summoner.SummonerVO;
-import com.jaeho.atgg.dto.MatchDTO;
-import com.jaeho.atgg.service.MatchService;
-import com.jaeho.atgg.utility.RestAPIUtility;
-import com.jaeho.atgg.utility.RiotAPIUtility;
-
+import com.jaeho.atgg.mapper.MatchMapper;
+                    
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 

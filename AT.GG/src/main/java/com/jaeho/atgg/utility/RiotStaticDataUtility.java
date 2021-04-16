@@ -68,7 +68,7 @@ public class RiotStaticDataUtility {
 			return resultJson;
 
 		} catch (Exception e) {
-			log.error("챔피언 데이터 초기화 오류 !!!");
+			log.error("라이엇 정적 데이터 초기화 오류 !!!");
 			return null;
 		}
 	}

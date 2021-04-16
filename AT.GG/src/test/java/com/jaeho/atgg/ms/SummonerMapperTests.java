@@ -1,4 +1,4 @@
-package com.jaeho.atgg.mapper;
+package com.jaeho.atgg.ms;
 
 import java.io.IOException;
 
@@ -9,6 +9,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.jaeho.atgg.domain.summoner.SummonerVO;
+import com.jaeho.atgg.mapper.SummonerMapper;
 import com.jaeho.atgg.utility.RiotAPIUtility;
 
 import lombok.Setter;

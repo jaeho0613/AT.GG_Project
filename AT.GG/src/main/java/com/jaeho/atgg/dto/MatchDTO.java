@@ -10,12 +10,15 @@ import lombok.Data;
 
 @Data
 public class MatchDTO {
-	String gameId;
-	long gameCreation;
-	long gameDuration;
-	int queueId;
-	int participantId;
-	List<TeamsVO> teams;
-	List<ParticipantVO> participants;
-	List<ParticipantIdentitiesVO> participantIdentities; // 매칭에 참여한 소환사 명단
+	String gameId; // DB
+	long gameCreation; // DB
+	long gameDuration; // DB
+	int queueId; // DB
+	int participantId; // DB
+	List<TeamsVO> teams; // DB
+	List<ParticipantVO> participants; // DB
+	List<ParticipantIdentitiesVO> participantIdentities; // DB 매칭에 참여한 소환사 명단
+
+	String createTimeString; // ui
+	String durationTimeString; // ui
 }

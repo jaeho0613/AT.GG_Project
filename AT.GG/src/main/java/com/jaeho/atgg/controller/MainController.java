@@ -1,6 +1,7 @@
 package com.jaeho.atgg.controller;
 
 import java.io.IOException;
+import java.sql.Timestamp;
 import java.util.Locale;
 
 import org.springframework.stereotype.Controller;
@@ -23,6 +24,7 @@ import com.jaeho.atgg.dto.MatchDTO;
 import com.jaeho.atgg.dto.SummonerDTO;
 import com.jaeho.atgg.service.MatchService;
 import com.jaeho.atgg.utility.RestAPIUtility;
+import com.jaeho.atgg.utility.TimeCalculate;
 
 import lombok.extern.log4j.Log4j;
 import okhttp3.Request;
@@ -45,8 +47,10 @@ public class MainController {
 
 		SummonerDTO initSummonerInfo = new Gson().fromJson(summonerInfo, SummonerDTO.class);
 
-		log.info("=========initSummonerInfo==========");
-		log.info(initSummonerInfo);
+//		log.info("=========initSummonerInfo==========");
+//		log.info(initSummonerInfo);
+//		log.info("===================================");
+
 		for (LeagueEntryVO league : initSummonerInfo.getLeagueEntryVO()) {
 			if (league.getQueueType().contains("SOLO")) {
 
@@ -66,17 +70,20 @@ public class MainController {
 				model.addAttribute("flexLeague", league);
 			}
 		}
-		log.info("===================================");
 
 		String matchInfos = RestAPIUtility
 				.syncRestAPI("http://localhost:8080/lol/matchs/" + summonerName + "?pageNum=" + pageNum);
 
 		MatchDTO[] matchs = new Gson().fromJson(matchInfos, MatchDTO[].class);
-		log.info("=========matchInfos==========");
+//		log.info("=========matchInfos==========");
 		for (int i = 0; i < matchs.length; i++) {
+
+			matchs[i].setCreateTimeString(TimeCalculate.createTimeByDateToString(matchs[i].getGameCreation()));
+			matchs[i].setDurationTimeString(TimeCalculate.durationTimeByDateToString(matchs[i].getGameDuration()));
+
 			log.info(matchs[i]);
 		}
-		log.info("===================================");
+//		log.info("===================================");
 
 		model.addAttribute("summoner", initSummonerInfo.getSummonerVO());
 		model.addAttribute("matchs", matchs);

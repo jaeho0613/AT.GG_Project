@@ -239,7 +239,7 @@
             <h2 class="accordion-header">
               <button class="accordion-button collapsed text-dark" type="button" data-bs-toggle="collapse"
                 data-bs-target="#match_1" style="background-color: #A3CFEC;">
-                자유 랭크 · 4일전 / 28분 / 승리
+                자유 랭크 · ${ match.createTimeString } / ${ match.durationTimeString } / 승리
               </button>
             </h2>
             <!-- 중앙 컨텐츠 -->
