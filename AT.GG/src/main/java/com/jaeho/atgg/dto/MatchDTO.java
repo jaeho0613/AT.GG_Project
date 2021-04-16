@@ -14,11 +14,11 @@ public class MatchDTO {
 	long gameCreation; // DB
 	long gameDuration; // DB
 	String queueId; // DB
-	int participantId; // DB
+	int participantId; // UI
 	List<TeamsVO> teams; // DB
 	List<ParticipantVO> participants; // DB
-	List<ParticipantIdentitiesVO> participantIdentities; // DB 매칭에 참여한 소환사 명단
+	List<ParticipantIdentitiesVO> participantIdentities; // DB 매칭에 참여한 소환사 명단 DB
 
-	String createTimeString; // ui
-	String durationTimeString; // ui
+	String createTimeString; // UI
+	String durationTimeString; // UI
 }

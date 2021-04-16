@@ -56,6 +56,7 @@ public class RiotAPIUtility extends RestAPIUtility {
 	// - 소환사 정보 , 소환사 랭크 , 소환사 승급전
 	public static void initSummonerInfo(SummonerService service, String summonerName) throws IOException {
 
+		// 데이터 베이스에 정보가 있는지 판별
 		if (!service.isDuplicateDateCheck(summonerName)) {
 			// 소환사 정보 http 통신
 			String summonerResult = syncRestAPI(SUMMONER_BY_NAME + summonerName, new HashMap<String, String>() {
@@ -132,6 +133,14 @@ public class RiotAPIUtility extends RestAPIUtility {
 			}
 		});
 
+		int bTotalKills = 0; // 팀 전체 킬
+		int bTotalDeaths = 0; // 팀 전체 데스
+		int bTotalAssists = 0; // 팀 전체 어시스트
+
+		int rTotalKills = 0; // 팀 전체 킬
+		int rTotalDeaths = 0; // 팀 전체 데스
+		int rTotalAssists = 0; // 팀 전체 어시스트
+
 		MatchDTO match = new Gson().fromJson(result, MatchDTO.class);
 		match.setQueueId(utility.getQueueByName(match.getQueueId()));
 //		log.info("==========================");
@@ -146,14 +155,22 @@ public class RiotAPIUtility extends RestAPIUtility {
 //
 //		log.info("총 게임 시간 : getGameDuration");
 //		log.info(match.getGameDuration());
-//
-//		log.info("팀 정보 : getTeams");
-		match.getTeams().forEach(team -> {
-			team.setGameId(match.getGameId());
-//			log.info(team);
-		});
 
 		for (int j = 0; j < match.getParticipants().size(); j++) {
+
+			// 블루팀
+			if (match.getParticipants().get(j).getParticipantId() <= 5) {
+				bTotalKills += match.getParticipants().get(j).getStats().getKills();
+				bTotalDeaths += match.getParticipants().get(j).getStats().getDeaths();
+				bTotalAssists += match.getParticipants().get(j).getStats().getAssists();
+			}
+
+			// 레드팀
+			else {
+				rTotalKills += match.getParticipants().get(j).getStats().getKills();
+				rTotalDeaths += match.getParticipants().get(j).getStats().getDeaths();
+				rTotalAssists += match.getParticipants().get(j).getStats().getAssists();
+			}
 
 			String championId = match.getParticipants().get(j).getChampionId();
 			String spell1 = match.getParticipants().get(j).getSpell1Id();
@@ -172,15 +189,29 @@ public class RiotAPIUtility extends RestAPIUtility {
 					.setSummoner(match.getParticipantIdentities().get(j).getPlayer().getSummonerName());
 
 			match.getParticipants().get(j).getStats().setGameId(match.getGameId());
-			
-			if(match.getParticipants().get(j).getStats().getWin().equals("true")) {
+
+			if (match.getParticipants().get(j).getStats().getWin().equals("true")) {
 				match.getParticipants().get(j).getStats().setWin("승리");
 			} else {
 				match.getParticipants().get(j).getStats().setWin("패배");
 			}
 
 			match.getParticipants().get(j).getTimeline().setGameId(match.getGameId());
+		}
 
+//		log.info("팀 정보 : getTeams");
+		for (int i = 0; i < match.getTeams().size(); i++) {
+			match.getTeams().get(i).setGameId(match.getGameId());
+
+			if (match.getTeams().get(i).getTeamId() == 100) {
+				match.getTeams().get(i).setTotalKills(bTotalKills);
+				match.getTeams().get(i).setTotalDeaths(bTotalDeaths);
+				match.getTeams().get(i).setTotalAssists(bTotalAssists);
+			} else {
+				match.getTeams().get(i).setTotalKills(rTotalKills);
+				match.getTeams().get(i).setTotalDeaths(rTotalDeaths);
+				match.getTeams().get(i).setTotalAssists(rTotalAssists);
+			}
 		}
 
 //		log.info("소환사 기본 정보 : getParticipants");

@@ -39,8 +39,6 @@ public class RiotAPIController {
 	@Setter(onMethod_ = @Autowired)
 	private MatchService matchService;
 
-	private RiotStaticDataUtility utility;
-
 	@InitBinder
 	public void initBinder(HttpServletRequest request) throws IOException {
 

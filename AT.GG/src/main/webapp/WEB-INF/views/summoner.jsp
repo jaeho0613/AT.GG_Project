@@ -327,7 +327,7 @@
               <!-- 승리팀 라벨 -->
               <div class="team_label accordion-body d-flex justify-content-around" style="background: #b4b4b4;">
                 <div class="team_kda">
-                  <span>승리 (레드팀)</span>
+                  <span>승리</span>
                   <span>46 / 26 / 71</span>
                 </div>
                 <div class="team_object d-flex">

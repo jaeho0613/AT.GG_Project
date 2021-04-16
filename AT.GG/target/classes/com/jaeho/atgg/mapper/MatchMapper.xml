@@ -48,7 +48,7 @@
 	<insert id="insertTeams">
 		insert into Teams
 		values(#{gameId}, #{towerKills},
-		#{dragonKills}, #{baronKills}, #{teamId}, #{win})
+		#{dragonKills}, #{baronKills}, #{teamId}, #{win}, #{totalKills}, #{totalDeaths}, #{totalAssists})
 	</insert>
 
 	<insert id="insertParticipant">

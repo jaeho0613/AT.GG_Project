@@ -70,3 +70,7 @@ from MatchRef mt join Participant pt on mt.gameId = pt.gameId
 where pt.summoner = '정재호임'
 order by mt.gameCreation desc
 limit 0,5;
+
+select *
+from ParticipantStats ps join participant p on ps.gameId = p.gameId
+where p.summoner like '정재호임';

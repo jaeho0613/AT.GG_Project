@@ -50,7 +50,7 @@
 			<div class="container-fluid">
 
 				<!-- Main Logo -->
-				<a class="navbar-brand" href="#">AT.GG</a>
+				<a class="navbar-brand" href="/at.gg">AT.GG</a>
 
 				<!-- Nav Menu Button -->
 				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02"

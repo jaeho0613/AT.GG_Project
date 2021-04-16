@@ -61,12 +61,15 @@ create table MatchRef (
 
 -- 게임 정보 팀 정보
 create table Teams(
-	gameId 		varchar(10) not null,
-	towerKills 	integer,
-    dragonKills integer,
-    baronKills 	integer,
-    teamId 		integer,
-    win 		varchar(10),
+	gameId 			varchar(10) not null,
+	towerKills 		integer,
+    dragonKills 	integer,
+    baronKills 		integer,
+    teamId 			integer,
+    win 			varchar(10),
+    totalKills		integer,
+    totalDeaths		integer,
+    totalAssists	integer,
     foreign key (gameId) references MatchRef(gameId) on update cascade on delete cascade
 );
 
