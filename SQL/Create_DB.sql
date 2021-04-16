@@ -124,6 +124,6 @@ create table ParticipantStats(
     statPerk0 					integer,
     statPerk1 					integer,
     statPerk2 					integer,
-    win 						boolean,
+    win 						varchar(10),
     foreign key (gameId) references MatchRef(gameId) on update cascade on delete cascade
 );

@@ -36,5 +36,5 @@ public class ParticipantStatsVO {
 	int statPerk0; // 선택 보조 룬
 	int statPerk1;
 	int statPerk2;
-	boolean win; // 승패 여부
+	String win; // 승패 여부
 }

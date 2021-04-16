@@ -172,6 +172,12 @@ public class RiotAPIUtility extends RestAPIUtility {
 					.setSummoner(match.getParticipantIdentities().get(j).getPlayer().getSummonerName());
 
 			match.getParticipants().get(j).getStats().setGameId(match.getGameId());
+			
+			if(match.getParticipants().get(j).getStats().getWin().equals("true")) {
+				match.getParticipants().get(j).getStats().setWin("승리");
+			} else {
+				match.getParticipants().get(j).getStats().setWin("패배");
+			}
 
 			match.getParticipants().get(j).getTimeline().setGameId(match.getGameId());
 

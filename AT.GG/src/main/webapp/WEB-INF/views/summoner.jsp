@@ -238,10 +238,20 @@
           <div class="accordion-item">
             <!-- 타이틀 -->
             <h2 class="accordion-header">
-              <button class="accordion-button collapsed text-dark" type="button" data-bs-toggle="collapse"
-                data-bs-target="#match_1" style="background-color: #A3CFEC;">
-                자유 랭크 · ${ match.createTimeString } / ${ match.durationTimeString } / 승리
-              </button>
+              <c:if test="${(match.participants[match.participantId - 1].stats.win) == '승리'}">
+                <button class="accordion-button collapsed text-dark" type="button" data-bs-toggle="collapse"
+                  data-bs-target="#match_1" style="background-color: #A3CFEC;">
+                  ${ match.queueId } / ${ match.createTimeString } / ${ match.durationTimeString } /
+                  ${match.participants[match.participantId - 1].stats.win}
+                </button>
+              </c:if>
+              <c:if test="${(match.participants[match.participantId - 1].stats.win) == '패배'}">
+                <button class="accordion-button collapsed text-dark" type="button" data-bs-toggle="collapse"
+                  data-bs-target="#match_1" style="background-color: #E2B6B3;">
+                  ${ match.queueId } / ${ match.createTimeString } / ${ match.durationTimeString } /
+                  ${match.participants[match.participantId - 1].stats.win}
+                </button>
+              </c:if>
             </h2>
             <!-- 중앙 컨텐츠 -->
             <div class="accordion-body">
@@ -274,7 +284,6 @@
                   <div class="rounded-pill bg-danger text-center text-white">
                     <c:choose>
                       <c:when test="${match.participants[match.participantId - 1].stats.largestMultiKill <= 1}">
-                        <span>노말</span>
                       </c:when>
                       <c:when test="${match.participants[match.participantId - 1].stats.largestMultiKill == 2}">
                         <span>더블킬</span>
@@ -291,25 +300,24 @@
                     </c:choose>
                   </div>
                 </div>
-                <!-- KDA -->
+                <!-- Info -->
                 <div class="d-flex flex-column justify-content-center text-center lh-sm me-xl-4">
-                  <span>레벨 16</span>
-                  <span>201 (7) CS</span>
-                  <span>킬관여 48%</span>
+                  <span>레벨 ${match.participants[match.participantId - 1].stats.champLevel}</span>
+                  <span>${ match.participants[match.participantId - 1].stats.totalMinionsKilled + match.participants[match.participantId - 1].stats.neutralMinionsKilled } CS</span>
                 </div>
                 <!-- 아이템 -->
                 <div class="item_icon d-flex me-xl-4">
                   <div class="item_icon d-flex flex-column justify-content-center">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/4630.png">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/3157.png">
+                    <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/${ match.participants[match.participantId - 1].stats.item0 }.png">
+                    <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/${ match.participants[match.participantId - 1].stats.item3 }.png">
                   </div>
                   <div class="item_icon d-flex flex-column justify-content-center">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/3115.png">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/1026.png">
+                    <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/${ match.participants[match.participantId - 1].stats.item1 }.png">
+                    <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/${ match.participants[match.participantId - 1].stats.item4 }.png">
                   </div>
                   <div class="item_icon d-flex flex-column justify-content-center">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/1026.png">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/6653.png">
+                    <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/${ match.participants[match.participantId - 1].stats.item2 }.png">
+                    <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/${ match.participants[match.participantId - 1].stats.item5 }.png">
                   </div>
                 </div>
               </div>
