@@ -15,16 +15,19 @@ import lombok.extern.log4j.Log4j;
 @Log4j
 public class RiotStaticDataUtility {
 
-	private static JsonObject championJson = null;
-	private static JsonObject summonerSpell = null;
+	private JsonObject championJson = null;
+	private JsonObject summonerSpellJson = null;
+	private JsonObject queueJson = null;
 
-	// 기본 생성자
 	public RiotStaticDataUtility() {
 		if (championJson == null) {
 			initChampionJson();
 		}
-		if (summonerSpell == null) {
+		if (summonerSpellJson == null) {
 			initSpellJson();
+		}
+		if (queueJson == null) {
+			initQueueJson();
 		}
 	}
 
@@ -33,19 +36,34 @@ public class RiotStaticDataUtility {
 	}
 
 	public String getSpellByName(String key) {
-		return summonerSpell.get(key).getAsString();
+		return summonerSpellJson.get(key).getAsString();
 	}
-	
+
+	public String getQueueByName(String key) {
+		if (queueJson.get(key) != null) {
+			return queueJson.get(key).getAsString();
+		} else {
+			return "이벤트맵";
+		}
+	}
+
+	private void initQueueJson() {
+		queueJson = new JsonObject();
+		queueJson.addProperty("450", "칼바람 나락");
+		queueJson.addProperty("440", "자유 랭크");
+		queueJson.addProperty("430", "일반");
+		queueJson.addProperty("420", "솔로 랭크");
+	}
+
 	// 소환사 스펠 json 초기화 변수
 	private void initSpellJson() {
-		this.summonerSpell = initStaticRiotJson(
+		summonerSpellJson = initStaticRiotJson(
 				"http://ddragon.leagueoflegends.com/cdn/11.8.1/data/en_US/summoner.json");
 	}
 
 	// 챔피언 json 초기화 변수
 	private void initChampionJson() {
-		this.championJson = initStaticRiotJson(
-				"http://ddragon.leagueoflegends.com/cdn/11.7.1/data/en_US/champion.json");
+		championJson = initStaticRiotJson("http://ddragon.leagueoflegends.com/cdn/11.8.1/data/en_US/champion.json");
 	}
 
 	// 라이엇 정적 데이터 파싱 변수

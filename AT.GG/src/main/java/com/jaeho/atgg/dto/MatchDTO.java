@@ -13,7 +13,7 @@ public class MatchDTO {
 	String gameId; // DB
 	long gameCreation; // DB
 	long gameDuration; // DB
-	int queueId; // DB
+	String queueId; // DB
 	int participantId; // DB
 	List<TeamsVO> teams; // DB
 	List<ParticipantVO> participants; // DB

@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <c:set var="path" value="${ pageContext.request.contextPath }"></c:set>
+<c:set var="version" value="11.8.1"></c:set>
 <jsp:include page="/WEB-INF/views/include/header.jsp"></jsp:include>
 
 <!-- Summoner -->
@@ -14,7 +15,7 @@
       <div class="card shadow mb-2 col">
         <div class="card-body d-flex flex-column justify-content-start align-content-center">
           <img class="summoner_icon mx-auto"
-            src="http://ddragon.leagueoflegends.com/cdn/11.7.1/img/profileicon/${ summoner.profileIconId }.png"
+            src="http://ddragon.leagueoflegends.com/cdn/${version}/img/profileicon/${ summoner.profileIconId }.png"
             width="100" height="100">
           <div class="summoner_info d-flex flex-column text-center mt-2">
             <span>${ summoner.name }</span>
@@ -248,15 +249,15 @@
                 <!-- 캐릭터 초상화 -->
                 <div class="champion_icon my-auto me-xl-4">
                   <img class="rounded-circle"
-                    src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/champion/${match.participants[match.participantId - 1].championId}.png">
+                    src="https://ddragon.leagueoflegends.com/cdn/${version}/img/champion/${match.participants[match.participantId - 1].championId}.png">
                 </div>
                 <!-- 룬 스펠 -->
                 <div class="rune_speli d-flex me-xl-4">
                   <div class="rune_spell_icon d-flex flex-column justify-content-center">
                     <img
-                      src=" https://ddragon.leagueoflegends.com/cdn/11.7.1/img/spell/${match.participants[match.participantId - 1].spell1Id}.png">
+                      src=" https://ddragon.leagueoflegends.com/cdn/${version}/img/spell/${match.participants[match.participantId - 1].spell1Id}.png">
                     <img
-                      src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/spell/${match.participants[match.participantId - 1].spell2Id}.png">
+                      src="https://ddragon.leagueoflegends.com/cdn/${version}/img/spell/${match.participants[match.participantId - 1].spell2Id}.png">
                   </div>
                   <div class="rune_spell_icon d-flex flex-column justify-content-center me-2">
                     <img
@@ -299,16 +300,16 @@
                 <!-- 아이템 -->
                 <div class="item_icon d-flex me-xl-4">
                   <div class="item_icon d-flex flex-column justify-content-center">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/item/4630.png">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/item/3157.png">
+                    <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/4630.png">
+                    <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/3157.png">
                   </div>
                   <div class="item_icon d-flex flex-column justify-content-center">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/item/3115.png">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/item/1026.png">
+                    <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/3115.png">
+                    <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/1026.png">
                   </div>
                   <div class="item_icon d-flex flex-column justify-content-center">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/item/1026.png">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/item/6653.png">
+                    <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/1026.png">
+                    <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/6653.png">
                   </div>
                 </div>
               </div>
@@ -343,13 +344,13 @@
                   <!-- 캐릭터 초상화 -->
                   <div class="champion_icon my-auto me-1">
                     <img class="rounded-circle"
-                      src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/champion/Azir.png">
+                      src="https://ddragon.leagueoflegends.com/cdn/${version}/img/champion/Azir.png">
                   </div>
                   <!-- 룬 스펠 -->
                   <div class="rune_speli d-flex">
                     <div class="rune_spell_icon d-flex flex-column justify-content-center">
-                      <img src=" https://ddragon.leagueoflegends.com/cdn/11.7.1/img/spell/SummonerFlash.png">
-                      <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/spell/SummonerDot.png">
+                      <img src=" https://ddragon.leagueoflegends.com/cdn/${version}/img/spell/SummonerFlash.png">
+                      <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/spell/SummonerDot.png">
                     </div>
                     <div class="rune_spell_icon d-flex flex-column justify-content-center me-2">
                       <img
@@ -378,12 +379,12 @@
                 <div class="d-flex flex-column  text-center">
                   <!-- 아이템 -->
                   <div class="item_icon d-flex">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/item/4630.png">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/item/3157.png">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/item/3115.png">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/item/1026.png">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/item/1026.png">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/item/6653.png">
+                    <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/4630.png">
+                    <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/3157.png">
+                    <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/3115.png">
+                    <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/1026.png">
+                    <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/1026.png">
+                    <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/6653.png">
                   </div>
                   <!-- 딜량, cs-->
                   <div class="d-flex row row-cols-2">
@@ -402,13 +403,13 @@
                   <!-- 캐릭터 초상화 -->
                   <div class="champion_icon my-auto me-1">
                     <img class="rounded-circle"
-                      src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/champion/Azir.png">
+                      src="https://ddragon.leagueoflegends.com/cdn/${version}/img/champion/Azir.png">
                   </div>
                   <!-- 룬 스펠 -->
                   <div class="rune_speli d-flex">
                     <div class="rune_spell_icon d-flex flex-column justify-content-center">
-                      <img src=" https://ddragon.leagueoflegends.com/cdn/11.7.1/img/spell/SummonerFlash.png">
-                      <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/spell/SummonerDot.png">
+                      <img src=" https://ddragon.leagueoflegends.com/cdn/${version}/img/spell/SummonerFlash.png">
+                      <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/spell/SummonerDot.png">
                     </div>
                     <div class="rune_spell_icon d-flex flex-column justify-content-center me-2">
                       <img
@@ -437,12 +438,12 @@
                 <div class="d-flex flex-column  text-center">
                   <!-- 아이템 -->
                   <div class="item_icon d-flex">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/item/4630.png">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/item/3157.png">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/item/3115.png">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/item/1026.png">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/item/1026.png">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/item/6653.png">
+                    <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/4630.png">
+                    <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/3157.png">
+                    <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/3115.png">
+                    <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/1026.png">
+                    <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/1026.png">
+                    <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/6653.png">
                   </div>
                   <!-- 딜량, cs-->
                   <div class="d-flex row row-cols-2">
@@ -461,13 +462,13 @@
                   <!-- 캐릭터 초상화 -->
                   <div class="champion_icon my-auto me-1">
                     <img class="rounded-circle"
-                      src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/champion/Azir.png">
+                      src="https://ddragon.leagueoflegends.com/cdn/${version}/img/champion/Azir.png">
                   </div>
                   <!-- 룬 스펠 -->
                   <div class="rune_speli d-flex">
                     <div class="rune_spell_icon d-flex flex-column justify-content-center">
-                      <img src=" https://ddragon.leagueoflegends.com/cdn/11.7.1/img/spell/SummonerFlash.png">
-                      <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/spell/SummonerDot.png">
+                      <img src=" https://ddragon.leagueoflegends.com/cdn/${version}/img/spell/SummonerFlash.png">
+                      <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/spell/SummonerDot.png">
                     </div>
                     <div class="rune_spell_icon d-flex flex-column justify-content-center me-2">
                       <img
@@ -496,12 +497,12 @@
                 <div class="d-flex flex-column  text-center">
                   <!-- 아이템 -->
                   <div class="item_icon d-flex">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/item/4630.png">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/item/3157.png">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/item/3115.png">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/item/1026.png">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/item/1026.png">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/item/6653.png">
+                    <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/4630.png">
+                    <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/3157.png">
+                    <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/3115.png">
+                    <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/1026.png">
+                    <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/1026.png">
+                    <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/6653.png">
                   </div>
                   <!-- 딜량, cs-->
                   <div class="d-flex row row-cols-2">
@@ -520,13 +521,13 @@
                   <!-- 캐릭터 초상화 -->
                   <div class="champion_icon my-auto me-1">
                     <img class="rounded-circle"
-                      src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/champion/Azir.png">
+                      src="https://ddragon.leagueoflegends.com/cdn/${version}/img/champion/Azir.png">
                   </div>
                   <!-- 룬 스펠 -->
                   <div class="rune_speli d-flex">
                     <div class="rune_spell_icon d-flex flex-column justify-content-center">
-                      <img src=" https://ddragon.leagueoflegends.com/cdn/11.7.1/img/spell/SummonerFlash.png">
-                      <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/spell/SummonerDot.png">
+                      <img src=" https://ddragon.leagueoflegends.com/cdn/${version}/img/spell/SummonerFlash.png">
+                      <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/spell/SummonerDot.png">
                     </div>
                     <div class="rune_spell_icon d-flex flex-column justify-content-center me-2">
                       <img
@@ -555,12 +556,12 @@
                 <div class="d-flex flex-column  text-center">
                   <!-- 아이템 -->
                   <div class="item_icon d-flex">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/item/4630.png">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/item/3157.png">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/item/3115.png">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/item/1026.png">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/item/1026.png">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/item/6653.png">
+                    <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/4630.png">
+                    <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/3157.png">
+                    <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/3115.png">
+                    <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/1026.png">
+                    <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/1026.png">
+                    <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/6653.png">
                   </div>
                   <!-- 딜량, cs-->
                   <div class="d-flex row row-cols-2">
@@ -579,13 +580,13 @@
                   <!-- 캐릭터 초상화 -->
                   <div class="champion_icon my-auto me-1">
                     <img class="rounded-circle"
-                      src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/champion/Azir.png">
+                      src="https://ddragon.leagueoflegends.com/cdn/${version}/img/champion/Azir.png">
                   </div>
                   <!-- 룬 스펠 -->
                   <div class="rune_speli d-flex">
                     <div class="rune_spell_icon d-flex flex-column justify-content-center">
-                      <img src=" https://ddragon.leagueoflegends.com/cdn/11.7.1/img/spell/SummonerFlash.png">
-                      <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/spell/SummonerDot.png">
+                      <img src=" https://ddragon.leagueoflegends.com/cdn/${version}/img/spell/SummonerFlash.png">
+                      <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/spell/SummonerDot.png">
                     </div>
                     <div class="rune_spell_icon d-flex flex-column justify-content-center me-2">
                       <img
@@ -614,12 +615,12 @@
                 <div class="d-flex flex-column  text-center">
                   <!-- 아이템 -->
                   <div class="item_icon d-flex">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/item/4630.png">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/item/3157.png">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/item/3115.png">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/item/1026.png">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/item/1026.png">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/item/6653.png">
+                    <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/4630.png">
+                    <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/3157.png">
+                    <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/3115.png">
+                    <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/1026.png">
+                    <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/1026.png">
+                    <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/6653.png">
                   </div>
                   <!-- 딜량, cs-->
                   <div class="d-flex row row-cols-2">
@@ -659,13 +660,13 @@
                   <!-- 캐릭터 초상화 -->
                   <div class="champion_icon my-auto me-1">
                     <img class="rounded-circle"
-                      src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/champion/Azir.png">
+                      src="https://ddragon.leagueoflegends.com/cdn/${version}/img/champion/Azir.png">
                   </div>
                   <!-- 룬 스펠 -->
                   <div class="rune_speli d-flex">
                     <div class="rune_spell_icon d-flex flex-column justify-content-center">
-                      <img src=" https://ddragon.leagueoflegends.com/cdn/11.7.1/img/spell/SummonerFlash.png">
-                      <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/spell/SummonerDot.png">
+                      <img src=" https://ddragon.leagueoflegends.com/cdn/${version}/img/spell/SummonerFlash.png">
+                      <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/spell/SummonerDot.png">
                     </div>
                     <div class="rune_spell_icon d-flex flex-column justify-content-center me-2">
                       <img
@@ -694,12 +695,12 @@
                 <div class="d-flex flex-column  text-center">
                   <!-- 아이템 -->
                   <div class="item_icon d-flex">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/item/4630.png">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/item/3157.png">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/item/3115.png">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/item/1026.png">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/item/1026.png">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/item/6653.png">
+                    <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/4630.png">
+                    <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/3157.png">
+                    <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/3115.png">
+                    <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/1026.png">
+                    <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/1026.png">
+                    <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/6653.png">
                   </div>
                   <!-- 딜량, cs-->
                   <div class="d-flex row row-cols-2">
@@ -718,13 +719,13 @@
                   <!-- 캐릭터 초상화 -->
                   <div class="champion_icon my-auto me-1">
                     <img class="rounded-circle"
-                      src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/champion/Azir.png">
+                      src="https://ddragon.leagueoflegends.com/cdn/${version}/img/champion/Azir.png">
                   </div>
                   <!-- 룬 스펠 -->
                   <div class="rune_speli d-flex">
                     <div class="rune_spell_icon d-flex flex-column justify-content-center">
-                      <img src=" https://ddragon.leagueoflegends.com/cdn/11.7.1/img/spell/SummonerFlash.png">
-                      <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/spell/SummonerDot.png">
+                      <img src=" https://ddragon.leagueoflegends.com/cdn/${version}/img/spell/SummonerFlash.png">
+                      <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/spell/SummonerDot.png">
                     </div>
                     <div class="rune_spell_icon d-flex flex-column justify-content-center me-2">
                       <img
@@ -753,12 +754,12 @@
                 <div class="d-flex flex-column  text-center">
                   <!-- 아이템 -->
                   <div class="item_icon d-flex">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/item/4630.png">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/item/3157.png">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/item/3115.png">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/item/1026.png">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/item/1026.png">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/item/6653.png">
+                    <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/4630.png">
+                    <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/3157.png">
+                    <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/3115.png">
+                    <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/1026.png">
+                    <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/1026.png">
+                    <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/6653.png">
                   </div>
                   <!-- 딜량, cs-->
                   <div class="d-flex row row-cols-2">
@@ -777,13 +778,13 @@
                   <!-- 캐릭터 초상화 -->
                   <div class="champion_icon my-auto me-1">
                     <img class="rounded-circle"
-                      src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/champion/Azir.png">
+                      src="https://ddragon.leagueoflegends.com/cdn/${version}/img/champion/Azir.png">
                   </div>
                   <!-- 룬 스펠 -->
                   <div class="rune_speli d-flex">
                     <div class="rune_spell_icon d-flex flex-column justify-content-center">
-                      <img src=" https://ddragon.leagueoflegends.com/cdn/11.7.1/img/spell/SummonerFlash.png">
-                      <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/spell/SummonerDot.png">
+                      <img src=" https://ddragon.leagueoflegends.com/cdn/${version}/img/spell/SummonerFlash.png">
+                      <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/spell/SummonerDot.png">
                     </div>
                     <div class="rune_spell_icon d-flex flex-column justify-content-center me-2">
                       <img
@@ -812,12 +813,12 @@
                 <div class="d-flex flex-column  text-center">
                   <!-- 아이템 -->
                   <div class="item_icon d-flex">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/item/4630.png">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/item/3157.png">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/item/3115.png">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/item/1026.png">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/item/1026.png">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/item/6653.png">
+                    <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/4630.png">
+                    <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/3157.png">
+                    <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/3115.png">
+                    <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/1026.png">
+                    <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/1026.png">
+                    <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/6653.png">
                   </div>
                   <!-- 딜량, cs-->
                   <div class="d-flex row row-cols-2">
@@ -836,13 +837,13 @@
                   <!-- 캐릭터 초상화 -->
                   <div class="champion_icon my-auto me-1">
                     <img class="rounded-circle"
-                      src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/champion/Azir.png">
+                      src="https://ddragon.leagueoflegends.com/cdn/${version}/img/champion/Azir.png">
                   </div>
                   <!-- 룬 스펠 -->
                   <div class="rune_speli d-flex">
                     <div class="rune_spell_icon d-flex flex-column justify-content-center">
-                      <img src=" https://ddragon.leagueoflegends.com/cdn/11.7.1/img/spell/SummonerFlash.png">
-                      <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/spell/SummonerDot.png">
+                      <img src=" https://ddragon.leagueoflegends.com/cdn/${version}/img/spell/SummonerFlash.png">
+                      <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/spell/SummonerDot.png">
                     </div>
                     <div class="rune_spell_icon d-flex flex-column justify-content-center me-2">
                       <img
@@ -871,12 +872,12 @@
                 <div class="d-flex flex-column  text-center">
                   <!-- 아이템 -->
                   <div class="item_icon d-flex">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/item/4630.png">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/item/3157.png">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/item/3115.png">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/item/1026.png">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/item/1026.png">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/item/6653.png">
+                    <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/4630.png">
+                    <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/3157.png">
+                    <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/3115.png">
+                    <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/1026.png">
+                    <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/1026.png">
+                    <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/6653.png">
                   </div>
                   <!-- 딜량, cs-->
                   <div class="d-flex row row-cols-2">
@@ -895,13 +896,13 @@
                   <!-- 캐릭터 초상화 -->
                   <div class="champion_icon my-auto me-1">
                     <img class="rounded-circle"
-                      src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/champion/Azir.png">
+                      src="https://ddragon.leagueoflegends.com/cdn/${version}/img/champion/Azir.png">
                   </div>
                   <!-- 룬 스펠 -->
                   <div class="rune_speli d-flex">
                     <div class="rune_spell_icon d-flex flex-column justify-content-center">
-                      <img src=" https://ddragon.leagueoflegends.com/cdn/11.7.1/img/spell/SummonerFlash.png">
-                      <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/spell/SummonerDot.png">
+                      <img src=" https://ddragon.leagueoflegends.com/cdn/${version}/img/spell/SummonerFlash.png">
+                      <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/spell/SummonerDot.png">
                     </div>
                     <div class="rune_spell_icon d-flex flex-column justify-content-center me-2">
                       <img
@@ -930,12 +931,12 @@
                 <div class="d-flex flex-column  text-center">
                   <!-- 아이템 -->
                   <div class="item_icon d-flex">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/item/4630.png">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/item/3157.png">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/item/3115.png">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/item/1026.png">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/item/1026.png">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/11.7.1/img/item/6653.png">
+                    <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/4630.png">
+                    <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/3157.png">
+                    <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/3115.png">
+                    <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/1026.png">
+                    <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/1026.png">
+                    <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/6653.png">
                   </div>
                   <!-- 딜량, cs-->
                   <div class="d-flex row row-cols-2">

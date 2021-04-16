@@ -9,7 +9,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import com.jaeho.atgg.domain.match.ParticipantVO;
 import com.jaeho.atgg.mapper.MatchMapper;
-                    
+
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 
@@ -30,7 +30,7 @@ public class MatchMapperTests {
 
 	@Test
 	public void selectMatchPagsing() {
-		List<ParticipantVO> matchs = mapper.selectSummonerByMatchRef("정재호임", 0, 3);
+		List<String> matchs = mapper.selectMatchByGameIdList("정재호임", 0, 3);
 
 		matchs.forEach(match -> log.info(match));
 	}

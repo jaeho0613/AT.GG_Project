@@ -38,7 +38,7 @@ import lombok.extern.log4j.Log4j;
 public class RiotAPIUtility extends RestAPIUtility {
 
 	// Riot API
-	private final static String API_KEY = "RGAPI-deb2ce6c-56eb-41b6-b4a7-b9d94bc8a681";
+	private final static String API_KEY = "RGAPI-d5a0d8c0-2d11-430d-b3e2-7a1b20978f96";
 
 	// API EndPoint
 	// 소환사 기본 정보
@@ -133,6 +133,7 @@ public class RiotAPIUtility extends RestAPIUtility {
 		});
 
 		MatchDTO match = new Gson().fromJson(result, MatchDTO.class);
+		match.setQueueId(utility.getQueueByName(match.getQueueId()));
 //		log.info("==========================");
 //		log.info("게임 아이디 : getGameId");
 //		log.info(match.getGameId());

@@ -65,9 +65,8 @@ where pt.summoner = '정재호임'
 order by mt.gameCreation desc
 limit 0,5;
 
-
 select *
-from Participant
-where summoner = '정재호임' 
-order by gameId desc
+from MatchRef mt join Participant pt on mt.gameId = pt.gameId
+where pt.summoner = '정재호임'
+order by mt.gameCreation desc
 limit 0,5;
