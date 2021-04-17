@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="path" value="${ pageContext.request.contextPath }"></c:set>
 <c:set var="version" value="11.8.1"></c:set>
 <jsp:include page="/WEB-INF/views/include/header.jsp"></jsp:include>
@@ -230,9 +231,7 @@
     </div>
     <!-- 오른쪽 컨테이너 -->
     <div class="summoner_match_container col-xl-10 d-flex flex-column">
-
       <c:forEach items="${ matchs }" var="match">
-
         <!-- 한개 게임 데이터 컨테이너 -->
         <div class="accordion" id="match_list">
           <div class="accordion-item">
@@ -265,7 +264,7 @@
                 <div class="rune_speli d-flex me-xl-4">
                   <div class="rune_spell_icon d-flex flex-column justify-content-center">
                     <img
-                      src=" https://ddragon.leagueoflegends.com/cdn/${version}/img/spell/${match.participants[match.participantId - 1].spell1Id}.png">
+                      src="https://ddragon.leagueoflegends.com/cdn/${version}/img/spell/${match.participants[match.participantId - 1].spell1Id}.png">
                     <img
                       src="https://ddragon.leagueoflegends.com/cdn/${version}/img/spell/${match.participants[match.participantId - 1].spell2Id}.png">
                   </div>
@@ -331,643 +330,372 @@
             </div>
             <!-- 숨김 컨텐츠 -->
             <div id="match_${ match.gameId }" class="hidden-content accordion-collapse collapse">
-
               <c:forEach items="${ match.teams }" var="team">
+                <!-- 승리팀 = Blue -->
+                <c:if test="${ team.win == 'Win' && team.teamId == 100 }">
+                  <!-- 승리팀 라벨 -->
+                  <div class="team_label accordion-body d-flex justify-content-around" style="background: #b4b4b4;">
+                    <div class="team_kda">
+                      <span>승리 (블루팀)</span>
+                      <span>${ team.totalKills } / ${ team.totalDeaths } / ${ team.totalAssists }</span>
+                    </div>
+                    <div class="team_object d-flex">
+                      <div class="baron">
+                        <img src="${ path }/resources/img/icon-baron-b.png">
+                        <span>${ team.baronKills }</span>
+                      </div>
+                      <div class="dragon">
+                        <img src="${ path }/resources/img/icon-dragon-b.png">
+                        <span>${ team.dragonKills }</span>
+                      </div>
+                      <div class="tower">
+                        <img src="${ path }/resources/img/icon-tower-b.png">
+                        <span>${ team.towerKills }</span>
+                      </div>
+                    </div>
+                  </div>
+                  <c:forEach items="${ match.participants }" begin="0" end="4" var="pp">
+                    <!-- 소환사 한명 -->
+                    <div class="summoner accordion-body d-flex justify-content-around align-content-center">
+                      <!-- 왼쪽 정보 -->
+                      <div class="d-flex">
+                        <!-- 캐릭터 초상화 -->
+                        <div class="champion_icon my-auto me-1">
+                          <img class="rounded-circle"
+                            src="https://ddragon.leagueoflegends.com/cdn/${version}/img/champion/${ pp.championId }.png">
+                        </div>
+                        <!-- 룬 스펠 -->
+                        <div class="rune_speli d-flex">
+                          <div class="rune_spell_icon d-flex flex-column justify-content-center">
+                            <img
+                              src=" https://ddragon.leagueoflegends.com/cdn/${version}/img/spell/${ pp.spell1Id }.png">
+                            <img
+                              src="https://ddragon.leagueoflegends.com/cdn/${version}/img/spell/${ pp.spell2Id }.png">
+                          </div>
+                          <div class="rune_spell_icon d-flex flex-column justify-content-center me-2">
+                            <img src="https://opgg-static.akamaized.net/images/lol/perk/${pp.stats.perk0}.png">
+                            <img
+                              src="https://opgg-static.akamaized.net/images/lol/perkStyle/${pp.stats.perkSubStyle}.png">
+                          </div>
+                        </div>
+                        <!-- 매칭 소환사 정보 -->
+                        <div class="summoner_info d-flex flex-column">
+                          <div class="summoner_tier d-flex">
+                            <div class="summoner_name">
+                              <span>${ pp.summoner }</span>
+                            </div>
+                          </div>
+                          <!-- KDA -->
+                          <div class="d-flex justify-content- text-center">
+                            <span>${ pp.stats.kills }/${ pp.stats.deaths }/${ pp.stats.assists }</span>&nbsp;
+                            <!-- <span style="color: red;">11.00:1</span> -->
+                          </div>
+                        </div>
+                      </div>
+                      <!-- 오른쪽 정보 -->
+                      <div class="d-flex flex-column  text-center">
+                        <!-- 아이템 -->
+                        <div class="item_icon d-flex">
+                          <img
+                            src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/${ pp.stats.item0 }.png">
+                          <img
+                            src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/${ pp.stats.item1 }.png">
+                          <img
+                            src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/${ pp.stats.item2 }.png">
+                          <img
+                            src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/${ pp.stats.item3 }.png">
+                          <img
+                            src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/${ pp.stats.item4 }.png">
+                          <img
+                            src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/${ pp.stats.item5 }.png">
+                        </div>
 
+                        <!-- 딜량, cs-->
+                        <div class="d-flex row row-cols-2">
+                          <span class="p-0 col-5">${ pp.stats.totalMinionsKilled +
+                            pp.stats.neutralMinionsKilled}CS<%-- <fmt:formatNumber value="${ pp.stats.totalDamageDealtToChampions / 10000 }" pattern=".0"/>만 --%></span>
+                          <div class="progress p-0">
+                            <div class="progress-bar bg-danger" role="progressbar" style="width: 95%;" aria-valuemin="0"
+                              aria-valuemax="100">${ pp.stats.totalDamageDealtToChampions }</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </c:forEach>
+                  <!-- 패배팀 라벨 -->
+                  <div class="team_label accordion-body d-flex justify-content-around" style="background: #b4b4b4;">
+                    <div class="team_kda">
+                      <span>패배 (레드팀)</span>
+                      <span>${ match.teams[1].totalKills } / ${ match.teams[1].totalDeaths } / ${
+                        match.teams[1].totalAssists }</span>
+                    </div>
+                    <div class="team_object d-flex">
+                      <div class="baron">
+                        <img src="${ path }/resources/img/icon-baron-r.png">
+                        <span>${ match.teams[1].baronKills }</span>
+                      </div>
+                      <div class="dragon">
+                        <img src="${ path }/resources/img/icon-dragon-r.png">
+                        <span>${ match.teams[1].dragonKills }</span>
+                      </div>
+                      <div class="tower">
+                        <img src="${ path }/resources/img/icon-tower-r.png">
+                        <span>${ match.teams[1].towerKills }</span>
+                      </div>
+                    </div>
+                  </div>
+                  <c:forEach items="${ match.participants }" begin="5" end="9" var="pp">
+                    <!-- 소환사 한명 -->
+                    <div class="summoner accordion-body d-flex justify-content-around align-content-center">
+                      <!-- 왼쪽 정보 -->
+                      <div class="d-flex">
+                        <!-- 캐릭터 초상화 -->
+                        <div class="champion_icon my-auto me-1">
+                          <img class="rounded-circle"
+                            src="https://ddragon.leagueoflegends.com/cdn/${version}/img/champion/${ pp.championId }.png">
+                        </div>
+                        <!-- 룬 스펠 -->
+                        <div class="rune_speli d-flex">
+                          <div class="rune_spell_icon d-flex flex-column justify-content-center">
+                            <img
+                              src=" https://ddragon.leagueoflegends.com/cdn/${version}/img/spell/${ pp.spell1Id }.png">
+                            <img
+                              src="https://ddragon.leagueoflegends.com/cdn/${version}/img/spell/${ pp.spell2Id }.png">
+                          </div>
+                          <div class="rune_spell_icon d-flex flex-column justify-content-center me-2">
+                            <img src="https://opgg-static.akamaized.net/images/lol/perk/${pp.stats.perk0}.png">
+                            <img
+                              src="https://opgg-static.akamaized.net/images/lol/perkStyle/${pp.stats.perkSubStyle}.png">
+                          </div>
+                        </div>
+                        <!-- 매칭 소환사 정보 -->
+                        <div class="summoner_info d-flex flex-column">
+                          <div class="summoner_tier d-flex">
+                            <div class="summoner_name">
+                              <span>${ pp.summoner }</span>
+                            </div>
+                          </div>
+                          <!-- KDA -->
+                          <div class="d-flex justify-content- text-center">
+                            <span>${ pp.stats.kills }/${ pp.stats.deaths }/${ pp.stats.assists }</span>&nbsp;
+                            <!-- <span style="color: red;">11.00:1</span> -->
+                          </div>
+                        </div>
+                      </div>
+                      <!-- 오른쪽 정보 -->
+                      <div class="d-flex flex-column  text-center">
+                        <!-- 아이템 -->
+                        <div class="item_icon d-flex">
+                          <img
+                            src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/${ pp.stats.item0 }.png">
+                          <img
+                            src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/${ pp.stats.item1 }.png">
+                          <img
+                            src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/${ pp.stats.item2 }.png">
+                          <img
+                            src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/${ pp.stats.item3 }.png">
+                          <img
+                            src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/${ pp.stats.item4 }.png">
+                          <img
+                            src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/${ pp.stats.item5 }.png">
+                        </div>
+
+                        <!-- 딜량, cs-->
+                        <div class="d-flex row row-cols-2">
+                          <span class="p-0 col-5">${ pp.stats.totalMinionsKilled +
+                            pp.stats.neutralMinionsKilled}CS<%-- <fmt:formatNumber value="${ pp.stats.totalDamageDealtToChampions / 10000 }" pattern=".0"/>만 --%></span>
+                          <div class="progress p-0">
+                            <div class="progress-bar bg-danger" role="progressbar" style="width: 95%;" aria-valuemin="0"
+                              aria-valuemax="100">${ pp.stats.totalDamageDealtToChampions }</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </c:forEach>
+                </c:if>
+                <!-- 승리팀 = Red -->
+                <c:if test="${ team.win == 'Win' && team.teamId == 200 }">
+                  <!-- 승리팀 라벨 -->
+                  <div class="team_label accordion-body d-flex justify-content-around" style="background: #b4b4b4;">
+                    <div class="team_kda">
+                      <span>승리 (레드팀)</span>
+                      <span>${ team.totalKills } / ${ team.totalDeaths } / ${ team.totalAssists }</span>
+                    </div>
+                    <div class="team_object d-flex">
+                      <div class="baron">
+                        <img src="${ path }/resources/img/icon-baron-b.png">
+                        <span>${ team.baronKills }</span>
+                      </div>
+                      <div class="dragon">
+                        <img src="${ path }/resources/img/icon-dragon-b.png">
+                        <span>${ team.dragonKills }</span>
+                      </div>
+                      <div class="tower">
+                        <img src="${ path }/resources/img/icon-tower-b.png">
+                        <span>${ team.towerKills }</span>
+                      </div>
+                    </div>
+                  </div>
+                  <c:forEach items="${ match.participants }" begin="0" end="4" var="pp">
+                    <!-- 소환사 한명 -->
+                    <div class="summoner accordion-body d-flex justify-content-around align-content-center">
+                      <!-- 왼쪽 정보 -->
+                      <div class="d-flex">
+                        <!-- 캐릭터 초상화 -->
+                        <div class="champion_icon my-auto me-1">
+                          <img class="rounded-circle"
+                            src="https://ddragon.leagueoflegends.com/cdn/${version}/img/champion/${ pp.championId }.png">
+                        </div>
+                        <!-- 룬 스펠 -->
+                        <div class="rune_speli d-flex">
+                          <div class="rune_spell_icon d-flex flex-column justify-content-center">
+                            <img
+                              src=" https://ddragon.leagueoflegends.com/cdn/${version}/img/spell/${ pp.spell1Id }.png">
+                            <img
+                              src="https://ddragon.leagueoflegends.com/cdn/${version}/img/spell/${ pp.spell2Id }.png">
+                          </div>
+                          <div class="rune_spell_icon d-flex flex-column justify-content-center me-2">
+                            <img src="https://opgg-static.akamaized.net/images/lol/perk/${pp.stats.perk0}.png">
+                            <img
+                              src="https://opgg-static.akamaized.net/images/lol/perkStyle/${pp.stats.perkSubStyle}.png">
+                          </div>
+                        </div>
+                        <!-- 매칭 소환사 정보 -->
+                        <div class="summoner_info d-flex flex-column">
+                          <div class="summoner_tier d-flex">
+                            <div class="summoner_name">
+                              <span>${ pp.summoner }</span>
+                            </div>
+                          </div>
+                          <!-- KDA -->
+                          <div class="d-flex justify-content- text-center">
+                            <span>${ pp.stats.kills }/${ pp.stats.deaths }/${ pp.stats.assists }</span>&nbsp;
+                            <!-- <span style="color: red;">11.00:1</span> -->
+                          </div>
+                        </div>
+                      </div>
+                      <!-- 오른쪽 정보 -->
+                      <div class="d-flex flex-column  text-center">
+                        <!-- 아이템 -->
+                        <div class="item_icon d-flex">
+                          <img
+                            src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/${ pp.stats.item0 }.png">
+                          <img
+                            src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/${ pp.stats.item1 }.png">
+                          <img
+                            src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/${ pp.stats.item2 }.png">
+                          <img
+                            src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/${ pp.stats.item3 }.png">
+                          <img
+                            src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/${ pp.stats.item4 }.png">
+                          <img
+                            src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/${ pp.stats.item5 }.png">
+                        </div>
+
+                        <!-- 딜량, cs-->
+                        <div class="d-flex row row-cols-2">
+                          <span class="p-0 col-5">${ pp.stats.totalMinionsKilled +
+                            pp.stats.neutralMinionsKilled}CS<%-- <fmt:formatNumber value="${ pp.stats.totalDamageDealtToChampions / 10000 }" pattern=".0"/>만 --%></span>
+                          <div class="progress p-0">
+                            <div class="progress-bar bg-danger" role="progressbar" style="width: 95%;" aria-valuemin="0"
+                              aria-valuemax="100">${ pp.stats.totalDamageDealtToChampions }</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </c:forEach>
+                  <!-- 패배팀 라벨 -->
+                  <div class="team_label accordion-body d-flex justify-content-around" style="background: #b4b4b4;">
+                    <div class="team_kda">
+                      <span>패배 (블루팀)</span>
+                      <span>${ match.teams[0].totalKills } / ${ match.teams[0].totalDeaths } / ${
+                        match.teams[0].totalAssists }</span>
+                    </div>
+                    <div class="team_object d-flex">
+                      <div class="baron">
+                        <img src="${ path }/resources/img/icon-baron-r.png">
+                        <span>${ match.teams[0].baronKills }</span>
+                      </div>
+                      <div class="dragon">
+                        <img src="${ path }/resources/img/icon-dragon-r.png">
+                        <span>${ match.teams[0].dragonKills }</span>
+                      </div>
+                      <div class="tower">
+                        <img src="${ path }/resources/img/icon-tower-r.png">
+                        <span>${ match.teams[0].towerKills }</span>
+                      </div>
+                    </div>
+                  </div>
+                  <c:forEach items="${ match.participants }" begin="5" end="9" var="pp">
+                    <!-- 소환사 한명 -->
+                    <div class="summoner accordion-body d-flex justify-content-around align-content-center">
+                      <!-- 왼쪽 정보 -->
+                      <div class="d-flex">
+                        <!-- 캐릭터 초상화 -->
+                        <div class="champion_icon my-auto me-1">
+                          <img class="rounded-circle"
+                            src="https://ddragon.leagueoflegends.com/cdn/${version}/img/champion/${ pp.championId }.png">
+                        </div>
+                        <!-- 룬 스펠 -->
+                        <div class="rune_speli d-flex">
+                          <div class="rune_spell_icon d-flex flex-column justify-content-center">
+                            <img
+                              src=" https://ddragon.leagueoflegends.com/cdn/${version}/img/spell/${ pp.spell1Id }.png">
+                            <img
+                              src="https://ddragon.leagueoflegends.com/cdn/${version}/img/spell/${ pp.spell2Id }.png">
+                          </div>
+                          <div class="rune_spell_icon d-flex flex-column justify-content-center me-2">
+                            <img src="https://opgg-static.akamaized.net/images/lol/perk/${pp.stats.perk0}.png">
+                            <img
+                              src="https://opgg-static.akamaized.net/images/lol/perkStyle/${pp.stats.perkSubStyle}.png">
+                          </div>
+                        </div>
+                        <!-- 매칭 소환사 정보 -->
+                        <div class="summoner_info d-flex flex-column">
+                          <div class="summoner_tier d-flex">
+                            <div class="summoner_name">
+                              <span>${ pp.summoner }</span>
+                            </div>
+                          </div>
+                          <!-- KDA -->
+                          <div class="d-flex justify-content- text-center">
+                            <span>${ pp.stats.kills }/${ pp.stats.deaths }/${ pp.stats.assists }</span>&nbsp;
+                            <!-- <span style="color: red;">11.00:1</span> -->
+                          </div>
+                        </div>
+                      </div>
+                      <!-- 오른쪽 정보 -->
+                      <div class="d-flex flex-column  text-center">
+                        <!-- 아이템 -->
+                        <div class="item_icon d-flex">
+                          <img
+                            src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/${ pp.stats.item0 }.png">
+                          <img
+                            src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/${ pp.stats.item1 }.png">
+                          <img
+                            src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/${ pp.stats.item2 }.png">
+                          <img
+                            src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/${ pp.stats.item3 }.png">
+                          <img
+                            src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/${ pp.stats.item4 }.png">
+                          <img
+                            src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/${ pp.stats.item5 }.png">
+                        </div>
+
+                        <!-- 딜량, cs-->
+                        <div class="d-flex row row-cols-2">
+                          <span class="p-0 col-5">${ pp.stats.totalMinionsKilled +
+                            pp.stats.neutralMinionsKilled}CS<%-- <fmt:formatNumber value="${ pp.stats.totalDamageDealtToChampions / 10000 }" pattern=".0"/>만 --%></span>
+                          <div class="progress p-0">
+                            <div class="progress-bar bg-danger" role="progressbar" style="width: 95%;" aria-valuemin="0"
+                              aria-valuemax="100">${ pp.stats.totalDamageDealtToChampions }</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </c:forEach>
+                </c:if>
               </c:forEach>
-
-              <!-- 승리팀 라벨 -->
-              <div class="team_label accordion-body d-flex justify-content-around" style="background: #b4b4b4;">
-                <div class="team_kda">
-                  <span>승리 (블루팀)</span>
-                  <span>${ team.totalKills } / ${ team.totalDeaths } / ${ team.totalAssists }</span>
-                </div>
-                <div class="team_object d-flex">
-                  <div class="baron">
-                    <img src="${ path }/resources/img/icon-baron-b.png">
-                    <span>${ team.baronKills }</span>
-                  </div>
-                  <div class="dragon">
-                    <img src="${ path }/resources/img/icon-dragon-b.png">
-                    <span>${ team.dragonKills }</span>
-                  </div>
-                  <div class="tower">
-                    <img src="${ path }/resources/img/icon-tower-b.png">
-                    <span>${ team.towerKills }</span>
-                  </div>
-                </div>
-              </div>
-              <!-- 소환사 한명 -->
-              <div class="summoner accordion-body d-flex justify-content-around align-content-center">
-                <!-- 왼쪽 정보 -->
-                <div class="d-flex">
-                  <!-- 캐릭터 초상화 -->
-                  <div class="champion_icon my-auto me-1">
-                    <img class="rounded-circle"
-                      src="https://ddragon.leagueoflegends.com/cdn/${version}/img/champion/Azir.png">
-                  </div>
-                  <!-- 룬 스펠 -->
-                  <div class="rune_speli d-flex">
-                    <div class="rune_spell_icon d-flex flex-column justify-content-center">
-                      <img src=" https://ddragon.leagueoflegends.com/cdn/${version}/img/spell/SummonerFlash.png">
-                      <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/spell/SummonerDot.png">
-                    </div>
-                    <div class="rune_spell_icon d-flex flex-column justify-content-center me-2">
-                      <img
-                        src="https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Domination/HailOfBlades/HailOfBlades.png">
-                      <img src="https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/7201_Precision.png">
-                    </div>
-                  </div>
-                  <!-- 매칭 소환사 정보 -->
-                  <div class="summoner_info d-flex flex-column">
-                    <div class="summoner_tier d-flex">
-                      <div class="tier me-1 my-auto rounded-circle text-center" style="background-color: silver;">
-                        <span>S1</span>
-                      </div>
-                      <div class="summoner_name">
-                        <span>정재호임</span>
-                      </div>
-                    </div>
-                    <!-- KDA -->
-                    <div class="d-flex justify-content- text-center">
-                      <span>12/2/10</span>&nbsp;
-                      <span style="color: red;">11.00:1</span>
-                    </div>
-                  </div>
-                </div>
-                <!-- 오른쪽 정보 -->
-                <div class="d-flex flex-column  text-center">
-                  <!-- 아이템 -->
-                  <div class="item_icon d-flex">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/4630.png">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/3157.png">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/3115.png">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/1026.png">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/1026.png">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/6653.png">
-                  </div>
-                  <!-- 딜량, cs-->
-                  <div class="d-flex row row-cols-2">
-                    <span class="p-0 col-5">198/1.4만</span>
-                    <div class="progress p-0">
-                      <div class="progress-bar bg-danger" role="progressbar" style="width: 95%;" aria-valuemin="0"
-                        aria-valuemax="100">22053</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <!-- 소환사 한명 -->
-              <div class="summoner accordion-body d-flex justify-content-around align-content-center">
-                <!-- 왼쪽 정보 -->
-                <div class="d-flex">
-                  <!-- 캐릭터 초상화 -->
-                  <div class="champion_icon my-auto me-1">
-                    <img class="rounded-circle"
-                      src="https://ddragon.leagueoflegends.com/cdn/${version}/img/champion/Azir.png">
-                  </div>
-                  <!-- 룬 스펠 -->
-                  <div class="rune_speli d-flex">
-                    <div class="rune_spell_icon d-flex flex-column justify-content-center">
-                      <img src=" https://ddragon.leagueoflegends.com/cdn/${version}/img/spell/SummonerFlash.png">
-                      <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/spell/SummonerDot.png">
-                    </div>
-                    <div class="rune_spell_icon d-flex flex-column justify-content-center me-2">
-                      <img
-                        src="https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Domination/HailOfBlades/HailOfBlades.png">
-                      <img src="https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/7201_Precision.png">
-                    </div>
-                  </div>
-                  <!-- 매칭 소환사 정보 -->
-                  <div class="summoner_info d-flex flex-column">
-                    <div class="summoner_tier d-flex">
-                      <div class="tier me-1 my-auto rounded-circle text-center" style="background-color: silver;">
-                        <span>S1</span>
-                      </div>
-                      <div class="summoner_name">
-                        <span>정재호임</span>
-                      </div>
-                    </div>
-                    <!-- KDA -->
-                    <div class="d-flex justify-content- text-center">
-                      <span>12/2/10</span>&nbsp;
-                      <span style="color: red;">11.00:1</span>
-                    </div>
-                  </div>
-                </div>
-                <!-- 오른쪽 정보 -->
-                <div class="d-flex flex-column  text-center">
-                  <!-- 아이템 -->
-                  <div class="item_icon d-flex">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/4630.png">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/3157.png">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/3115.png">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/1026.png">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/1026.png">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/6653.png">
-                  </div>
-                  <!-- 딜량, cs-->
-                  <div class="d-flex row row-cols-2">
-                    <span class="p-0 col-5">198/1.4만</span>
-                    <div class="progress p-0">
-                      <div class="progress-bar bg-danger" role="progressbar" style="width: 95%;" aria-valuemin="0"
-                        aria-valuemax="100">22053</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <!-- 소환사 한명 -->
-              <div class="summoner accordion-body d-flex justify-content-around align-content-center">
-                <!-- 왼쪽 정보 -->
-                <div class="d-flex">
-                  <!-- 캐릭터 초상화 -->
-                  <div class="champion_icon my-auto me-1">
-                    <img class="rounded-circle"
-                      src="https://ddragon.leagueoflegends.com/cdn/${version}/img/champion/Azir.png">
-                  </div>
-                  <!-- 룬 스펠 -->
-                  <div class="rune_speli d-flex">
-                    <div class="rune_spell_icon d-flex flex-column justify-content-center">
-                      <img src=" https://ddragon.leagueoflegends.com/cdn/${version}/img/spell/SummonerFlash.png">
-                      <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/spell/SummonerDot.png">
-                    </div>
-                    <div class="rune_spell_icon d-flex flex-column justify-content-center me-2">
-                      <img
-                        src="https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Domination/HailOfBlades/HailOfBlades.png">
-                      <img src="https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/7201_Precision.png">
-                    </div>
-                  </div>
-                  <!-- 매칭 소환사 정보 -->
-                  <div class="summoner_info d-flex flex-column">
-                    <div class="summoner_tier d-flex">
-                      <div class="tier me-1 my-auto rounded-circle text-center" style="background-color: silver;">
-                        <span>S1</span>
-                      </div>
-                      <div class="summoner_name">
-                        <span>정재호임</span>
-                      </div>
-                    </div>
-                    <!-- KDA -->
-                    <div class="d-flex justify-content- text-center">
-                      <span>12/2/10</span>&nbsp;
-                      <span style="color: red;">11.00:1</span>
-                    </div>
-                  </div>
-                </div>
-                <!-- 오른쪽 정보 -->
-                <div class="d-flex flex-column  text-center">
-                  <!-- 아이템 -->
-                  <div class="item_icon d-flex">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/4630.png">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/3157.png">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/3115.png">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/1026.png">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/1026.png">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/6653.png">
-                  </div>
-                  <!-- 딜량, cs-->
-                  <div class="d-flex row row-cols-2">
-                    <span class="p-0 col-5">198/1.4만</span>
-                    <div class="progress p-0">
-                      <div class="progress-bar bg-danger" role="progressbar" style="width: 95%;" aria-valuemin="0"
-                        aria-valuemax="100">22053</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <!-- 소환사 한명 -->
-              <div class="summoner accordion-body d-flex justify-content-around align-content-center">
-                <!-- 왼쪽 정보 -->
-                <div class="d-flex">
-                  <!-- 캐릭터 초상화 -->
-                  <div class="champion_icon my-auto me-1">
-                    <img class="rounded-circle"
-                      src="https://ddragon.leagueoflegends.com/cdn/${version}/img/champion/Azir.png">
-                  </div>
-                  <!-- 룬 스펠 -->
-                  <div class="rune_speli d-flex">
-                    <div class="rune_spell_icon d-flex flex-column justify-content-center">
-                      <img src=" https://ddragon.leagueoflegends.com/cdn/${version}/img/spell/SummonerFlash.png">
-                      <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/spell/SummonerDot.png">
-                    </div>
-                    <div class="rune_spell_icon d-flex flex-column justify-content-center me-2">
-                      <img
-                        src="https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Domination/HailOfBlades/HailOfBlades.png">
-                      <img src="https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/7201_Precision.png">
-                    </div>
-                  </div>
-                  <!-- 매칭 소환사 정보 -->
-                  <div class="summoner_info d-flex flex-column">
-                    <div class="summoner_tier d-flex">
-                      <div class="tier me-1 my-auto rounded-circle text-center" style="background-color: silver;">
-                        <span>S1</span>
-                      </div>
-                      <div class="summoner_name">
-                        <span>정재호임</span>
-                      </div>
-                    </div>
-                    <!-- KDA -->
-                    <div class="d-flex justify-content- text-center">
-                      <span>12/2/10</span>&nbsp;
-                      <span style="color: red;">11.00:1</span>
-                    </div>
-                  </div>
-                </div>
-                <!-- 오른쪽 정보 -->
-                <div class="d-flex flex-column  text-center">
-                  <!-- 아이템 -->
-                  <div class="item_icon d-flex">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/4630.png">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/3157.png">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/3115.png">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/1026.png">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/1026.png">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/6653.png">
-                  </div>
-                  <!-- 딜량, cs-->
-                  <div class="d-flex row row-cols-2">
-                    <span class="p-0 col-5">198/1.4만</span>
-                    <div class="progress p-0">
-                      <div class="progress-bar bg-danger" role="progressbar" style="width: 95%;" aria-valuemin="0"
-                        aria-valuemax="100">22053</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <!-- 소환사 한명 -->
-              <div class="summoner accordion-body d-flex justify-content-around align-content-center">
-                <!-- 왼쪽 정보 -->
-                <div class="d-flex">
-                  <!-- 캐릭터 초상화 -->
-                  <div class="champion_icon my-auto me-1">
-                    <img class="rounded-circle"
-                      src="https://ddragon.leagueoflegends.com/cdn/${version}/img/champion/Azir.png">
-                  </div>
-                  <!-- 룬 스펠 -->
-                  <div class="rune_speli d-flex">
-                    <div class="rune_spell_icon d-flex flex-column justify-content-center">
-                      <img src=" https://ddragon.leagueoflegends.com/cdn/${version}/img/spell/SummonerFlash.png">
-                      <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/spell/SummonerDot.png">
-                    </div>
-                    <div class="rune_spell_icon d-flex flex-column justify-content-center me-2">
-                      <img
-                        src="https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Domination/HailOfBlades/HailOfBlades.png">
-                      <img src="https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/7201_Precision.png">
-                    </div>
-                  </div>
-                  <!-- 매칭 소환사 정보 -->
-                  <div class="summoner_info d-flex flex-column">
-                    <div class="summoner_tier d-flex">
-                      <div class="tier me-1 my-auto rounded-circle text-center" style="background-color: silver;">
-                        <span>S1</span>
-                      </div>
-                      <div class="summoner_name">
-                        <span>정재호임</span>
-                      </div>
-                    </div>
-                    <!-- KDA -->
-                    <div class="d-flex justify-content- text-center">
-                      <span>12/2/10</span>&nbsp;
-                      <span style="color: red;">11.00:1</span>
-                    </div>
-                  </div>
-                </div>
-                <!-- 오른쪽 정보 -->
-                <div class="d-flex flex-column  text-center">
-                  <!-- 아이템 -->
-                  <div class="item_icon d-flex">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/4630.png">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/3157.png">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/3115.png">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/1026.png">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/1026.png">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/6653.png">
-                  </div>
-                  <!-- 딜량, cs-->
-                  <div class="d-flex row row-cols-2">
-                    <span class="p-0 col-5">198/1.4만</span>
-                    <div class="progress p-0">
-                      <div class="progress-bar bg-danger" role="progressbar" style="width: 95%;" aria-valuemin="0"
-                        aria-valuemax="100">22053</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <!-- 패배팀 라벨 -->
-              <div class="team_label accordion-body d-flex justify-content-around" style="background: #b4b4b4;">
-                <div class="team_kda">
-                  <span>패배 (레드팀)</span>
-                  <span>46 / 26 / 71</span>
-                </div>
-                <div class="team_object d-flex">
-                  <div class="baron">
-                    <img src="${ path }/resources/img/icon-baron-r.png">
-                    <span>2</span>
-                  </div>
-                  <div class="dragon">
-                    <img src="${ path }/resources/img/icon-dragon-r.png">
-                    <span>2</span>
-                  </div>
-                  <div class="tower">
-                    <img src="${ path }/resources/img/icon-tower-r.png">
-                    <span>2</span>
-                  </div>
-                </div>
-              </div>
-              <!-- 소환사 한명 -->
-              <div class="summoner accordion-body d-flex justify-content-around align-content-center">
-                <!-- 왼쪽 정보 -->
-                <div class="d-flex">
-                  <!-- 캐릭터 초상화 -->
-                  <div class="champion_icon my-auto me-1">
-                    <img class="rounded-circle"
-                      src="https://ddragon.leagueoflegends.com/cdn/${version}/img/champion/Azir.png">
-                  </div>
-                  <!-- 룬 스펠 -->
-                  <div class="rune_speli d-flex">
-                    <div class="rune_spell_icon d-flex flex-column justify-content-center">
-                      <img src=" https://ddragon.leagueoflegends.com/cdn/${version}/img/spell/SummonerFlash.png">
-                      <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/spell/SummonerDot.png">
-                    </div>
-                    <div class="rune_spell_icon d-flex flex-column justify-content-center me-2">
-                      <img
-                        src="https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Domination/HailOfBlades/HailOfBlades.png">
-                      <img src="https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/7201_Precision.png">
-                    </div>
-                  </div>
-                  <!-- 매칭 소환사 정보 -->
-                  <div class="summoner_info d-flex flex-column">
-                    <div class="summoner_tier d-flex">
-                      <div class="tier me-1 my-auto rounded-circle text-center" style="background-color: silver;">
-                        <span>S1</span>
-                      </div>
-                      <div class="summoner_name">
-                        <span>정재호임</span>
-                      </div>
-                    </div>
-                    <!-- KDA -->
-                    <div class="d-flex justify-content- text-center">
-                      <span>12/2/10</span>&nbsp;
-                      <span style="color: red;">11.00:1</span>
-                    </div>
-                  </div>
-                </div>
-                <!-- 오른쪽 정보 -->
-                <div class="d-flex flex-column  text-center">
-                  <!-- 아이템 -->
-                  <div class="item_icon d-flex">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/4630.png">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/3157.png">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/3115.png">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/1026.png">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/1026.png">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/6653.png">
-                  </div>
-                  <!-- 딜량, cs-->
-                  <div class="d-flex row row-cols-2">
-                    <span class="p-0 col-5">198/1.4만</span>
-                    <div class="progress p-0">
-                      <div class="progress-bar bg-danger" role="progressbar" style="width: 95%;" aria-valuemin="0"
-                        aria-valuemax="100">22053</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <!-- 소환사 한명 -->
-              <div class="summoner accordion-body d-flex justify-content-around align-content-center">
-                <!-- 왼쪽 정보 -->
-                <div class="d-flex">
-                  <!-- 캐릭터 초상화 -->
-                  <div class="champion_icon my-auto me-1">
-                    <img class="rounded-circle"
-                      src="https://ddragon.leagueoflegends.com/cdn/${version}/img/champion/Azir.png">
-                  </div>
-                  <!-- 룬 스펠 -->
-                  <div class="rune_speli d-flex">
-                    <div class="rune_spell_icon d-flex flex-column justify-content-center">
-                      <img src=" https://ddragon.leagueoflegends.com/cdn/${version}/img/spell/SummonerFlash.png">
-                      <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/spell/SummonerDot.png">
-                    </div>
-                    <div class="rune_spell_icon d-flex flex-column justify-content-center me-2">
-                      <img
-                        src="https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Domination/HailOfBlades/HailOfBlades.png">
-                      <img src="https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/7201_Precision.png">
-                    </div>
-                  </div>
-                  <!-- 매칭 소환사 정보 -->
-                  <div class="summoner_info d-flex flex-column">
-                    <div class="summoner_tier d-flex">
-                      <div class="tier me-1 my-auto rounded-circle text-center" style="background-color: silver;">
-                        <span>S1</span>
-                      </div>
-                      <div class="summoner_name">
-                        <span>정재호임</span>
-                      </div>
-                    </div>
-                    <!-- KDA -->
-                    <div class="d-flex justify-content- text-center">
-                      <span>12/2/10</span>&nbsp;
-                      <span style="color: red;">11.00:1</span>
-                    </div>
-                  </div>
-                </div>
-                <!-- 오른쪽 정보 -->
-                <div class="d-flex flex-column  text-center">
-                  <!-- 아이템 -->
-                  <div class="item_icon d-flex">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/4630.png">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/3157.png">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/3115.png">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/1026.png">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/1026.png">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/6653.png">
-                  </div>
-                  <!-- 딜량, cs-->
-                  <div class="d-flex row row-cols-2">
-                    <span class="p-0 col-5">198/1.4만</span>
-                    <div class="progress p-0">
-                      <div class="progress-bar bg-danger" role="progressbar" style="width: 95%;" aria-valuemin="0"
-                        aria-valuemax="100">22053</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <!-- 소환사 한명 -->
-              <div class="summoner accordion-body d-flex justify-content-around align-content-center">
-                <!-- 왼쪽 정보 -->
-                <div class="d-flex">
-                  <!-- 캐릭터 초상화 -->
-                  <div class="champion_icon my-auto me-1">
-                    <img class="rounded-circle"
-                      src="https://ddragon.leagueoflegends.com/cdn/${version}/img/champion/Azir.png">
-                  </div>
-                  <!-- 룬 스펠 -->
-                  <div class="rune_speli d-flex">
-                    <div class="rune_spell_icon d-flex flex-column justify-content-center">
-                      <img src=" https://ddragon.leagueoflegends.com/cdn/${version}/img/spell/SummonerFlash.png">
-                      <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/spell/SummonerDot.png">
-                    </div>
-                    <div class="rune_spell_icon d-flex flex-column justify-content-center me-2">
-                      <img
-                        src="https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Domination/HailOfBlades/HailOfBlades.png">
-                      <img src="https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/7201_Precision.png">
-                    </div>
-                  </div>
-                  <!-- 매칭 소환사 정보 -->
-                  <div class="summoner_info d-flex flex-column">
-                    <div class="summoner_tier d-flex">
-                      <div class="tier me-1 my-auto rounded-circle text-center" style="background-color: silver;">
-                        <span>S1</span>
-                      </div>
-                      <div class="summoner_name">
-                        <span>정재호임</span>
-                      </div>
-                    </div>
-                    <!-- KDA -->
-                    <div class="d-flex justify-content- text-center">
-                      <span>12/2/10</span>&nbsp;
-                      <span style="color: red;">11.00:1</span>
-                    </div>
-                  </div>
-                </div>
-                <!-- 오른쪽 정보 -->
-                <div class="d-flex flex-column  text-center">
-                  <!-- 아이템 -->
-                  <div class="item_icon d-flex">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/4630.png">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/3157.png">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/3115.png">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/1026.png">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/1026.png">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/6653.png">
-                  </div>
-                  <!-- 딜량, cs-->
-                  <div class="d-flex row row-cols-2">
-                    <span class="p-0 col-5">198/1.4만</span>
-                    <div class="progress p-0">
-                      <div class="progress-bar bg-danger" role="progressbar" style="width: 95%;" aria-valuemin="0"
-                        aria-valuemax="100">22053</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <!-- 소환사 한명 -->
-              <div class="summoner accordion-body d-flex justify-content-around align-content-center">
-                <!-- 왼쪽 정보 -->
-                <div class="d-flex">
-                  <!-- 캐릭터 초상화 -->
-                  <div class="champion_icon my-auto me-1">
-                    <img class="rounded-circle"
-                      src="https://ddragon.leagueoflegends.com/cdn/${version}/img/champion/Azir.png">
-                  </div>
-                  <!-- 룬 스펠 -->
-                  <div class="rune_speli d-flex">
-                    <div class="rune_spell_icon d-flex flex-column justify-content-center">
-                      <img src=" https://ddragon.leagueoflegends.com/cdn/${version}/img/spell/SummonerFlash.png">
-                      <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/spell/SummonerDot.png">
-                    </div>
-                    <div class="rune_spell_icon d-flex flex-column justify-content-center me-2">
-                      <img
-                        src="https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Domination/HailOfBlades/HailOfBlades.png">
-                      <img src="https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/7201_Precision.png">
-                    </div>
-                  </div>
-                  <!-- 매칭 소환사 정보 -->
-                  <div class="summoner_info d-flex flex-column">
-                    <div class="summoner_tier d-flex">
-                      <div class="tier me-1 my-auto rounded-circle text-center" style="background-color: silver;">
-                        <span>S1</span>
-                      </div>
-                      <div class="summoner_name">
-                        <span>정재호임</span>
-                      </div>
-                    </div>
-                    <!-- KDA -->
-                    <div class="d-flex justify-content- text-center">
-                      <span>12/2/10</span>&nbsp;
-                      <span style="color: red;">11.00:1</span>
-                    </div>
-                  </div>
-                </div>
-                <!-- 오른쪽 정보 -->
-                <div class="d-flex flex-column  text-center">
-                  <!-- 아이템 -->
-                  <div class="item_icon d-flex">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/4630.png">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/3157.png">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/3115.png">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/1026.png">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/1026.png">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/6653.png">
-                  </div>
-                  <!-- 딜량, cs-->
-                  <div class="d-flex row row-cols-2">
-                    <span class="p-0 col-5">198/1.4만</span>
-                    <div class="progress p-0">
-                      <div class="progress-bar bg-danger" role="progressbar" style="width: 95%;" aria-valuemin="0"
-                        aria-valuemax="100">22053</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <!-- 소환사 한명 -->
-              <div class="summoner accordion-body d-flex justify-content-around align-content-center">
-                <!-- 왼쪽 정보 -->
-                <div class="d-flex">
-                  <!-- 캐릭터 초상화 -->
-                  <div class="champion_icon my-auto me-1">
-                    <img class="rounded-circle"
-                      src="https://ddragon.leagueoflegends.com/cdn/${version}/img/champion/Azir.png">
-                  </div>
-                  <!-- 룬 스펠 -->
-                  <div class="rune_speli d-flex">
-                    <div class="rune_spell_icon d-flex flex-column justify-content-center">
-                      <img src=" https://ddragon.leagueoflegends.com/cdn/${version}/img/spell/SummonerFlash.png">
-                      <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/spell/SummonerDot.png">
-                    </div>
-                    <div class="rune_spell_icon d-flex flex-column justify-content-center me-2">
-                      <img
-                        src="https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Domination/HailOfBlades/HailOfBlades.png">
-                      <img src="https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/7201_Precision.png">
-                    </div>
-                  </div>
-                  <!-- 매칭 소환사 정보 -->
-                  <div class="summoner_info d-flex flex-column">
-                    <div class="summoner_tier d-flex">
-                      <div class="tier me-1 my-auto rounded-circle text-center" style="background-color: silver;">
-                        <span>S1</span>
-                      </div>
-                      <div class="summoner_name">
-                        <span>정재호임</span>
-                      </div>
-                    </div>
-                    <!-- KDA -->
-                    <div class="d-flex justify-content- text-center">
-                      <span>12/2/10</span>&nbsp;
-                      <span style="color: red;">11.00:1</span>
-                    </div>
-                  </div>
-                </div>
-                <!-- 오른쪽 정보 -->
-                <div class="d-flex flex-column  text-center">
-                  <!-- 아이템 -->
-                  <div class="item_icon d-flex">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/4630.png">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/3157.png">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/3115.png">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/1026.png">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/1026.png">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/6653.png">
-                  </div>
-                  <!-- 딜량, cs-->
-                  <div class="d-flex row row-cols-2">
-                    <span class="p-0 col-5">198/1.4만</span>
-                    <div class="progress p-0">
-                      <div class="progress-bar bg-danger" role="progressbar" style="width: 95%;" aria-valuemin="0"
-                        aria-valuemax="100">22053</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
         </div>
