@@ -409,13 +409,13 @@
                           <img
                             src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/${ pp.stats.item5 }.png">
                         </div>
-
                         <!-- 딜량, cs-->
                         <div class="d-flex row row-cols-2">
                           <span class="p-0 col-5">${ pp.stats.totalMinionsKilled +
                             pp.stats.neutralMinionsKilled}CS<%-- <fmt:formatNumber value="${ pp.stats.totalDamageDealtToChampions / 10000 }" pattern=".0"/>만 --%></span>
                           <div class="progress p-0">
-                            <div class="progress-bar bg-danger" role="progressbar" style="width: 95%;" aria-valuemin="0"
+                            <div class="progress-bar bg-danger" role="progressbar"
+                              style="width: ${(pp.stats.totalDamageDealtToChampions * 100) / match.maxDamage}%;" aria-valuemin="0"
                               aria-valuemax="100">${ pp.stats.totalDamageDealtToChampions }</div>
                           </div>
                         </div>
@@ -505,7 +505,8 @@
                           <span class="p-0 col-5">${ pp.stats.totalMinionsKilled +
                             pp.stats.neutralMinionsKilled}CS<%-- <fmt:formatNumber value="${ pp.stats.totalDamageDealtToChampions / 10000 }" pattern=".0"/>만 --%></span>
                           <div class="progress p-0">
-                            <div class="progress-bar bg-danger" role="progressbar" style="width: 95%;" aria-valuemin="0"
+                            <div class="progress-bar bg-danger" role="progressbar"
+                              style="width: ${(pp.stats.totalDamageDealtToChampions * 100) / match.maxDamage}%;" aria-valuemin="0"
                               aria-valuemax="100">${ pp.stats.totalDamageDealtToChampions }</div>
                           </div>
                         </div>
@@ -597,7 +598,8 @@
                           <span class="p-0 col-5">${ pp.stats.totalMinionsKilled +
                             pp.stats.neutralMinionsKilled}CS<%-- <fmt:formatNumber value="${ pp.stats.totalDamageDealtToChampions / 10000 }" pattern=".0"/>만 --%></span>
                           <div class="progress p-0">
-                            <div class="progress-bar bg-danger" role="progressbar" style="width: 95%;" aria-valuemin="0"
+                            <div class="progress-bar bg-danger" role="progressbar"
+                              style="width: ${(pp.stats.totalDamageDealtToChampions * 100) / match.maxDamage}%;" aria-valuemin="0"
                               aria-valuemax="100">${ pp.stats.totalDamageDealtToChampions }</div>
                           </div>
                         </div>
@@ -687,7 +689,8 @@
                           <span class="p-0 col-5">${ pp.stats.totalMinionsKilled +
                             pp.stats.neutralMinionsKilled}CS<%-- <fmt:formatNumber value="${ pp.stats.totalDamageDealtToChampions / 10000 }" pattern=".0"/>만 --%></span>
                           <div class="progress p-0">
-                            <div class="progress-bar bg-danger" role="progressbar" style="width: 95%;" aria-valuemin="0"
+                            <div class="progress-bar bg-danger" role="progressbar"
+                              style="width: ${(pp.stats.totalDamageDealtToChampions * 100) / match.maxDamage}%;" aria-valuemin="0"
                               aria-valuemax="100">${ pp.stats.totalDamageDealtToChampions }</div>
                           </div>
                         </div>

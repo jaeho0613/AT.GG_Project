@@ -140,6 +140,8 @@ public class RiotAPIUtility extends RestAPIUtility {
 		int rTotalKills = 0; // 팀 전체 킬
 		int rTotalDeaths = 0; // 팀 전체 데스
 		int rTotalAssists = 0; // 팀 전체 어시스트
+		
+		long maxDamage = 0;
 
 		MatchDTO match = new Gson().fromJson(result, MatchDTO.class);
 		match.setQueueId(utility.getQueueByName(match.getQueueId()));
@@ -157,6 +159,11 @@ public class RiotAPIUtility extends RestAPIUtility {
 //		log.info(match.getGameDuration());
 
 		for (int j = 0; j < match.getParticipants().size(); j++) {
+			
+			// 게임 전체 최고 데미지
+			if(maxDamage < match.getParticipants().get(j).getStats().getTotalDamageDealtToChampions()) {
+				maxDamage = match.getParticipants().get(j).getStats().getTotalDamageDealtToChampions();
+			}
 
 			// 블루팀
 			if (match.getParticipants().get(j).getParticipantId() <= 5) {
@@ -213,6 +220,8 @@ public class RiotAPIUtility extends RestAPIUtility {
 				match.getTeams().get(i).setTotalAssists(rTotalAssists);
 			}
 		}
+		
+		match.setMaxDamage(maxDamage);
 
 //		log.info("소환사 기본 정보 : getParticipants");
 //		match.getParticipants().forEach(participant -> {

@@ -14,6 +14,7 @@ public class MatchDTO {
 	long gameCreation; // DB
 	long gameDuration; // DB
 	String queueId; // DB
+	long maxDamage; // DB
 	int participantId; // UI
 	List<TeamsVO> teams; // DB
 	List<ParticipantVO> participants; // DB
