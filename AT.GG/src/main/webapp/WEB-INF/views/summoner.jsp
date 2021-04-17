@@ -358,7 +358,7 @@
                     <!-- 소환사 한명 -->
                     <div class="summoner accordion-body d-flex justify-content-around align-content-center">
                       <!-- 왼쪽 정보 -->
-                      <div class="d-flex">
+                      <div class="d-flex left_info">
                         <!-- 캐릭터 초상화 -->
                         <div class="champion_icon my-auto me-1">
                           <img class="rounded-circle"
@@ -393,7 +393,7 @@
                         </div>
                       </div>
                       <!-- 오른쪽 정보 -->
-                      <div class="d-flex flex-column  text-center">
+                      <div class="d-flex flex-column text-center">
                         <!-- 아이템 -->
                         <div class="item_icon d-flex">
                           <img
@@ -448,7 +448,7 @@
                     <!-- 소환사 한명 -->
                     <div class="summoner accordion-body d-flex justify-content-around align-content-center">
                       <!-- 왼쪽 정보 -->
-                      <div class="d-flex">
+                      <div class="d-flex left_info">
                         <!-- 캐릭터 초상화 -->
                         <div class="champion_icon my-auto me-1">
                           <img class="rounded-circle"
@@ -540,7 +540,7 @@
                     <!-- 소환사 한명 -->
                     <div class="summoner accordion-body d-flex justify-content-around align-content-center">
                       <!-- 왼쪽 정보 -->
-                      <div class="d-flex">
+                      <div class="d-flex left_info">
                         <!-- 캐릭터 초상화 -->
                         <div class="champion_icon my-auto me-1">
                           <img class="rounded-circle"
@@ -630,7 +630,7 @@
                     <!-- 소환사 한명 -->
                     <div class="summoner accordion-body d-flex justify-content-around align-content-center">
                       <!-- 왼쪽 정보 -->
-                      <div class="d-flex">
+                      <div class="d-flex left_info">
                         <!-- 캐릭터 초상화 -->
                         <div class="champion_icon my-auto me-1">
                           <img class="rounded-circle"

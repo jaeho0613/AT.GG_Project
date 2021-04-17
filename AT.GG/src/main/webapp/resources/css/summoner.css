@@ -24,6 +24,10 @@ footer li.icon {
   background: gray;
 }
 
+.left_info {
+  min-width: 300px;
+}
+
 /* 화면 가로가 767 이상일 때 (PC)*/
 @media (min-width: 768.98px) {
 
@@ -144,5 +148,9 @@ footer li.icon {
   .team_object img {
     width: 16px;
     height: 16px;
+  }
+
+  .left_info {
+    min-width: 190px;
   }
 }
