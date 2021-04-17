@@ -231,7 +231,7 @@
     <!-- 오른쪽 컨테이너 -->
     <div class="summoner_match_container col-xl-10 d-flex flex-column">
 
-      <c:forEach items="${ matchs }" var="match" varStatus="loop">
+      <c:forEach items="${ matchs }" var="match">
 
         <!-- 한개 게임 데이터 컨테이너 -->
         <div class="accordion" id="match_list">
@@ -240,14 +240,14 @@
             <h2 class="accordion-header">
               <c:if test="${(match.participants[match.participantId - 1].stats.win) == '승리'}">
                 <button class="accordion-button collapsed text-dark" type="button" data-bs-toggle="collapse"
-                  data-bs-target="#match_1" style="background-color: #A3CFEC;">
+                  data-bs-target="#match_${ match.gameId }" style="background-color: #A3CFEC;">
                   ${ match.queueId } / ${ match.createTimeString } / ${ match.durationTimeString } /
                   ${match.participants[match.participantId - 1].stats.win}
                 </button>
               </c:if>
               <c:if test="${(match.participants[match.participantId - 1].stats.win) == '패배'}">
                 <button class="accordion-button collapsed text-dark" type="button" data-bs-toggle="collapse"
-                  data-bs-target="#match_1" style="background-color: #E2B6B3;">
+                  data-bs-target="#match_${ match.gameId }" style="background-color: #E2B6B3;">
                   ${ match.queueId } / ${ match.createTimeString } / ${ match.durationTimeString } /
                   ${match.participants[match.participantId - 1].stats.win}
                 </button>
@@ -281,7 +281,7 @@
                   <span>${match.participants[match.participantId - 1].stats.kills} /
                     ${match.participants[match.participantId - 1].stats.deaths} /
                     ${match.participants[match.participantId - 1].stats.assists}</span>
-                  <div class="rounded-pill bg-danger text-center text-white">
+                  <div class="rounded-pill bg-danger text-center text-white p-1">
                     <c:choose>
                       <c:when test="${match.participants[match.participantId - 1].stats.largestMultiKill <= 1}">
                       </c:when>
@@ -303,45 +303,57 @@
                 <!-- Info -->
                 <div class="d-flex flex-column justify-content-center text-center lh-sm me-xl-4">
                   <span>레벨 ${match.participants[match.participantId - 1].stats.champLevel}</span>
-                  <span>${ match.participants[match.participantId - 1].stats.totalMinionsKilled + match.participants[match.participantId - 1].stats.neutralMinionsKilled } CS</span>
+                  <span>${ match.participants[match.participantId - 1].stats.totalMinionsKilled +
+                    match.participants[match.participantId - 1].stats.neutralMinionsKilled } CS</span>
                 </div>
                 <!-- 아이템 -->
                 <div class="item_icon d-flex me-xl-4">
                   <div class="item_icon d-flex flex-column justify-content-center">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/${ match.participants[match.participantId - 1].stats.item0 }.png">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/${ match.participants[match.participantId - 1].stats.item3 }.png">
+                    <img
+                      src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/${ match.participants[match.participantId - 1].stats.item0 }.png">
+                    <img
+                      src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/${ match.participants[match.participantId - 1].stats.item3 }.png">
                   </div>
                   <div class="item_icon d-flex flex-column justify-content-center">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/${ match.participants[match.participantId - 1].stats.item1 }.png">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/${ match.participants[match.participantId - 1].stats.item4 }.png">
+                    <img
+                      src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/${ match.participants[match.participantId - 1].stats.item1 }.png">
+                    <img
+                      src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/${ match.participants[match.participantId - 1].stats.item4 }.png">
                   </div>
                   <div class="item_icon d-flex flex-column justify-content-center">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/${ match.participants[match.participantId - 1].stats.item2 }.png">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/${ match.participants[match.participantId - 1].stats.item5 }.png">
+                    <img
+                      src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/${ match.participants[match.participantId - 1].stats.item2 }.png">
+                    <img
+                      src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/${ match.participants[match.participantId - 1].stats.item5 }.png">
                   </div>
                 </div>
               </div>
             </div>
             <!-- 숨김 컨텐츠 -->
-            <div id="match_1" class="hidden-content accordion-collapse collapse">
+            <div id="match_${ match.gameId }" class="hidden-content accordion-collapse collapse">
+
+              <c:forEach items="${ match.teams }" var="team">
+
+              </c:forEach>
+
               <!-- 승리팀 라벨 -->
               <div class="team_label accordion-body d-flex justify-content-around" style="background: #b4b4b4;">
                 <div class="team_kda">
-                  <span>승리</span>
-                  <span>46 / 26 / 71</span>
+                  <span>승리 (블루팀)</span>
+                  <span>${ team.totalKills } / ${ team.totalDeaths } / ${ team.totalAssists }</span>
                 </div>
                 <div class="team_object d-flex">
                   <div class="baron">
                     <img src="${ path }/resources/img/icon-baron-b.png">
-                    <span>2</span>
+                    <span>${ team.baronKills }</span>
                   </div>
                   <div class="dragon">
                     <img src="${ path }/resources/img/icon-dragon-b.png">
-                    <span>2</span>
+                    <span>${ team.dragonKills }</span>
                   </div>
                   <div class="tower">
                     <img src="${ path }/resources/img/icon-tower-b.png">
-                    <span>2</span>
+                    <span>${ team.towerKills }</span>
                   </div>
                 </div>
               </div>
