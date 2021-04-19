@@ -35,7 +35,7 @@
 		from MatchRef mt join Participant pt on mt.gameId = pt.gameId
 		where pt.summoner = #{summonerName}
 		order by mt.gameCreation desc
-		limit #{beginIndex} , #{endIndex}
+		limit #{beginIndex} , 5
 	 ]]>
 	</select>
 

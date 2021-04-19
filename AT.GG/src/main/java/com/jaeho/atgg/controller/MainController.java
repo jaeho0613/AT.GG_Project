@@ -31,16 +31,17 @@ import okhttp3.Request;
 
 @Controller
 @RequestMapping("/at.gg")
+@Log4j
 public class MainController {
 
 	@RequestMapping("")
 	public String main() {
 		return "main";
 	}
-	
+
 	@GetMapping("/summoner")
 	public String summoner(@RequestParam("summonerName") String summonerName,
-			@RequestParam(value = "pageNum", defaultValue = "0") String pageNum, Model model) throws IOException {
+			@RequestParam(value = "pageNum", defaultValue = "1") String pageNum, Model model) throws IOException {
 
 		String summonerInfo = RestAPIUtility.syncRestAPI("http://localhost:8080/lol/summoner/" + summonerName);
 
@@ -74,6 +75,8 @@ public class MainController {
 				.syncRestAPI("http://localhost:8080/lol/matchs/" + summonerName + "?pageNum=" + pageNum);
 
 		MatchDTO[] matchs = new Gson().fromJson(matchInfos, MatchDTO[].class);
+
+		log.info("pageNum : " + pageNum);
 
 		model.addAttribute("summoner", initSummonerInfo.getSummonerVO());
 		model.addAttribute("pageNum", pageNum);

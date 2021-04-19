@@ -74,10 +74,10 @@ public class RiotAPIController {
 		case "summoner":
 			RiotAPIUtility.initSummonerInfo(summonerService, summonerName);
 			// 소환사 매칭 정보 초기화 (최초 5개)
-			if (matchService.totalMatchRefCount(summonerName) <= 0) {
-				RiotAPIUtility.initMatchInfo(matchService, summonerService.getSummonerAccountId(summonerName),
-						beginIndex, endIndex);
-			}
+//			if (matchService.totalMatchRefCount(summonerName) <= 0) {
+//				RiotAPIUtility.initMatchInfo(matchService, summonerService.getSummonerAccountId(summonerName),
+//						beginIndex, endIndex);
+//			}
 			break;
 		case "matchs":
 			RiotAPIUtility.initMatchInfo(matchService, summonerService.getSummonerAccountId(summonerName), beginIndex,

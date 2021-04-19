@@ -702,8 +702,8 @@
             </div>
           </div>
         </c:forEach> <!-- match end foreach -->
-        <button type="button" class="match_btn btn btn-secondary mt-2">더보기</button>
       </div>
+      <button type="button" class="match_btn btn btn-secondary mt-2">더보기</button>
     </div>
   </div>
 </main>
@@ -735,45 +735,24 @@
           <!-- 캐릭터 초상화 -->
           <div class="champion_icon my-auto me-xl-4">
             <img class="rounded-circle"
-              src="https://ddragon.leagueoflegends.com/cdn/${version}/img/champion/${match.participants[match.participantId - 1].championId}.png">
+              src="https://ddragon.leagueoflegends.com/cdn/${version}/img/champion/{{getChampionId participants}}.png">
           </div>
           <!-- 룬 스펠 -->
           <div class="rune_speli d-flex me-xl-4">
             <div class="rune_spell_icon d-flex flex-column justify-content-center">
-              <img
-                src="https://ddragon.leagueoflegends.com/cdn/${version}/img/spell/${match.participants[match.participantId - 1].spell1Id}.png">
-              <img
-                src="https://ddragon.leagueoflegends.com/cdn/${version}/img/spell/${match.participants[match.participantId - 1].spell2Id}.png">
+              <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/spell/{{getSpell1 participants}}.png">
+              <img src="https://ddragon.leagueoflegends.com/cdn/${version}/img/spell/{{getSpell2 participants}}.png">
             </div>
             <div class="rune_spell_icon d-flex flex-column justify-content-center me-2">
-              <img
-                src="https://opgg-static.akamaized.net/images/lol/perk/${match.participants[match.participantId - 1].stats.perk0}.png">
-              <img
-                src="https://opgg-static.akamaized.net/images/lol/perkStyle/${match.participants[match.participantId - 1].stats.perkSubStyle}.png">
+              <img src="https://opgg-static.akamaized.net/images/lol/perk/{{getPerk participants}}.png">
+              <img src="https://opgg-static.akamaized.net/images/lol/perkStyle/{{getPerkStyle participants}}.png">
             </div>
           </div>
           <!-- KDA -->
           <div class="d-flex flex-column justify-content-center text-center lh-1 me-xl-4">
-            <span>${match.participants[match.participantId - 1].stats.kills} /
-              ${match.participants[match.participantId - 1].stats.deaths} /
-              ${match.participants[match.participantId - 1].stats.assists}</span>
+            <span> {{getKill participants}} / {{getDeath participants}} / {{getAssist participants}}</span>
             <div class="rounded-pill bg-danger text-center text-white p-1">
-              <c:choose>
-                <c:when test="${match.participants[match.participantId - 1].stats.largestMultiKill <= 1}">
-                </c:when>
-                <c:when test="${match.participants[match.participantId - 1].stats.largestMultiKill == 2}">
-                  <span>더블킬</span>
-                </c:when>
-                <c:when test="${match.participants[match.participantId - 1].stats.largestMultiKill == 3}">
-                  <span>트리플킬</span>
-                </c:when>
-                <c:when test="${match.participants[match.participantId - 1].stats.largestMultiKill == 4}">
-                  <span>쿼드라킬</span>
-                </c:when>
-                <c:when test="${match.participants[match.participantId - 1].stats.largestMultiKill == 5}">
-                  <span>펜타킬</span>
-                </c:when>
-              </c:choose>
+              <span>{{getMultiKill participants}}</span>
             </div>
           </div>
           <!-- Info -->
@@ -806,7 +785,7 @@
         </div>
       </div>
       <!-- 숨김 컨텐츠 -->
-      <div id="match_${ match.gameId }" class="hidden-content accordion-collapse collapse">
+      <div id="match_{{ gameId }}" class="hidden-content accordion-collapse collapse">
         <c:forEach items="${ match.teams }" var="team">
           <!-- 승리팀 = Blue -->
           <c:if test="${ team.win == 'Win' && team.teamId == 100 }">
@@ -1145,22 +1124,83 @@
 
 <!-- 더보기 버튼 -->
 <script>
-  var pageNum = ${pageNum};
+  var source = $("#template").html();
+  var template = Handlebars.compile(source);
+  var pageNum = ${ pageNum + 1 };
 
   $('.match_btn').on('click', function () {
     var html = '';
+    var url = '/lol/matchs/${ summoner.name }?pageNum=' + pageNum;
     $.ajax({
       type: 'GET',
-      url: '/lol/matchs/${ summoner.name }?pageNum=${ pageNum }',
+      url: url,
       success: function (data) {
+        pageNum++;
+
         data.forEach(function (item, index) {
-          var source = $("#template").html();
-          var template = Handlebars.compile(source);
+
           console.log(item);
 
           // var obj = JSON.parse(item);
           var participantId = item.participantId;
-          console.log("participantId : " + participantId);
+          console.log("participantId : " + (participantId - 1));
+
+          // multiKill
+          Handlebars.registerHelper('getMultiKill', function (value) {
+            switch (value[participantId - 1].stats.largestMultiKill) {
+              case 0:
+              case 1:
+                return '';
+              case 2:
+                return '더블킬';
+              case 3:
+                return '트리플킬';
+              case 4:
+                return '쿼드라킬';
+              case 5:
+                return '팬타킬';
+            }
+          });
+
+          // paritici - K
+          Handlebars.registerHelper('getKill', function (value) {
+            return value[participantId - 1].stats.kills;
+          });
+
+          // paritici - D
+          Handlebars.registerHelper('getDeath', function (value) {
+            return value[participantId - 1].stats.deaths;
+          });
+
+          // paritici - A
+          Handlebars.registerHelper('getAssist', function (value) {
+            return value[participantId - 1].stats.assists;
+          });
+
+          // perk
+          Handlebars.registerHelper('getPerk', function (value) {
+            return value[participantId - 1].stats.perk0;
+          });
+
+          // perkStyle
+          Handlebars.registerHelper('getPerkStyle', function (value) {
+            return value[participantId - 1].stats.perkSubStyle;
+          });
+
+          // spell 1
+          Handlebars.registerHelper('getSpell1', function (value) {
+            return value[participantId - 1].spell1Id;
+          });
+
+          // spell 2
+          Handlebars.registerHelper('getSpell2', function (value) {
+            return value[participantId - 1].spell2Id;
+          });
+
+          // participant image value
+          Handlebars.registerHelper('getChampionId', function (value) {
+            return value[participantId - 1].championId;
+          });
 
           // 승리 boolean 반환
           Handlebars.registerHelper('isWin', function (value) {
@@ -1183,7 +1223,7 @@
           html += template(item);
         });
 
-        $("#match_cap").append(html);
+        $("#match_container").append(html);
       },
       error: function () {
         console.log('통신 오류');
