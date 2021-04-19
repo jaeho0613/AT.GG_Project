@@ -757,30 +757,31 @@
           </div>
           <!-- Info -->
           <div class="d-flex flex-column justify-content-center text-center lh-sm me-xl-4">
-            <span>레벨 ${match.participants[match.participantId - 1].stats.champLevel}</span>
-            <span>${ match.participants[match.participantId - 1].stats.totalMinionsKilled +
-              match.participants[match.participantId - 1].stats.neutralMinionsKilled } CS</span>
+            <span>레벨 {{getChampionLV participants}}</span>
+            <span>{{getCS participants}} CS</span>
           </div>
           <!-- 아이템 -->
           <div class="item_icon d-flex me-xl-4">
+            {{#with (getItemList participants)}}
             <div class="item_icon d-flex flex-column justify-content-center">
               <img
-                src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/${ match.participants[match.participantId - 1].stats.item0 }.png">
+                src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/{{this.[0]}}.png">
               <img
-                src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/${ match.participants[match.participantId - 1].stats.item3 }.png">
+                src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/{{this.[3]}}.png">
             </div>
             <div class="item_icon d-flex flex-column justify-content-center">
               <img
-                src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/${ match.participants[match.participantId - 1].stats.item1 }.png">
+                src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/{{this.[1]}}.png">
               <img
-                src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/${ match.participants[match.participantId - 1].stats.item4 }.png">
+                src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/{{this.[4]}}.png">
             </div>
             <div class="item_icon d-flex flex-column justify-content-center">
               <img
-                src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/${ match.participants[match.participantId - 1].stats.item2 }.png">
+                src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/{{this.[2]}}.png">
               <img
-                src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/${ match.participants[match.participantId - 1].stats.item5 }.png">
+                src="https://ddragon.leagueoflegends.com/cdn/${version}/img/item/{{this.[5]}}.png">
             </div>
+            {{/with}}
           </div>
         </div>
       </div>
@@ -1126,7 +1127,7 @@
 <script>
   var source = $("#template").html();
   var template = Handlebars.compile(source);
-  var pageNum = ${ pageNum + 1 };
+  var pageNum = ${    pageNum + 1  };
 
   $('.match_btn').on('click', function () {
     var html = '';
@@ -1144,6 +1145,29 @@
           // var obj = JSON.parse(item);
           var participantId = item.participantId;
           console.log("participantId : " + (participantId - 1));
+
+          // item
+          Handlebars.registerHelper('getItemList', function (value) {
+            var itemList = new Array();
+            itemList.push(value[participantId - 1].stats.item0);
+            itemList.push(value[participantId - 1].stats.item1);
+            itemList.push(value[participantId - 1].stats.item2);
+            itemList.push(value[participantId - 1].stats.item3);
+            itemList.push(value[participantId - 1].stats.item4);
+            itemList.push(value[participantId - 1].stats.item5);
+            return itemList;
+          });
+
+          // CS
+          Handlebars.registerHelper('getCS', function (value) {
+            return (value[participantId - 1].stats.totalMinionsKilled + value[participantId - 1].stats
+              .neutralMinionsKilled);
+          });
+
+          // champion level
+          Handlebars.registerHelper('getChampionLV', function (value) {
+            return value[participantId - 1].stats.champLevel;
+          });
 
           // multiKill
           Handlebars.registerHelper('getMultiKill', function (value) {
