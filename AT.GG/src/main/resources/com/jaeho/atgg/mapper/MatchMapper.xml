@@ -42,7 +42,7 @@
 	<insert id="insertMatchRef">
 		insert into MatchRef
 		values(#{gameId},
-		#{gameCreation}, #{gameDuration}, #{queueId}, #{maxDamage})
+		#{gameCreation}, #{gameDuration}, #{queueId}, #{maxDamage}, #{createTimeString}, #{durationTimeString})
 	</insert>
 
 	<insert id="insertTeams">

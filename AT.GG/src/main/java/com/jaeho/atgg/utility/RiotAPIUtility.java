@@ -38,7 +38,7 @@ import lombok.extern.log4j.Log4j;
 public class RiotAPIUtility extends RestAPIUtility {
 
 	// Riot API
-	private final static String API_KEY = "RGAPI-d5a0d8c0-2d11-430d-b3e2-7a1b20978f96";
+	private final static String API_KEY = "RGAPI-5bdd1f6f-b332-4ad3-a01e-37f7d8062e95";
 
 	// API EndPoint
 	// 소환사 기본 정보
@@ -106,7 +106,7 @@ public class RiotAPIUtility extends RestAPIUtility {
 
 	// 소환사 매칭 데이터
 	// - 소환사 룬, 딜량, 팀 전적 등등
-	public static void initMatchInfo(MatchService service, String accountId, String beginIndex, String endIndex)
+	public static void initMatchInfo(MatchService service, String accountId, int beginIndex, int endIndex)
 			throws IOException {
 
 		List<String> gameIdList = getMatchList(beginIndex, endIndex, accountId);
@@ -140,11 +140,15 @@ public class RiotAPIUtility extends RestAPIUtility {
 		int rTotalKills = 0; // 팀 전체 킬
 		int rTotalDeaths = 0; // 팀 전체 데스
 		int rTotalAssists = 0; // 팀 전체 어시스트
-		
+
 		long maxDamage = 0;
 
 		MatchDTO match = new Gson().fromJson(result, MatchDTO.class);
 		match.setQueueId(utility.getQueueByName(match.getQueueId()));
+		
+		match.setCreateTimeString(TimeCalculate.createTimeByDateToString(match.getGameCreation()));
+		match.setDurationTimeString(TimeCalculate.durationTimeByDateToString(match.getGameDuration()));
+		
 //		log.info("==========================");
 //		log.info("게임 아이디 : getGameId");
 //		log.info(match.getGameId());
@@ -159,9 +163,9 @@ public class RiotAPIUtility extends RestAPIUtility {
 //		log.info(match.getGameDuration());
 
 		for (int j = 0; j < match.getParticipants().size(); j++) {
-			
+
 			// 게임 전체 최고 데미지
-			if(maxDamage < match.getParticipants().get(j).getStats().getTotalDamageDealtToChampions()) {
+			if (maxDamage < match.getParticipants().get(j).getStats().getTotalDamageDealtToChampions()) {
 				maxDamage = match.getParticipants().get(j).getStats().getTotalDamageDealtToChampions();
 			}
 
@@ -220,7 +224,7 @@ public class RiotAPIUtility extends RestAPIUtility {
 				match.getTeams().get(i).setTotalAssists(rTotalAssists);
 			}
 		}
-		
+
 		match.setMaxDamage(maxDamage);
 
 //		log.info("소환사 기본 정보 : getParticipants");
@@ -239,15 +243,15 @@ public class RiotAPIUtility extends RestAPIUtility {
 	}
 
 	// 소환사 매칭 정보 리스트
-	private static List<String> getMatchList(String beginIndex, String endIndex, String accountId) throws IOException {
+	private static List<String> getMatchList(int beginIndex, int endIndex, String accountId) throws IOException {
 		Map<String, String> headers = new HashMap<String, String>();
 		Map<String, String> parameters = new HashMap<String, String>();
 
 		List<String> gameIdList = new ArrayList<>();
 
 		headers.put("X-Riot-Token", API_KEY);
-		parameters.put("beginIndex", beginIndex);
-		parameters.put("endIndex", endIndex);
+		parameters.put("beginIndex", Integer.toString(beginIndex));
+		parameters.put("endIndex", Integer.toString(endIndex));
 
 		String result = syncRestAPI(MATCH_LIST + accountId, headers, parameters);
 

@@ -42,31 +42,46 @@ public class RiotAPIController {
 	@InitBinder
 	public void initBinder(HttpServletRequest request) throws IOException {
 
-		String endPoint = "";
-		String summonerName = "";
-
+		// full url
 		String[] urlSplit = request.getServletPath().split("/");
-		endPoint = urlSplit[2];
-		summonerName = urlSplit[3];
 
-//		log.info("full path : " + request.getServletPath());
+		// url target
+		String pageNum = request.getParameter("pageNum");
+		String endPoint = urlSplit[2];
+		String summonerName = urlSplit[3];
+
+		// pagsing index
+		int endIndex = 0;
+		int beginIndex = 0;
+
+		if (pageNum != null) {
+			endIndex = Integer.parseInt(pageNum) * 5;
+			beginIndex = endIndex - 5;
+
+			if (pageNum.equals("0")) {
+				endIndex = 5;
+				beginIndex = 0;
+			}
+		}
+
+		log.info("full path : " + request.getServletPath());
 		log.info("endPoint : " + endPoint);
 		log.info("summonerName : " + summonerName);
+		log.info("beginIndex :" + beginIndex);
+		log.info("endIndex : " + endIndex);
 
 		switch (endPoint) {
 		case "summoner":
 			RiotAPIUtility.initSummonerInfo(summonerService, summonerName);
 			// 소환사 매칭 정보 초기화 (최초 5개)
 			if (matchService.totalMatchRefCount(summonerName) <= 0) {
-				RiotAPIUtility.initMatchInfo(matchService, summonerService.getSummonerAccountId(summonerName), "0",
-						"5");
+				RiotAPIUtility.initMatchInfo(matchService, summonerService.getSummonerAccountId(summonerName),
+						beginIndex, endIndex);
 			}
 			break;
 		case "matchs":
-			if (matchService.totalMatchRefCount(summonerName) <= 0) {
-				RiotAPIUtility.initMatchInfo(matchService, summonerService.getSummonerAccountId(summonerName), "0",
-						"5");
-			}
+			RiotAPIUtility.initMatchInfo(matchService, summonerService.getSummonerAccountId(summonerName), beginIndex,
+					endIndex);
 			break;
 		}
 	}
