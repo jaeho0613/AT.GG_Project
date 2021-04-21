@@ -63,7 +63,7 @@ select mt.gameId
 from MatchRef mt join Participant pt on mt.gameId = pt.gameId
 where pt.summoner = '정재호임'
 order by mt.gameCreation desc
-limit 5,10;
+limit 15,5;
 
 select *
 from MatchRef mt join Participant pt on mt.gameId = pt.gameId
