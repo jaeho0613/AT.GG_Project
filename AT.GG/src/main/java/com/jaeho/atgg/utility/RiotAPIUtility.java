@@ -38,7 +38,7 @@ import lombok.extern.log4j.Log4j;
 public class RiotAPIUtility extends RestAPIUtility {
 
 	// Riot API
-	private final static String API_KEY = "RGAPI-36be62ed-85e6-4520-86f3-6bb9f7fe442a";
+	private final static String API_KEY = "RGAPI-ce64ae1f-02e0-463b-858a-b1a3a3371ec9";
 
 	// API EndPoint
 	// 소환사 기본 정보
