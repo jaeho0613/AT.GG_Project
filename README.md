@@ -110,7 +110,7 @@ DB Connection 객체 또한 HikariConfig 라이브러리를 사용하여 풀에�
 <script>
   var source = $("#template").html();
   var template = Handlebars.compile(source);
-  var pageNum = ${    pageNum + 1  };
+  var pageNum = ${ pageNum + 1 };
 
   $('.match_btn').on('click', function () {
     var html = '';
