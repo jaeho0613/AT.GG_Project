@@ -3,16 +3,12 @@
 **(사진 클릭 시 유튜브 영상)**  
 Spring 기반 게임 전적 검색 사이트입니다. 
 
----
-
 ## **프로젝트 개요**
 - 개발 기간 : 21/04/06 ~ 04/20 (14일)
 - 개발 인원 : 1명
 - 사용 툴  : Eclipse
 - 주요 사용 기술
   - Spring, MyBatis, MySQL, Bootstrap
-
----
 
 ## **프로젝트 주요 특징**
 - 반응형 웹으로 구성하였습니다. (BootStrap)
@@ -21,17 +17,13 @@ Spring 기반 게임 전적 검색 사이트입니다.
 - 다량의 API호출을 줄일 수 있도록 DB 검사 로직을 한 클래스에서 관리 할 수 있게 설계했습니다.
 - Ajax를 활용하여 부분 새로고침 기능을 구현했습니다.
 
----
-
-> **반응형 웹**
+### **반응형 웹**
 
 ![cover](./img/1.png)
 
 BootStrap을 활용한 반응형 웹
 
----
-
-> **프로젝트 최적화**
+### **프로젝트 최적화**
 
 ```java
 [RestAPIUtility.class 일부]
@@ -92,8 +84,7 @@ private static OkHttpClient getAsyncOkHttpClient() {
 ```
 DB Connection 객체 또한 HikariConfig 라이브러리를 사용하여 풀에서 관리
 
----
-> **API 호출 최적화**
+### **API 호출 최적화**
 
 <div><img src="./img/2.png" width="50%"><img src="./img/3.png" width="50%"></div>
 <img src="./img/4.png" width="100%">
@@ -101,9 +92,7 @@ DB Connection 객체 또한 HikariConfig 라이브러리를 사용하여 풀에�
 게임사(Riot) API를 호출하기 전에 DB에 데이터 유무를 판단합니다.   
 데이터가 있다면 DB에 호출 없다면 API를 호출하여 DB에 저장합니다.
 
----
-
-> **Ajax 통신 무한 스크롤**
+### **Ajax 통신 무한 스크롤**
 
 ```javascript
 [ summoner.jsp 일부분 ]
