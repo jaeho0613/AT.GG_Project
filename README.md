@@ -1,6 +1,7 @@
 # **AT.GG_Project**
-![cover](./img/AT.GG_Logo_Blue.png)   
-Spring 기반 게임 전적 검색 사이트입니다.
+[![cover](./img/AT.GG_Logo_Blue.png)](https://www.youtube.com/watch?v=sKwXszKZV7A)  
+**(사진 클릭 시 유튜브 영상)**  
+Spring 기반 게임 전적 검색 사이트입니다. 
 
 ---
 
